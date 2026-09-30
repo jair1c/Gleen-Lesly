@@ -268,3 +268,31 @@
 #PBnVwKBzJxQZpBf8 #LB1bChYRwMDsK1rM p {
   white-space: nowrap;
 }
+
+.demo2-music-toggle {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #8c846e;
+  border-radius: 50%;
+  background: #f6f3ed;
+  color: #5b5232;
+  box-shadow: 0 3px 12px #1b170c40;
+  font: 24px/1 Georgia, serif;
+  cursor: pointer;
+}
+
+.demo2-music-toggle[hidden] {
+  display: none !important;
+}
+
+.demo2-music-toggle:focus-visible {
+  outline: 2px solid #5b5232;
+  outline-offset: 3px;
+}

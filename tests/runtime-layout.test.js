@@ -59,3 +59,15 @@ test('el Polaroid Historia sustituye solo la foto y conserva la composición', (
   assert.match(personalize, /translate\(-17\.1707px, -118\.744px\).*translate\(-17\.1707px, -48\.744px\)/);
   assert.match(migrated, /class="demo3-countdown-polaroid"[^\n]*gleen-lesly-historia\.jpg/);
 });
+
+test('la música inicia con la apertura y se repite sin reiniciarse al desplazarse', () => {
+  const html = fs.readFileSync(path.join(root, 'Home.html'), 'utf8');
+  const music = fs.readFileSync(path.join(root, 'assets/demo2-music.js'), 'utf8');
+  const server = fs.readFileSync(path.join(root, 'local_server.js'), 'utf8');
+  assert.ok(fs.statSync(path.join(root, 'assets/music/music.mp3')).size > 0);
+  assert.match(html, /demo2-music\.js\?v=2/);
+  assert.match(music, /music\.loop = true/);
+  assert.match(music, /url\.hash === '#page-1' && link\.closest\('#PByb2KV5jZ9P1h1c'\)/);
+  assert.match(music, /url\.hash === '#page-0'\) stopMusic\(\)/);
+  assert.match(server, /'\.mp3': 'audio\/mpeg'/);
+});
