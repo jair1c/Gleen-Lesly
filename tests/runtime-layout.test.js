@@ -40,7 +40,8 @@ test('el calendario destaca el 28 y deja el 18 sin negrita', () => {
   const migrated = fs.readFileSync(path.join(root, 'assets/demo2-migrated-sections.js'), 'utf8');
   assert.match(migrated, /demo2-wedding-date', value === '28'/);
   assert.match(migrated, /demo2-former-wedding-date', value === '18'/);
-  assert.match(theme, /\.demo2-former-wedding-date\s*\{\s*font-weight: 400 !important/);
+  assert.match(theme, /\.demo2-former-wedding-date \*\s*\{\s*color: #a29282 !important;\s*font-weight: 400 !important/);
+  assert.match(theme, /\.demo2-wedding-date \*\s*\{\s*color: #5b5232 !important;\s*font-weight: 700 !important/);
   assert.match(theme, /\.demo2-wedding-date::after[\s\S]*?border: 3px solid #5b5232/);
 });
 

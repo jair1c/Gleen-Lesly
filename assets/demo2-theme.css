@@ -182,11 +182,17 @@
 
 #PBnVwKBzJxQZpBf8 .demo2-wedding-date {
   position: relative;
+}
+
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date,
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date * {
   color: #5b5232 !important;
   font-weight: 700 !important;
 }
 
-#PBnVwKBzJxQZpBf8 .demo2-former-wedding-date {
+#PBnVwKBzJxQZpBf8 .demo2-former-wedding-date,
+#PBnVwKBzJxQZpBf8 .demo2-former-wedding-date * {
+  color: #a29282 !important;
   font-weight: 400 !important;
 }
 
