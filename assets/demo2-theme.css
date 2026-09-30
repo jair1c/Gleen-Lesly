@@ -1,0 +1,270 @@
+/* Portada del sobre: personalizacion mobile-first. */
+#PByb2KV5jZ9P1h1c {
+  background: #211711 url("images/fondo.jpeg") center 46% / cover no-repeat !important;
+  min-height: 100svh;
+}
+
+#PByb2KV5jZ9P1h1c .GDnEHQ,
+#PByb2KV5jZ9P1h1c ._8jGYJw,
+#PByb2KV5jZ9P1h1c .fbzKiw {
+  background: transparent !important;
+}
+
+#PByb2KV5jZ9P1h1c .GDnEHQ {
+  overflow: visible !important;
+}
+
+#PByb2KV5jZ9P1h1c::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(19, 12, 8, .28), rgba(19, 12, 8, .12) 45%, rgba(19, 12, 8, .34));
+}
+
+#PByb2KV5jZ9P1h1c > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sustituye el sello diminuto exportado por el monograma GL de demo33. */
+#PByb2KV5jZ9P1h1c :is(#__id1152, #LBz8sBVyHk02bZTk, #LBxHqWcVV4F2xqDD) {
+  display: none !important;
+}
+
+#PByb2KV5jZ9P1h1c :is(#__id1148, .DF_utQ:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"]))::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: clamp(48px, 18%, 64px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: url("images/lg-monogram-transparent.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+/* El motor original conserva el tamaño y la máscara del PNG al cambiar su tono. */
+#PByb2KV5jZ9P1h1c .Izwocg:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"]) {
+  position: relative;
+}
+
+#PByb2KV5jZ9P1h1c .Izwocg:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"]) img {
+  opacity: 0;
+}
+
+#PByb2KV5jZ9P1h1c .Izwocg:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"])::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/envelope-white.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("media/2628c957b9f9df41845f2056ef40750e.png") center / 100% 100% no-repeat;
+  mask: url("media/2628c957b9f9df41845f2056ef40750e.png") center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+#PByb2KV5jZ9P1h1c img[src*="72abceaf223d15163e66f6a52411ea31.png"] {
+  visibility: hidden;
+}
+
+/* El vino de la portada pasa a marfil para contrastar con los lirios. */
+#PByb2KV5jZ9P1h1c [style*="color: rgb(103, 33, 45)"] {
+  color: #fffaf2 !important;
+  text-shadow: 0 2px 12px rgba(18, 10, 6, .52);
+}
+
+#PByb2KV5jZ9P1h1c p,
+#PByb2KV5jZ9P1h1c a {
+  color: #fffaf2 !important;
+  text-shadow: 0 1px 8px rgba(18, 10, 6, .42);
+}
+
+@media (max-width: 640px) {
+  #PByb2KV5jZ9P1h1c {
+    background-position: 54% center !important;
+  }
+
+  #PByb2KV5jZ9P1h1c::before {
+    background: linear-gradient(180deg, rgba(18, 11, 8, .34), rgba(18, 11, 8, .12) 42%, rgba(18, 11, 8, .42));
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #PByb2KV5jZ9P1h1c *,
+  #PByb2KV5jZ9P1h1c *::before,
+  #PByb2KV5jZ9P1h1c *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Movimiento progresivo para las composiciones originales de Canva. */
+.demo2-motion-ready .demo2-motion-item {
+  opacity: 0;
+  filter: blur(5px);
+  transition:
+    opacity .8s ease var(--demo2-motion-delay, 0ms),
+    filter .9s ease var(--demo2-motion-delay, 0ms);
+  will-change: opacity, filter;
+}
+
+.demo2-motion-ready .demo2-motion-item img {
+  scale: 1.035;
+  transition: scale 1.15s cubic-bezier(.22, 1, .36, 1) var(--demo2-motion-delay, 0ms);
+  transform-origin: center center;
+}
+
+.demo2-motion-ready .demo2-motion-item.demo2-motion-visible {
+  opacity: 1;
+  filter: none;
+}
+
+.demo2-motion-ready .demo2-motion-item.demo2-motion-visible img {
+  scale: 1;
+}
+
+.demo2-motion-ready .demo2-motion-item:has(a):hover {
+  filter: brightness(1.035) drop-shadow(0 7px 14px rgba(66, 38, 30, .12));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo2-motion-ready .demo2-motion-item,
+  .demo2-motion-ready .demo2-motion-item img {
+    opacity: 1 !important;
+    filter: none !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
+}
+
+/* Secciones continuas migradas de demo33, centradas para una experiencia movil. */
+.demo2-migrated-sections {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 600px);
+  margin: 0 auto;
+  background: #eeece7;
+  overflow: hidden;
+}
+
+.demo2-migrated-sections .demo3-long-page {
+  width: 100%;
+}
+
+/* Se elimina el cierre antiguo: pastel, firma y boton de regreso. */
+#PBnVwKBzJxQZpBf8 #LBtVr4xjMcLknz6J,
+#PBnVwKBzJxQZpBf8 #LBjJ4T4Qy9r60xjN,
+#PBnVwKBzJxQZpBf8 #LBq6qkCK3LxfqpZM,
+#PBnVwKBzJxQZpBf8 #LB42vlPZ5JwQd7Hs {
+  display: none !important;
+}
+
+/* El último botón pertenece al lienzo original, no a las secciones migradas. */
+#PBnVwKBzJxQZpBf8 #LB4s6jMR7p5T7TDt {
+  display: none !important;
+}
+
+/* Restos de las etiquetas del cierre anterior, visibles como rayitas al abrir. */
+#PBnVwKBzJxQZpBf8 #LBWDFQTM9rnLcK9T,
+#PBnVwKBzJxQZpBf8 #LBpJ6SC7lndmpTS3 {
+  display: none !important;
+}
+
+#PBnVwKBzJxQZpBf8 [style*="color: rgb(103, 33, 45)"] {
+  color: #5b5232 !important;
+}
+
+#PBnVwKBzJxQZpBf8 #LBCpjqY9hdRxJzz8 {
+  display: none !important;
+}
+
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date {
+  position: relative;
+  color: #5b5232 !important;
+  font-weight: 700 !important;
+}
+
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #5b5232;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#PBnVwKBzJxQZpBf8 #LBvYygml7kR12XyR p {
+  font-size: 48px !important;
+  white-space: nowrap;
+}
+
+#PBnVwKBzJxQZpBf8 :is(#LBtb18hX61WmVN3f, #LBCww0zp2db2W2vt) :is(p, a) {
+  color: #5b5232 !important;
+}
+
+/* Cordón, lacre, lazo y pétalos dejan de repetir el acento vino. */
+#PBnVwKBzJxQZpBf8 :is(#LBpLmQZjpBG7xV3Z, #LB3YdWB5bmG03Ncc, #LB7DX2NhJtvKWFJ2, #LBkKlFzvfF1FscrH) img {
+  filter: grayscale(.8) sepia(.45) hue-rotate(28deg) saturate(.65) brightness(1.08);
+}
+
+/* El sobre abierto conserva los PNG originales y, por tanto, su silueta exacta. */
+#PBnVwKBzJxQZpBf8 :is(#LB2qSkdK1B4tFS55, #LBWyCfngdXWzPFYr) img {
+  filter: grayscale(1) invert(1) sepia(.12) brightness(1.02) contrast(.9);
+}
+
+#PBnVwKBzJxQZpBf8 #LBJpsWBKQ8ZVBVN8 img {
+  filter: grayscale(1) brightness(5);
+}
+
+/* La máscara original del segundo sobre fija su silueta y su posición. */
+#PBnVwKBzJxQZpBf8 .Izwocg:has(img:is([src*="267bfe012a2275a1484a58d24bdb0b8d.png"], [src*="bdcb86a5ed5c07d9074aec12fa44e4f8.png"])) {
+  position: relative;
+}
+
+#PBnVwKBzJxQZpBf8 .Izwocg:has(img:is([src*="267bfe012a2275a1484a58d24bdb0b8d.png"], [src*="bdcb86a5ed5c07d9074aec12fa44e4f8.png"])) img {
+  opacity: 0;
+}
+
+#PBnVwKBzJxQZpBf8 .Izwocg:has(img:is([src*="267bfe012a2275a1484a58d24bdb0b8d.png"], [src*="bdcb86a5ed5c07d9074aec12fa44e4f8.png"]))::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("images/envelope-white.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("media/267bfe012a2275a1484a58d24bdb0b8d.png") center / 100% 100% no-repeat;
+  mask: url("media/267bfe012a2275a1484a58d24bdb0b8d.png") center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+/* El sello del sobre abierto usa el mismo monograma LG de la portada. */
+#PBnVwKBzJxQZpBf8 :is(#LBk0QGmlFY5wsDdZ img, #LB7YW0dvHy7Xx4gp, #LB3ZvwsmqQXWGD9Q) {
+  visibility: hidden !important;
+}
+
+#PBnVwKBzJxQZpBf8 #LBk0QGmlFY5wsDdZ::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: url("images/lg-monogram-transparent.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+/* Las etiquetas traducidas permanecen dentro del ancho del collage. */
+#PBnVwKBzJxQZpBf8 #LBtb18hX61WmVN3f p:first-child {
+  font-size: 55px !important;
+  --H97cbQ: 55px !important;
+  white-space: nowrap;
+}
+
+#PBnVwKBzJxQZpBf8 #LB1bChYRwMDsK1rM p {
+  white-space: nowrap;
+}

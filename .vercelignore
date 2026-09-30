@@ -1,6 +1,11 @@
 local_server.js
+.env.local
 iniciar_web.bat
 *.bat
 confirmaciones_rsvp.json
 confirmaciones_rsvp.csv
 .git
+official-reference/
+assets/images/open-envelope-white.png
+assets/images/open-envelope-front-white.png
+assets/images/stripe-ivory.png

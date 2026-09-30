@@ -1,0 +1,731 @@
+@font-face {
+  font-family: "Demo3 Serif";
+  src: url("../fonts/003e82bf2f68067801da6a72d24cdf78.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Demo3 Text";
+  src: url("../fonts/238919b47920553d7b287ec007d67e76.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Demo2 Calendar Script";
+  src: url("../fonts/003e82bf2f68067801da6a72d24cdf78.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Demo2 Calendar Numbers";
+  src: url("../fonts/8f112401d11bdde7dcb6ccc50d0cf469.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Demo2 Calendar Text";
+  src: url("../fonts/cfcbcaabc41291782c1541b9c6e97ce8.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --demo3-ink: #5b5232;
+  --demo3-muted: #8b8165;
+  --demo3-paper: #eeece7;
+  --demo3-paper-light: #faf8f3;
+  --demo3-line: rgba(91, 82, 50, .28);
+}
+
+video[src*="db6f45dbfccbbd67b16302ade6f7f7b8.mp4"] { visibility: hidden !important; }
+.demo3-photobooth-video-host { position: relative !important; }
+.demo3-photobooth-strip-mask {
+  position: absolute;
+  top: 8%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.demo3-photobooth-strip {
+  position: absolute;
+  top: 9%;
+  left: 15%;
+  box-sizing: border-box;
+  width: 70%;
+  margin: 0;
+  padding: 7px 7px 29px;
+  background: #f9f7f2;
+  box-shadow: 0 8px 16px rgba(45, 36, 24, .22);
+  transform: translateY(-105%) rotate(-4deg);
+  animation: demo3-photobooth-reveal 4.2s cubic-bezier(.22, 1, .36, 1) .3s both;
+}
+.demo3-photobooth-frame {
+  width: 100%;
+  aspect-ratio: 1.08;
+  margin: 0 0 5px;
+  overflow: hidden;
+}
+.demo3-photobooth-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.08);
+}
+.demo3-photobooth-frame:first-child img { object-position: center 58%; transform: scale(2.05); filter: grayscale(1) brightness(1.12) contrast(1.08); }
+.demo3-photobooth-frame:nth-child(2) img { object-position: center 48%; transform: scale(1.65); filter: grayscale(1) brightness(1.55) contrast(.95); }
+.demo3-photobooth-frame:nth-child(3) img { object-position: center 42%; }
+.demo3-photobooth-strip figcaption {
+  padding-top: 2px;
+  color: #766b59;
+  text-align: center;
+  font: italic 600 23px/1 Georgia, serif;
+  letter-spacing: -.065em;
+  transform: scaleX(.75);
+  white-space: nowrap;
+}
+@keyframes demo3-photobooth-reveal {
+  to { transform: translateY(0) rotate(-4deg); }
+}
+
+#LB0s12mPKlql8H1Y { display: none !important; }
+#LBqD0RMdny2k1tZZ,
+#LB7dzwQSvmT4KhN9 { display: none !important; }
+.demo3-save-date-rebalanced #LBl7cTHFRqDqVNHX {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.demo3-save-date-rebalanced #LBqp7QvHpHDNSdcb,
+.demo3-save-date-rebalanced #LB7CNQHXl1FJF0PT {
+  display: none !important;
+}
+
+/* El control vive dentro del propio vinilo. Elevamos el conjunto completo
+   sobre el control de vídeo que Canva dibuja como una capa separada. */
+#LBfmmjqdw01g8QSC {
+  z-index: 2147482999 !important;
+}
+
+#LB7CNQHXl1FJF0PT,
+#LBqp7QvHpHDNSdcb,
+#LBqj2Vncc9rQH5Vk,
+#LBkNsdKGhKKhhHky,
+#LByfjKYfy7hLvG1T,
+#LBdV4l0jXPBtJ72l,
+#LBWT0hS4Qbd3fGXJ {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.demo3-calendar-transplant {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  color: var(--demo3-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
+.demo3-calendar-card {
+  position: relative;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  aspect-ratio: 372.761 / 527.417;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, .16), rgba(255, 255, 255, 0)),
+    #f2eee7;
+  border: 1px solid rgba(91, 82, 50, .14);
+  box-shadow: 0 9px 22px rgba(67, 60, 40, .14);
+}
+
+.demo3-calendar-paper {
+  display: none;
+}
+
+.demo3-calendar-title {
+  position: absolute;
+  z-index: 2;
+  top: 16.5%;
+  left: 7%;
+  width: 86%;
+  font-family: "Demo2 Calendar Script", "Demo3 Serif", cursive;
+  font-size: clamp(22px, 7.4vw, 36px);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.demo3-calendar-dates {
+  position: absolute;
+  z-index: 2;
+  top: 31%;
+  left: 14%;
+  width: 72%;
+}
+
+.demo3-calendar-week,
+.demo3-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  font-family: "Demo2 Calendar Numbers", "Demo3 Text", sans-serif;
+}
+
+.demo3-calendar-week {
+  margin-bottom: 4px;
+  color: var(--demo3-muted);
+  font-size: clamp(5px, 1.55vw, 9px);
+  letter-spacing: .02em;
+}
+
+.demo3-calendar-grid {
+  row-gap: 5px;
+  color: var(--demo3-muted);
+  font-size: clamp(8px, 2.1vw, 13px);
+}
+
+.demo3-calendar-grid span {
+  display: grid;
+  place-items: center;
+  min-height: 1.65em;
+}
+
+.demo3-calendar-grid > span::before {
+  content: attr(data-day);
+}
+
+.demo3-calendar-grid .wedding-day {
+  width: 2.25em;
+  height: 2.25em;
+  margin: auto;
+  color: #67212d;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.demo3-calendar-foot {
+  position: absolute;
+  z-index: 2;
+  top: 58.5%;
+  left: 14%;
+  width: 72%;
+  font-family: "Demo2 Calendar Text", "Demo3 Text", serif;
+  font-size: clamp(7px, 1.9vw, 11px);
+  line-height: 1.25;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.demo3-vinyl-toggle {
+  position: absolute;
+  z-index: 2147483000 !important;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 42%;
+  height: 42%;
+  padding: 0;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  color: #f5f1e7;
+  background: rgba(88, 80, 61, .84);
+  border: 3px solid rgba(245, 241, 231, .9);
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(45, 38, 24, .22);
+  font-size: 0;
+  cursor: pointer;
+}
+
+.demo3-vinyl-toggle::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  margin-left: 8%;
+  border-top: .28em solid transparent;
+  border-bottom: .28em solid transparent;
+  border-left: .43em solid currentColor;
+  font-size: 34px;
+}
+
+.demo3-vinyl-toggle[data-state="playing"]::before {
+  width: 27%;
+  height: 38%;
+  margin-left: 0;
+  border: 0;
+  background: linear-gradient(to right, currentColor 0 31%, transparent 31% 69%, currentColor 69% 100%);
+}
+
+.demo3-vinyl-toggle[data-state="playing"] {
+  animation: demo3-vinyl-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes demo3-vinyl-pulse {
+  0%, 100% { box-shadow: 0 6px 18px rgba(0, 0, 0, .35); }
+  50% { box-shadow: 0 6px 18px rgba(0, 0, 0, .35), 0 0 0 7px rgba(245, 241, 231, .12); }
+}
+
+.demo3-vinyl-toggle:focus-visible {
+  outline: 3px solid rgba(245, 241, 231, .95);
+  outline-offset: 4px;
+}
+
+/* Canva encoge horizontalmente los textos traducidos y desplaza sus centros.
+   Restauramos las cajas originales y adaptamos solo la tipografía española. */
+#LB1hP4s28pzr0ryw,
+#LBSCrtGm95WhTgck,
+#LBbm8rN8PsJ0mlzT {
+  scale: 1 1 !important;
+}
+
+#LB3ZbHR6Rs28Q8qW p {
+  text-align: center !important;
+}
+
+#LBc0yrsJdc0DfDnt > .aF9o6Q {
+  width: 320.85px !important;
+  margin-left: -36px;
+}
+
+#LBc0yrsJdc0DfDnt p {
+  --H97cbQ: 39px !important;
+  font-size: 39px !important;
+  line-height: 42px !important;
+  text-align: center !important;
+}
+
+#LBc0yrsJdc0DfDnt a {
+  display: block;
+  white-space: nowrap !important;
+}
+
+#LBPcZG8RKbLP5b2s p {
+  --H97cbQ: 54px !important;
+  font-size: 54px !important;
+  line-height: 60px !important;
+  text-align: center !important;
+}
+
+#LBbm8rN8PsJ0mlzT p {
+  --H97cbQ: 68px !important;
+  font-size: 68px !important;
+  line-height: 82px !important;
+  text-align: center !important;
+}
+
+.demo3-welcome,
+.demo3-expired {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(229, 229, 220, .94);
+  backdrop-filter: blur(8px);
+}
+
+.demo3-welcome-card,
+.demo3-expired-card {
+  width: min(100%, 410px);
+  padding: 28px 24px 26px;
+  color: var(--demo3-ink);
+  background: var(--demo3-paper-light);
+  border: 1px solid rgba(91, 82, 50, .25);
+  box-shadow: 0 18px 55px rgba(45, 38, 24, .22);
+  text-align: center;
+}
+
+.demo3-welcome-logo,
+.demo3-social-logo,
+.demo3-expired-logo {
+  display: block;
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: .88;
+}
+
+.demo3-kicker {
+  margin: 0 0 10px;
+  font: 400 10px/1.4 "Demo3 Text", Arial, sans-serif;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.demo3-welcome h1,
+.demo3-expired h1 {
+  margin: 0 0 9px;
+  font: italic 400 clamp(37px, 11vw, 54px)/.98 "Demo3 Serif", Georgia, serif;
+}
+
+.demo3-welcome p,
+.demo3-expired p {
+  margin: 7px auto;
+  max-width: 30ch;
+  font: 400 15px/1.5 "Demo3 Text", Georgia, serif;
+}
+
+.demo3-enter {
+  margin-top: 18px;
+  padding: 12px 22px;
+  color: #f8f5ee;
+  background: var(--demo3-ink);
+  border: 0;
+  cursor: pointer;
+  font: 400 11px/1 "Demo3 Text", Arial, sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.demo3-music { display: none !important; }
+
+.demo3-inpage-closing {
+  position: absolute;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  color: var(--demo3-ink);
+  background: var(--demo3-paper);
+  overflow: hidden;
+}
+
+.demo3-social,
+.demo3-countdown {
+  min-height: clamp(260px, 44vw, 560px);
+  display: grid;
+  place-items: center;
+  padding: clamp(28px, 5vw, 64px) clamp(20px, 6vw, 76px);
+  text-align: center;
+  background: var(--demo3-paper);
+}
+
+.demo3-countdown { min-height: clamp(540px, 78vw, 940px); }
+.demo3-closing-inner { width: min(84%, 560px); }
+.demo3-social-logo {
+  width: clamp(64px, 9vw, 112px);
+  height: clamp(64px, 9vw, 112px);
+  margin-bottom: clamp(12px, 2vw, 22px);
+}
+.demo3-inpage-closing h2 {
+  margin: 0 0 16px;
+  font: italic 400 clamp(30px, 6vw, 60px)/1 "Demo3 Serif", Georgia, serif;
+}
+.demo3-closing-copy {
+  max-width: 35ch;
+  margin: 0 auto clamp(18px, 3vw, 28px);
+  font: 400 clamp(13px, 1.6vw, 17px)/1.55 "Demo3 Text", Georgia, serif;
+}
+.demo3-tags { display: grid; gap: 12px; }
+.demo3-tags span {
+  display: block;
+  padding: clamp(9px, 1.3vw, 13px) 12px;
+  border: 1px solid rgba(91, 82, 50, .48);
+  background: rgba(255,255,255,.28);
+  font: 400 clamp(16px, 2.2vw, 24px)/1.2 "Demo3 Text", Arial, sans-serif;
+  letter-spacing: .035em;
+}
+.demo3-album-pending {
+  display: grid;
+  gap: 4px;
+  margin-top: 15px;
+  padding: 12px 14px;
+  color: var(--demo3-ink);
+  background: rgba(255,255,255,.22);
+  border: 1px dashed rgba(91, 82, 50, .38);
+  font: 400 11px/1.4 "Demo3 Text", Arial, sans-serif;
+}
+.demo3-memory-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.demo3-memory-links .demo3-album-pending {
+  margin-top: 0;
+}
+.demo3-guest-memories {
+  background: rgba(215, 201, 179, .22);
+}
+.demo3-album-pending strong {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.demo3-album-button {
+  display: inline-flex;
+  min-height: 42px;
+  margin-top: 7px;
+  padding: 9px 18px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--demo3-ink);
+  color: var(--demo3-paper, #eeece7);
+  background: var(--demo3-ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font: 600 9px/1.2 "Demo3 Text", Arial, sans-serif;
+  transition: color .25s ease, background .25s ease;
+}
+.demo3-album-button:hover,
+.demo3-album-button:focus-visible {
+  color: var(--demo3-ink);
+  background: rgba(255,255,255,.45);
+}
+@media (max-width: 540px) {
+  .demo3-memory-links { grid-template-columns: 1fr; }
+}
+.demo3-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 3vw, 38px);
+  margin: clamp(18px, 3vw, 30px) 0 clamp(16px, 2.5vw, 24px);
+}
+.demo3-countdown-item {
+  position: relative;
+  padding: 15px 4px 12px;
+}
+.demo3-countdown-item:not(:last-child)::after {
+  content: ":";
+  position: absolute;
+  top: .05em;
+  right: calc(clamp(14px, 3vw, 38px) / -2 - .13em);
+  color: var(--demo3-ink);
+  font: 400 clamp(31px, 6vw, 66px)/1 "Demo3 Text", Georgia, serif;
+}
+.demo3-countdown-value {
+  display: block;
+  font: 400 clamp(34px, 7vw, 74px)/1 "Demo3 Text", Georgia, serif;
+  font-variant-numeric: tabular-nums;
+}
+.demo3-countdown-label {
+  display: block;
+  margin-top: 7px;
+  font: 400 8px/1 "Demo3 Text", Arial, sans-serif;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.demo3-countdown-polaroid {
+  width: min(78%, 440px);
+  margin: clamp(22px, 4vw, 42px) auto clamp(24px, 4vw, 44px);
+  padding: clamp(10px, 1.2vw, 15px) clamp(10px, 1.2vw, 15px) clamp(38px, 4.5vw, 56px);
+  background: #f7f4ed;
+  box-shadow: 0 14px 32px rgba(67, 60, 40, .17);
+  transform: rotate(-2.4deg);
+}
+.demo3-countdown-polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+}
+.demo3-countdown-polaroid figcaption {
+  margin: clamp(14px, 2vw, 22px) -8px clamp(-30px, -2vw, -20px);
+  color: var(--demo3-ink);
+  font: 400 clamp(25px, 4.2vw, 46px)/1 "Demo3 Serif", Georgia, serif;
+}
+.demo3-date-line {
+  font: 400 clamp(8px, 1.1vw, 11px)/1.7 "Demo3 Text", Arial, sans-serif;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+.demo3-farewell {
+  min-height: clamp(250px, 32vw, 400px);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: clamp(10px, 1.5vw, 18px);
+  padding: clamp(30px, 5vw, 62px) 24px;
+  text-align: center;
+  background: var(--demo3-paper);
+}
+.demo3-angels {
+  display: block;
+  width: clamp(135px, 17vw, 200px);
+  height: auto;
+  opacity: .92;
+}
+.demo3-farewell h2 { margin: 0; }
+.demo3-back {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 10px 28px;
+  color: var(--demo3-ink);
+  border: 1px solid var(--demo3-ink);
+  border-radius: 999px;
+  font: 400 11px/1 "Demo3 Text", Arial, sans-serif;
+  letter-spacing: .16em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@keyframes demo3-pulse { 50% { transform: scale(1.08); } }
+@keyframes demo3-photo-reveal {
+  from { opacity: .25; transform: scale(1.045); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes demo3-photo-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.025); }
+}
+@keyframes demo3-photo-reveal-details {
+  from { opacity: .25; transform: translateY(-34%) scale(1.035); }
+  to { opacity: 1; transform: translateY(-34%) scale(1); }
+}
+
+.demo3-real-photo { overflow: hidden !important; }
+.demo3-real-photo .demo3-real-photo-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  animation: demo3-photo-reveal 1.15s ease-out both,
+             demo3-photo-breathe 12s 1.15s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+.demo3-real-photo--historia .demo3-real-photo-image { object-position: 50% 56% !important; }
+.demo3-real-photo--detalles .demo3-real-photo-image {
+  object-position: 50% 78% !important;
+  filter: brightness(.72) saturate(.82) sepia(.08);
+  animation: demo3-photo-reveal-details 1.15s ease-out both !important;
+}
+.demo3-real-photo--confirmacion .demo3-real-photo-image {
+  object-position: 50% 40% !important;
+  filter: brightness(.7) saturate(.82) sepia(.06);
+}
+
+/* Rosa empolvado elegido para armonizar con el marfil y el dorado del diseño. */
+.demo3-celebration-panel {
+  background-color: #b79592 !important;
+}
+
+.demo3-remove-arrival-references {
+  display: none !important;
+}
+
+.demo3-map-action a {
+  display: inline-block;
+  min-width: 180px;
+  padding: 11px 18px;
+  color: #5b5232 !important;
+  background: #f7f1e1;
+  border: 1px solid rgba(91, 82, 50, .34);
+  border-radius: 999px;
+  font: 700 10px/1 "Demo3 Text", Arial, sans-serif !important;
+  letter-spacing: .13em;
+  text-align: center;
+  text-decoration: none !important;
+  text-transform: uppercase;
+}
+
+.demo3-gift-note {
+  width: 84% !important;
+  max-width: 30ch !important;
+  margin-inline: auto !important;
+  --H97cbQ: 18px !important;
+  font-size: 18px !important;
+  line-height: 1.45 !important;
+  overflow-wrap: anywhere !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+.demo3-rsvp-hero {
+  position: relative !important;
+}
+
+/* Reserva el espacio completo antes de que Canva termine su maquetación.
+   El JS puede ampliarlo después si aparecen más acompañantes o avisos. */
+#LBVsDyKMr36tlJl5 {
+  min-height: 900px !important;
+  height: 900px !important;
+  overflow: visible !important;
+}
+
+#LBVsDyKMr36tlJl5 > div,
+#LBVsDyKMr36tlJl5 iframe {
+  min-height: 100% !important;
+  height: 100% !important;
+}
+
+#LBVsDyKMr36tlJl5 iframe {
+  overflow: hidden !important;
+}
+
+.demo3-rsvp-bottom-monogram {
+  position: absolute;
+  z-index: 50;
+  width: clamp(82px, 11vw, 120px);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .demo3-rsvp-heading {
+    position: relative !important;
+    left: -32px !important;
+  }
+}
+
+.demo3-rsvp-bottom-monogram img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: brightness(0) invert(94%) sepia(12%) saturate(275%) hue-rotate(347deg) brightness(105%) contrast(96%);
+}
+
+.demo3-rsvp-repeated-venue {
+  visibility: hidden !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+  .demo3-photobooth-strip { animation: none !important; transform: rotate(-4deg) !important; }
+  .demo3-real-photo .demo3-real-photo-image { animation: none !important; }
+  .demo3-real-photo--detalles .demo3-real-photo-image { transform: translateY(-34%) !important; }
+  .demo3-vinyl-toggle[data-state="playing"] { animation: none !important; }
+}
+
+@media (max-width: 480px) {
+  .demo3-details-place-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 22px !important;
+    line-height: 30px !important;
+    letter-spacing: .1em !important;
+    text-align: center !important;
+    scale: 1 1 !important;
+  }
+
+  #LBc0yrsJdc0DfDnt > .aF9o6Q {
+    margin-left: -15px;
+  }
+
+  .demo3-social { padding-inline: 20px; }
+  .demo3-countdown { padding-inline: 16px; }
+  .demo3-countdown-grid { gap: 14px; }
+  .demo3-countdown-item { padding: 11px 2px 9px; }
+  .demo3-countdown-item:not(:last-child)::after { right: calc(-7px - .13em); }
+  .demo3-countdown-polaroid { width: 88%; }
+}

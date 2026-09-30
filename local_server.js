@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT || 3000);
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -19,8 +19,27 @@ const mimeTypes = {
 
 const demoDir = __dirname;
 
+const localEnvPath = path.join(demoDir, '.env.local');
+if (fs.existsSync(localEnvPath)) {
+  fs.readFileSync(localEnvPath, 'utf8').split(/\r?\n/).forEach(line => {
+    const match = line.match(/^([A-Z0-9_]+)=(.*)$/);
+    if (match && process.env[match[1]] === undefined) process.env[match[1]] = match[2].trim();
+  });
+}
+
+const invitationApi = require('./api/invitation');
+
 const server = http.createServer((req, res) => {
   let decoded = decodeURI(req.url.split('?')[0]);
+
+  if (decoded === '/api/invitation') {
+    Promise.resolve(invitationApi(req, res)).catch(error => {
+      console.error('API local:', error);
+      if (!res.headersSent) res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+      if (!res.writableEnded) res.end(JSON.stringify({ error: 'Error interno.' }));
+    });
+    return;
+  }
 
   // Endpoint API para recibir y guardar confirmaciones RSVP
   if (decoded === '/api/rsvp' && req.method === 'POST') {
@@ -73,6 +92,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (decoded === '/' || decoded === '') decoded = '/index.html';
+  if (decoded === '/home') decoded = '/Home.html';
 
   // Si tiene barra al final de un archivo .html (ej. /Home.html/), redirigir
   if (decoded.match(/\.html\/+$/i)) {
@@ -86,20 +106,17 @@ const server = http.createServer((req, res) => {
 
   // Si la petición es para el widget de reservación (RSVP)
   if (decoded.includes('_website-element-widget')) {
-    decoded = '/website-element-widget.html';
+    decoded = '/_website-element-widget.html';
   }
 
-  // Si la ruta es /rsvp o /Home.html/rsvp
+  // La confirmación ahora está integrada en la página principal.
   if (decoded === '/rsvp') {
-    decoded = '/RSVP.html';
+    res.writeHead(302, { 'Location': '/Home.html#confirmacion' });
+    res.end();
+    return;
   }
 
   let filePath = path.join(demoDir, decoded);
-  if (!fs.existsSync(filePath)) {
-    // Intentar buscar en RSVP_files por si acaso
-    const altPath = path.join(demoDir, 'RSVP_files', path.basename(decoded));
-    if (fs.existsSync(altPath)) filePath = altPath;
-  }
 
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
     const ext = path.extname(filePath).toLowerCase();
@@ -141,6 +158,6 @@ server.listen(PORT, () => {
   console.log(`  URL: ${url}`);
   console.log(`  Presiona Ctrl + C para detener.`);
   console.log(`===========================================\n`);
-  exec(`start ${url}`);
+  if (!process.env.NO_BROWSER) exec(`start ${url}`);
 });
 
