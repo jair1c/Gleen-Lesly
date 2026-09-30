@@ -35,6 +35,30 @@ test('la portada y Home comparten el mismo motor adaptable', () => {
   );
 });
 
+test('el calendario destaca el 28 y deja el 18 sin negrita', () => {
+  const theme = fs.readFileSync(path.join(root, 'assets/demo2-theme.css'), 'utf8');
+  const migrated = fs.readFileSync(path.join(root, 'assets/demo2-migrated-sections.js'), 'utf8');
+  assert.match(migrated, /demo2-wedding-date', value === '28'/);
+  assert.match(migrated, /demo2-former-wedding-date', value === '18'/);
+  assert.match(theme, /\.demo2-former-wedding-date\s*\{\s*font-weight: 400 !important/);
+  assert.match(theme, /\.demo2-wedding-date::after[\s\S]*?border: 3px solid #5b5232/);
+});
+
+test('el panel /admin conserva sus dependencias y exige autenticación en la API', () => {
+  const html = fs.readFileSync(path.join(root, 'admin.html'), 'utf8');
+  const server = fs.readFileSync(path.join(root, 'local_server.js'), 'utf8');
+  const vercel = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8'));
+  assert.ok(vercel.rewrites.some(route => route.source === '/admin' && route.destination === '/admin.html'));
+  assert.match(server, /decoded === '\/admin'/);
+  assert.match(server, /decoded === '\/api\/admin'/);
+  assert.match(html, /\/assets\/demo3\/js\/admin-photos\.js/);
+  assert.match(html, /\/assets\/demo3\/branding\/lg-monogram\.png/);
+  assert.ok(fs.existsSync(path.join(root, 'assets/demo3/css/admin-photos.css')));
+  assert.ok(fs.existsSync(path.join(root, 'assets/demo3/js/admin-photos.js')));
+  assert.match(fs.readFileSync(path.join(root, 'api/admin.js'), 'utf8'), /requireAdmin\(req\)/);
+  assert.match(fs.readFileSync(path.join(root, 'api/admin-photos.js'), 'utf8'), /requireAdmin\(req\)/);
+});
+
 test('el cierre del collage no deja hueco y reutiliza el sobre blanco y monograma LG', () => {
   const theme = fs.readFileSync(path.join(root, 'assets/demo2-theme.css'), 'utf8');
   const migrated = fs.readFileSync(path.join(root, 'assets/demo2-migrated-sections.js'), 'utf8');

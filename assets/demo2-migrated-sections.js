@@ -106,6 +106,7 @@
     Array.prototype.forEach.call(calendar.querySelectorAll('p'), function (day) {
       var value = day.textContent.trim();
       day.classList.toggle('demo2-wedding-date', value === '28');
+      day.classList.toggle('demo2-former-wedding-date', value === '18');
       if (value === '31') day.style.visibility = 'hidden';
     });
   }

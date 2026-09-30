@@ -42,6 +42,16 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (decoded === '/api/admin' || decoded === '/api/admin-photos') {
+    const handler = decoded === '/api/admin' ? require('./api/admin') : require('./api/admin-photos');
+    Promise.resolve(handler(req, res)).catch(error => {
+      console.error('API de administración:', error);
+      if (!res.headersSent) res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+      if (!res.writableEnded) res.end(JSON.stringify({ error: 'Error interno.' }));
+    });
+    return;
+  }
+
   // Endpoint API para recibir y guardar confirmaciones RSVP
   if (decoded === '/api/rsvp' && req.method === 'POST') {
     let body = '';
@@ -94,6 +104,7 @@ const server = http.createServer((req, res) => {
 
   if (decoded === '/' || decoded === '') decoded = '/index.html';
   if (decoded === '/home') decoded = '/Home.html';
+  if (decoded === '/admin' || decoded === '/admin/') decoded = '/admin.html';
 
   // Si tiene barra al final de un archivo .html (ej. /Home.html/), redirigir
   if (decoded.match(/\.html\/+$/i)) {

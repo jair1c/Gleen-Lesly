@@ -3,6 +3,7 @@
   "buildCommand": null,
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/home", "destination": "/Home.html" }
+    { "source": "/home", "destination": "/Home.html" },
+    { "source": "/admin", "destination": "/admin.html" }
   ]
 }

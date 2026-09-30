@@ -17,3 +17,7 @@ Este repositorio está listo para desplegar en Vercel:
 El formulario integrado en `Home.html` usa `?invite=TOKEN` y consulta `GET /api/invitation` para mostrar el nombre, los cupos y la respuesta previa. Al enviar, `POST /api/invitation` guarda la confirmación en las tablas `invitations` y `rsvps` del mismo proyecto Supabase que demo33 y luego prepara WhatsApp. No se guarda en los archivos CSV/JSON antiguos.
 
 Configura `SUPABASE_URL`, `SUPABASE_SECRET_KEY` y `WHATSAPP_NUMBER` como variables de entorno del despliegue. Para el servidor local, cópialas a `.env.local` (ignorado por Git), usando `.env.example` como plantilla. Los enlaces personalizados deben apuntar a demo2 con el parámetro `invite`; los enlaces generados con dominio de demo33 no cambian automáticamente.
+
+## Panel privado
+
+`/admin` abre el panel de invitados y moderación de fotografías migrado de demo33. Además de las variables anteriores, configura `SUPABASE_PUBLISHABLE_KEY` y `ADMIN_EMAILS` (correos autorizados, separados por comas). Alternativamente, la cuenta puede tener `app_metadata.role=admin` en Supabase Auth. La clave secreta permanece exclusivamente en el servidor.
