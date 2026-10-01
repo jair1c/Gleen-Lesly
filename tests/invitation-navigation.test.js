@@ -52,12 +52,17 @@ test('el token sobrevive al salto del sobre a /home y a una recarga', () => {
 test('el formulario recibe el token y la fecha se obtiene de la invitación', () => {
   const migrated = fs.readFileSync(path.join(root, 'assets/demo2-migrated-sections.js'), 'utf8');
   const widget = fs.readFileSync(path.join(root, '_website-element-widget.html'), 'utf8');
+  const widgetScript = [...widget.matchAll(/<script(?:[^>]*)>([\s\S]*?)<\/script>/g)].at(-1)[1];
+  assert.doesNotThrow(() => new Function(widgetScript));
   const home = fs.readFileSync(path.join(root, 'Home.html'), 'utf8');
   assert.match(home, /demo2-invite-context\.js\?v=1/);
   assert.match(home, /rel="icon" type="image\/png" href="\/assets\/demo3\/branding\/lg-monogram-transparent\.png\?v=1"/);
   assert.match(home, /rel="apple-touch-icon" href="\/assets\/demo3\/branding\/lg-monogram\.png\?v=1"/);
-  assert.match(migrated, /_website-element-widget\.html' \+ \(token \? '\?invite='/);
+  assert.match(migrated, /_website-element-widget\.html\?v=2' \+ \(token \? '&invite='/);
   assert.match(widget, /fetch\('\/api\/invitation\?token='/);
+  assert.doesNotMatch(widget, /id="invitationName"|Nombre del asistente principal/);
+  assert.match(widget, /names=attending\?\[invitedName,\.\.\.companions\]:\[\]/);
+  assert.match(widget, /renderAttendees\(\(r\.attendeeNames\|\|\[\]\)\.slice\(1\)\)/);
   assert.match(widget, /setPeopleOptions\(Number\(value\.seats\)\|\|1,Number\(value\.seats\)\|\|1\)/);
   assert.match(widget, /postMessage\(\{type:'demo3:invitation-loaded',exp:value\.exp\}/);
   assert.match(migrated, /event\.data\.type === 'demo3:invitation-loaded'/);

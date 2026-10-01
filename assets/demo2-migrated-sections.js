@@ -7,7 +7,7 @@
 
   function invitationHtml() {
     var token = window.demo2InviteToken || new URLSearchParams(location.search).get('invite');
-    var rsvpUrl = './_website-element-widget.html' + (token ? '?invite=' + encodeURIComponent(token) : '');
+    var rsvpUrl = './_website-element-widget.html?v=2' + (token ? '&invite=' + encodeURIComponent(token) : '');
     return '<div class="demo3-long-page">' +
       '<p class="demo3-scroll-hint">Desliza para conocer todos los detalles <span aria-hidden="true">↓</span></p>' +
       '<section class="demo3-countdown demo3-long-section" id="cuenta-regresiva" aria-labelledby="countdownTitle">' +
