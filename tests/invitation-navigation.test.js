@@ -61,5 +61,7 @@ test('el formulario recibe el token y la fecha se obtiene de la invitación', ()
   assert.match(widget, /setPeopleOptions\(Number\(value\.seats\)\|\|1,Number\(value\.seats\)\|\|1\)/);
   assert.match(widget, /postMessage\(\{type:'demo3:invitation-loaded',exp:value\.exp\}/);
   assert.match(migrated, /event\.data\.type === 'demo3:invitation-loaded'/);
+  assert.match(migrated, /url\.searchParams\.set\('invite', window\.demo2InviteToken\)/);
+  assert.match(migrated, /history\.pushState\(null, '', url\)/);
   assert.doesNotMatch(migrated, /Confirma tu asistencia antes del 23 de octubre de 2026/);
 });

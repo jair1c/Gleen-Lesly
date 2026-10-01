@@ -151,15 +151,21 @@
   });
   pageObserver.observe(document.documentElement, { childList: true, subtree: true });
   document.addEventListener('click', function (event) {
-    var link = event.target.closest && event.target.closest('#' + TARGET_SECTION + ' a[href^="#"]');
+    var link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
-    var hash = link.getAttribute('href');
-    hash = { '#page-2': '#detalles', '#page-3': '#nuestra-historia', '#page-4': '#confirmacion' }[hash] || hash;
+    var destination;
+    try { destination = new URL(link.getAttribute('href'), location.href); } catch (_) { return; }
+    if (destination.origin !== location.origin) return;
+    var hash = { '#page-2': '#detalles', '#page-3': '#nuestra-historia', '#page-4': '#confirmacion' }[destination.hash];
+    if (!hash) return;
     var target = document.querySelector('.demo2-migrated-sections ' + hash);
     if (!target) return;
     event.preventDefault();
-    event.stopPropagation();
-    history.pushState(null, '', hash);
+    event.stopImmediatePropagation();
+    var url = new URL(location.href);
+    if (window.demo2InviteToken) url.searchParams.set('invite', window.demo2InviteToken);
+    url.hash = hash;
+    history.pushState(null, '', url);
     target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   }, true);
   window.addEventListener('message', function (event) {
