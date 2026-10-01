@@ -6,6 +6,8 @@
   var ASSETS = './assets/demo3/';
 
   function invitationHtml() {
+    var token = window.demo2InviteToken || new URLSearchParams(location.search).get('invite');
+    var rsvpUrl = './_website-element-widget.html' + (token ? '?invite=' + encodeURIComponent(token) : '');
     return '<div class="demo3-long-page">' +
       '<p class="demo3-scroll-hint">Desliza para conocer todos los detalles <span aria-hidden="true">↓</span></p>' +
       '<section class="demo3-countdown demo3-long-section" id="cuenta-regresiva" aria-labelledby="countdownTitle">' +
@@ -45,8 +47,8 @@
       '</section>' +
       '<section class="demo3-long-section demo3-long-rsvp" id="confirmacion" aria-label="Confirmación de asistencia">' +
         '<div class="demo3-long-inner"><div class="demo3-rsvp-ornament" aria-hidden="true">✧</div>' +
-          '<iframe class="demo3-long-rsvp-frame" title="Formulario de confirmación" src="./_website-element-widget.html" scrolling="no"></iframe>' +
-          '<p class="demo3-long-deadline">Confirma tu asistencia antes del 23 de octubre de 2026.</p></div>' +
+          '<iframe class="demo3-long-rsvp-frame" title="Formulario de confirmación" src="' + rsvpUrl + '" scrolling="no"></iframe>' +
+          '<p class="demo3-long-deadline" aria-live="polite"></p></div>' +
       '</section>' +
       '<section class="demo3-social demo3-long-section" id="recuerdos" aria-labelledby="socialTitle"><div class="demo3-closing-inner">' +
         '<img class="demo3-social-logo" src="' + ASSETS + 'branding/lg-monogram.png" alt="Monograma de Gleen y Lesly"><div class="demo3-kicker">Comparte este recuerdo</div><h2 id="socialTitle">Etiqueta a los novios</h2>' +
@@ -114,6 +116,11 @@
   function install() {
     var section = document.getElementById(TARGET_SECTION);
     if (!section || !section.parentElement) return;
+    if (window.demo2InviteToken && !new URLSearchParams(location.search).has('invite')) {
+      var invitationUrl = new URL(location.href);
+      invitationUrl.searchParams.set('invite', window.demo2InviteToken);
+      history.replaceState(history.state, '', invitationUrl);
+    }
     fitOpenCollage(section);
     alignOriginalCalendar();
     trimOriginalCollage(section);
@@ -156,9 +163,18 @@
     target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   }, true);
   window.addEventListener('message', function (event) {
-    if (event.origin !== location.origin || !event.data || event.data.type !== 'demo3:rsvp-height') return;
+    if (event.origin !== location.origin || !event.data) return;
     var frame = document.querySelector('.demo2-migrated-sections .demo3-long-rsvp-frame');
-    if (frame && event.source === frame.contentWindow && Number.isFinite(event.data.height)) {
+    if (!frame || event.source !== frame.contentWindow) return;
+    if (event.data.type === 'demo3:invitation-loaded' && /^\d{4}-\d{2}-\d{2}$/.test(event.data.exp)) {
+      var parts = event.data.exp.split('-').map(Number);
+      var date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+      if (date.getUTCFullYear() === parts[0] && date.getUTCMonth() === parts[1] - 1 && date.getUTCDate() === parts[2]) {
+        var deadline = document.querySelector('.demo2-migrated-sections .demo3-long-deadline');
+        if (deadline) deadline.textContent = 'Confirma tu asistencia antes del ' + new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(date) + '.';
+      }
+    }
+    if (event.data.type === 'demo3:rsvp-height' && Number.isFinite(event.data.height)) {
       frame.style.height = Math.max(300, Math.ceil(event.data.height)) + 'px';
     }
   });
