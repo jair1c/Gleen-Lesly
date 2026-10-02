@@ -13,9 +13,8 @@
     [/WITH LOVE/gi, 'CON AMOR'],
     [/Our Story/gi, 'Historia'],
     [/Details/gi, 'Detalles'],
-    [/Click here/gi, 'Clic aquí'],
-    [/Kindly/gi, 'Confirma'],
-    [/Rsvp/gi, 'Aquí'],
+    [/Click here/gi, 'Ver detalles'],
+    [/Rsvp/gi, 'Confirma'],
     [/June 2027/g, 'Noviembre 2026'],
     [/4:30PM AT/g, '3:00 PM EN'],
     [/Solara Canyon Retreat/gi, 'Los Cantaritos'],
@@ -36,6 +35,12 @@
     while ((node = walker.nextNode())) {
       if (!node.parentElement || node.parentElement.closest('script, style, noscript')) continue;
       var next = node.nodeValue;
+      if (node.parentElement.closest('#LBtb18hX61WmVN3f')) {
+        next = next.replace(/Kindly/gi, 'Confirma').replace(/Rsvp/gi, 'hoy');
+      }
+      if (node.parentElement.closest('#LBCww0zp2db2W2vt')) {
+        next = next.replace(/Click here/gi, 'Toca el sobre');
+      }
       replacements.forEach(function (rule) { next = next.replace(rule[0], rule[1]); });
       if (next !== node.nodeValue) node.nodeValue = next;
     }

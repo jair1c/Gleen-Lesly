@@ -57,7 +57,7 @@
           '<div class="demo3-album-pending demo3-guest-memories"><strong>Recuerdos de nuestros invitados</strong><span>Comparte las fotos que captures durante la celebración.</span><a class="demo3-album-button" href="./recuerdos.html?from=invitation">Ver y subir recuerdos</a></div></div>' +
       '</div></section>' +
       '<section class="demo3-farewell demo3-long-section" id="con-carino"><img class="demo3-angels" src="' + ASSETS + 'media/ac55e3d49fc01691837c45349775e860.png" alt="Angelitos decorativos">' +
-        '<div class="demo3-kicker">Con cariño</div><h2>Gleen &amp; Lesly</h2><a class="demo3-back" href="#page-0">Volver al inicio</a></section>' +
+        '<div class="demo3-kicker">Con cariño</div><h2>Gleen &amp; Lesly</h2><a class="demo3-back" href="#inicio">Volver al inicio</a></section>' +
     '</div>';
   }
 
@@ -131,6 +131,7 @@
     section.insertAdjacentElement('afterend', wrapper);
     installReveal(wrapper);
     updateCountdown();
+    if (location.hash === '#inicio') requestAnimationFrame(function () { section.scrollIntoView({ block: 'start' }); });
     var hashTarget = location.hash && wrapper.querySelector(location.hash);
     if (hashTarget) requestAnimationFrame(function () { hashTarget.scrollIntoView({ block: 'start' }); });
   }
@@ -156,6 +157,17 @@
     var destination;
     try { destination = new URL(link.getAttribute('href'), location.href); } catch (_) { return; }
     if (destination.origin !== location.origin) return;
+    if (destination.hash === '#inicio' && link.matches('.demo3-back')) {
+      var beginning = document.getElementById(TARGET_SECTION);
+      if (!beginning) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      var beginningUrl = new URL(location.href);
+      beginningUrl.hash = 'inicio';
+      history.pushState(null, '', beginningUrl);
+      beginning.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      return;
+    }
     var hash = { '#page-2': '#detalles', '#page-3': '#nuestra-historia', '#page-4': '#confirmacion' }[destination.hash];
     if (!hash) return;
     var target = document.querySelector('.demo2-migrated-sections ' + hash);
