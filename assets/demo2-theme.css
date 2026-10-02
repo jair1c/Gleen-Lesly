@@ -33,7 +33,7 @@
   display: none !important;
 }
 
-#PByb2KV5jZ9P1h1c :is(#__id1148, .DF_utQ:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"]))::after {
+#PByb2KV5jZ9P1h1c :is(#__id1148, .DF_utQ:has(img[src*="envelope-white.png"]))::after {
   content: "";
   position: absolute;
   z-index: 2;
@@ -43,25 +43,6 @@
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   background: url("images/lg-monogram-transparent.png") center / contain no-repeat;
-  pointer-events: none;
-}
-
-/* El motor original conserva el tamaño y la máscara del PNG al cambiar su tono. */
-#PByb2KV5jZ9P1h1c .Izwocg:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"]) {
-  position: relative;
-}
-
-#PByb2KV5jZ9P1h1c .Izwocg:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"]) img {
-  opacity: 0;
-}
-
-#PByb2KV5jZ9P1h1c .Izwocg:has(img[src*="2628c957b9f9df41845f2056ef40750e.png"])::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("images/envelope-white.png") center / 100% 100% no-repeat;
-  -webkit-mask: url("media/2628c957b9f9df41845f2056ef40750e.png") center / 100% 100% no-repeat;
-  mask: url("media/2628c957b9f9df41845f2056ef40750e.png") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 
@@ -229,25 +210,6 @@
 
 #PBnVwKBzJxQZpBf8 #LBJpsWBKQ8ZVBVN8 img {
   filter: grayscale(1) brightness(5);
-}
-
-/* La máscara original del segundo sobre fija su silueta y su posición. */
-#PBnVwKBzJxQZpBf8 .Izwocg:has(img:is([src*="267bfe012a2275a1484a58d24bdb0b8d.png"], [src*="bdcb86a5ed5c07d9074aec12fa44e4f8.png"])) {
-  position: relative;
-}
-
-#PBnVwKBzJxQZpBf8 .Izwocg:has(img:is([src*="267bfe012a2275a1484a58d24bdb0b8d.png"], [src*="bdcb86a5ed5c07d9074aec12fa44e4f8.png"])) img {
-  opacity: 0;
-}
-
-#PBnVwKBzJxQZpBf8 .Izwocg:has(img:is([src*="267bfe012a2275a1484a58d24bdb0b8d.png"], [src*="bdcb86a5ed5c07d9074aec12fa44e4f8.png"]))::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("images/envelope-white.png") center / 100% 100% no-repeat;
-  -webkit-mask: url("media/267bfe012a2275a1484a58d24bdb0b8d.png") center / 100% 100% no-repeat;
-  mask: url("media/267bfe012a2275a1484a58d24bdb0b8d.png") center / 100% 100% no-repeat;
-  pointer-events: none;
 }
 
 /* El sello del sobre abierto usa el mismo monograma LG de la portada. */
