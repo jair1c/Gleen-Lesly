@@ -3,7 +3,51 @@
 
   var TARGET_SECTION = 'PBnVwKBzJxQZpBf8';
   var WEDDING_AT = new Date('2026-11-28T15:00:00-05:00').getTime();
+  var MEMORIES_OPEN_AT = new Date('2026-11-28T00:00:00-05:00').getTime();
   var ASSETS = './assets/demo3/';
+
+  function installFramedVideo(section) {
+    var original = section.querySelector('#LBq6W0L4Bsrslhfb video:not(.demo2-loop-video)');
+    if (!original || original.dataset.demo2LoopInstalled) return;
+    original.dataset.demo2LoopInstalled = 'true';
+    original.muted = true;
+    original.pause();
+    var video = document.createElement('video');
+    video.className = 'demo2-loop-video';
+    video.src = original.currentSrc || original.src;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.controls = false;
+    video.disablePictureInPicture = true;
+    video.setAttribute('aria-hidden', 'true');
+    original.parentElement.appendChild(video);
+    video.play().catch(function () {});
+    // Reintentar si el navegador móvil exige una interacción inicial.
+    document.addEventListener('pointerdown', function () {
+      if (video.paused) video.play().catch(function () {});
+    }, { passive: true });
+  }
+
+  function updateMemoriesAccess() {
+    var link = document.querySelector('[data-guest-memories-link]');
+    if (!link) return;
+    var available = Date.now() >= MEMORIES_OPEN_AT;
+    link.textContent = available ? 'Ver y subir recuerdos' : 'Disponible el 28 de noviembre';
+    if (available) {
+      var url = new URL('./recuerdos.html?from=invitation', location.href);
+      if (window.demo2InviteToken) url.searchParams.set('invite', window.demo2InviteToken);
+      link.href = url.pathname + url.search;
+      link.removeAttribute('aria-disabled');
+      link.removeAttribute('tabindex');
+    } else {
+      link.removeAttribute('href');
+      link.setAttribute('aria-disabled', 'true');
+      link.setAttribute('tabindex', '-1');
+    }
+  }
 
   function invitationHtml() {
     var token = window.demo2InviteToken || new URLSearchParams(location.search).get('invite');
@@ -54,7 +98,7 @@
         '<img class="demo3-social-logo" src="' + ASSETS + 'branding/lg-monogram.png" alt="Monograma de Gleen y Lesly"><div class="demo3-kicker">Comparte este recuerdo</div><h2 id="socialTitle">Etiqueta a los novios</h2>' +
         '<p class="demo3-closing-copy">Durante nuestra boda comparte tus fotografías y videos con nosotros en redes sociales.</p><div class="demo3-tags"><span>#GleenyLes</span><span>#GlenslyLand</span></div>' +
         '<div class="demo3-memory-links"><div class="demo3-album-pending"><strong>Álbum de los novios</strong><span>Recorre nuestra baraja de momentos y fotografías.</span><a class="demo3-album-button" href="./album.html?from=invitation">Ver álbum de fotos</a></div>' +
-          '<div class="demo3-album-pending demo3-guest-memories"><strong>Recuerdos de nuestros invitados</strong><span>Comparte las fotos que captures durante la celebración.</span><a class="demo3-album-button" href="./recuerdos.html?from=invitation">Ver y subir recuerdos</a></div></div>' +
+          '<div class="demo3-album-pending demo3-guest-memories"><strong>Recuerdos de nuestros invitados</strong><span>Comparte las fotos que captures durante la celebración.</span><a class="demo3-album-button" data-guest-memories-link aria-disabled="true" tabindex="-1">Disponible el 28 de noviembre</a></div></div>' +
       '</div></section>' +
       '<section class="demo3-farewell demo3-long-section" id="con-carino"><img class="demo3-angels" src="' + ASSETS + 'media/ac55e3d49fc01691837c45349775e860.png" alt="Angelitos decorativos">' +
         '<div class="demo3-kicker">Con cariño</div><h2>Gleen &amp; Lesly</h2><a class="demo3-back" href="#inicio">Volver al inicio</a></section>' +
@@ -116,6 +160,7 @@
   function install() {
     var section = document.getElementById(TARGET_SECTION);
     if (!section || !section.parentElement) return;
+    installFramedVideo(section);
     if (window.demo2InviteToken && !new URLSearchParams(location.search).has('invite')) {
       var invitationUrl = new URL(location.href);
       invitationUrl.searchParams.set('invite', window.demo2InviteToken);
@@ -131,6 +176,7 @@
     section.insertAdjacentElement('afterend', wrapper);
     installReveal(wrapper);
     updateCountdown();
+    updateMemoriesAccess();
     if (location.hash === '#inicio') requestAnimationFrame(function () { section.scrollIntoView({ block: 'start' }); });
     var hashTarget = location.hash && wrapper.querySelector(location.hash);
     if (hashTarget) requestAnimationFrame(function () { hashTarget.scrollIntoView({ block: 'start' }); });
@@ -146,6 +192,7 @@
   var pageObserver = new MutationObserver(function () {
     var section = document.getElementById(TARGET_SECTION);
     if (!section) return;
+    installFramedVideo(section);
     trimOriginalCollage(section);
     if (!document.querySelector('.demo2-migrated-sections')) install();
     else if (!document.querySelector('.demo2-wedding-date')) alignOriginalCalendar();
@@ -197,4 +244,6 @@
     }
   });
   window.setInterval(updateCountdown, 1000);
+  window.setInterval(updateMemoriesAccess, 30000);
+  document.addEventListener('visibilitychange', updateMemoriesAccess);
 })();
