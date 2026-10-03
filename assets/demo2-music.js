@@ -4,6 +4,7 @@
   var isAlbum = /\/album\.html\/?$/i.test(location.pathname);
   var savedMusic = null;
   var navigationSaved = false;
+  var awaitingGesture = false;
   try { savedMusic = JSON.parse(sessionStorage.getItem('demo2:music') || 'null'); } catch (_) {}
 
   var music = new Audio('/assets/music/music.mp3');
@@ -42,17 +43,11 @@
   function playMusic() {
     button.hidden = false;
     music.preload = 'auto';
+    awaitingGesture = true;
     var attempt = music.play();
     if (attempt && typeof attempt.catch === 'function') {
-      attempt.catch(function () { refreshButton(); });
+      attempt.then(function () { awaitingGesture = false; }).catch(function () { refreshButton(); });
     }
-    refreshButton();
-  }
-
-  function stopMusic() {
-    music.pause();
-    if (music.readyState > 0) music.currentTime = 0;
-    button.hidden = true;
     refreshButton();
   }
 
@@ -60,7 +55,7 @@
   music.addEventListener('pause', refreshButton);
   button.addEventListener('click', function () {
     if (music.paused) playMusic();
-    else music.pause();
+    else { awaitingGesture = false; music.pause(); }
   });
 
   // Canva cambia de página desde este enlace. Iniciar aquí conserva la
@@ -75,27 +70,16 @@
       saveMusic();
       navigationSaved = true;
     }
-    if (url.hash === '#page-1' && link.closest('#PByb2KV5jZ9P1h1c')) playMusic();
-    if (url.hash === '#page-0') stopMusic();
+    if (awaitingGesture && link.closest('#PByb2KV5jZ9P1h1c')) playMusic();
   }, true);
 
-  window.addEventListener('hashchange', function () {
-    if (location.hash === '#page-0') stopMusic();
-    else if (location.hash === '#page-1') button.hidden = false;
-  });
-
-  if (location.hash === '#page-1') button.hidden = false;
-  var returningToInvitation = savedMusic && /^\/home\/?$/i.test(location.pathname) && location.hash !== '#page-0';
-  if (isAlbum || returningToInvitation) {
-    button.hidden = false;
-    if (!savedMusic || savedMusic.playing) {
-      playMusic();
-      // Si el navegador bloquea el audio al entrar, iniciar con el primer toque.
-      document.addEventListener('pointerdown', function (event) {
-        if (event.target.closest('.demo2-music-toggle')) return;
-        if (music.paused) playMusic();
-      }, { once: true, passive: true });
-    }
-  }
+  // Solicitar música desde la portada. Si el navegador exige interacción,
+  // reintentar al primer toque sin reactivar una pausa elegida por el invitado.
+  button.hidden = false;
+  if (!savedMusic || savedMusic.playing) playMusic();
+  document.addEventListener('pointerdown', function (event) {
+    if (event.target.closest('.demo2-music-toggle')) return;
+    if (awaitingGesture && music.paused) playMusic();
+  }, { passive: true });
   refreshButton();
 })();
