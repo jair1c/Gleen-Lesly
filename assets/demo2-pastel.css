@@ -132,7 +132,7 @@
 /* Un recuerdo breve, discreto y enmarcado sobre un fondo oscuro. */
 .demo2-migrated-sections .demo3-long-story {
   padding: 28px 0;
-  background: #30272b;
+  background: linear-gradient(#100d0b33, #100d0b55), url("./demo3/media/fondo-historia-calas.png") center / cover no-repeat #171310;
   color: #fff4e2;
 }
 .demo2-migrated-sections .demo3-long-story .demo3-long-split {
@@ -178,6 +178,6 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url('./demo3/media/marco-encaje-marfil.png') center / contain no-repeat;
+  background: url('./demo3/media/marco-encaje-blanco.png') center / contain no-repeat;
   pointer-events: none;
 }
