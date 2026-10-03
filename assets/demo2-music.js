@@ -5,11 +5,14 @@
   var savedMusic = null;
   var navigationSaved = false;
   var awaitingGesture = false;
+  var userPaused = false;
   try { savedMusic = JSON.parse(sessionStorage.getItem('demo2:music') || 'null'); } catch (_) {}
+
+  userPaused = !!(savedMusic && savedMusic.userPaused);
 
   var music = new Audio('/assets/music/music.mp3');
   music.loop = true;
-  music.preload = 'none';
+  music.preload = 'auto';
   music.volume = 0.75;
   music.hidden = true;
   document.body.appendChild(music);
@@ -22,7 +25,7 @@
 
   function saveMusic() {
     var time = music.readyState > 0 ? music.currentTime : (savedMusic && savedMusic.time || 0);
-    try { sessionStorage.setItem('demo2:music', JSON.stringify({ time: time, playing: !music.paused })); } catch (_) {}
+    try { sessionStorage.setItem('demo2:music', JSON.stringify({ time: time, playing: !music.paused, userPaused: userPaused })); } catch (_) {}
   }
   window.addEventListener('pagehide', function () { if (!navigationSaved) saveMusic(); });
 
@@ -43,6 +46,7 @@
   function playMusic() {
     button.hidden = false;
     music.preload = 'auto';
+    userPaused = false;
     awaitingGesture = true;
     var attempt = music.play();
     if (attempt && typeof attempt.catch === 'function') {
@@ -55,7 +59,7 @@
   music.addEventListener('pause', refreshButton);
   button.addEventListener('click', function () {
     if (music.paused) playMusic();
-    else { awaitingGesture = false; music.pause(); }
+    else { userPaused = true; awaitingGesture = false; music.pause(); }
   });
 
   // Canva cambia de página desde este enlace. Iniciar aquí conserva la
@@ -76,10 +80,16 @@
   // Solicitar música desde la portada. Si el navegador exige interacción,
   // reintentar al primer toque sin reactivar una pausa elegida por el invitado.
   button.hidden = false;
-  if (!savedMusic || savedMusic.playing) playMusic();
-  document.addEventListener('pointerdown', function (event) {
-    if (event.target.closest('.demo2-music-toggle')) return;
-    if (awaitingGesture && music.paused) playMusic();
-  }, { passive: true });
+  if (!userPaused) playMusic();
+  function unlockMusic(event) {
+    var target = event.target instanceof Element ? event.target : null;
+    if (target && target.closest('.demo2-music-toggle')) return;
+    if (!userPaused && music.paused) playMusic();
+  }
+  // En móvil la activación suele concederse al terminar el toque; en escritorio,
+  // al pulsar. Capturar también evita que Canva intercepte la interacción.
+  ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'].forEach(function (type) {
+    document.addEventListener(type, unlockMusic, { capture: true, passive: true });
+  });
   refreshButton();
 })();
