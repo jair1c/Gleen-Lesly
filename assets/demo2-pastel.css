@@ -78,3 +78,106 @@
   background: var(--invitation-cream);
   border-color: var(--invitation-line);
 }
+
+/* Programa compacto, con una sola fila también en móvil. */
+.demo2-migrated-sections .demo3-long-events {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 26px 0 30px;
+}
+.demo2-migrated-sections .demo3-long-events article {
+  position: relative;
+  padding: 8px 3px 12px;
+  border: 0;
+}
+.demo2-migrated-sections .demo3-event-icon {
+  display: block;
+  width: clamp(62px, 18vw, 92px);
+  height: clamp(62px, 18vw, 92px);
+  margin: 0 auto 18px;
+  object-fit: contain;
+}
+.demo2-migrated-sections .demo3-long-events article::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  top: calc(clamp(62px, 18vw, 92px) + 16px);
+  left: calc(50% - 2.5px);
+  border-radius: 50%;
+  background: var(--invitation-accent);
+}
+.demo2-migrated-sections .demo3-long-events article::before {
+  content: "";
+  position: absolute;
+  top: calc(clamp(62px, 18vw, 92px) + 18px);
+  left: calc(-4px);
+  right: calc(-4px);
+  height: 1px;
+  background: var(--invitation-line);
+}
+.demo2-migrated-sections .demo3-long-events article:first-child::before { left: 50%; }
+.demo2-migrated-sections .demo3-long-events article:last-child::before { right: 50%; }
+.demo2-migrated-sections .demo3-long-events article span {
+  font-size: clamp(10px, 2.8vw, 13px);
+  letter-spacing: .05em;
+}
+.demo2-migrated-sections .demo3-long-events h3 {
+  margin: 7px auto 0;
+  max-width: 12ch;
+  font-size: clamp(14px, 3.7vw, 20px);
+  line-height: 1.25;
+}
+
+/* Un recuerdo breve, discreto y enmarcado sobre un fondo oscuro. */
+.demo2-migrated-sections .demo3-long-story {
+  padding: 28px 0;
+  background: #30272b;
+  color: #fff4e2;
+}
+.demo2-migrated-sections .demo3-long-story .demo3-long-split {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 15px;
+  max-width: 400px;
+}
+.demo2-migrated-sections .demo3-long-story .demo3-long-copy {
+  text-align: center;
+}
+.demo2-migrated-sections .demo3-long-story h2 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 5vw, 36px);
+}
+.demo2-migrated-sections .demo3-long-story .demo3-long-copy > p:last-child {
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.demo2-migrated-sections .demo3-long-story .demo3-long-photo {
+  position: relative;
+  width: min(100%, 250px);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  animation: none;
+}
+.demo2-migrated-sections .demo3-long-story .demo3-long-photo img {
+  position: absolute;
+  left: 22%;
+  top: 21%;
+  width: 56%;
+  height: 58%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+.demo2-migrated-sections .demo3-long-story .demo3-long-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('./demo3/media/marco-encaje-marfil.png') center / contain no-repeat;
+  pointer-events: none;
+}

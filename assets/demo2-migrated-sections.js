@@ -50,29 +50,18 @@
         event.data.type === 'demo2:return-to-invitation') history.back();
   });
 
-  function installFramedVideo(section) {
-    var original = section.querySelector('#LBq6W0L4Bsrslhfb video:not(.demo2-loop-video)');
-    if (!original || original.dataset.demo2LoopInstalled) return;
-    original.dataset.demo2LoopInstalled = 'true';
-    original.muted = true;
-    original.pause();
-    var video = document.createElement('video');
-    video.className = 'demo2-loop-video';
-    video.src = original.currentSrc || original.src;
-    video.muted = true;
-    video.defaultMuted = true;
-    video.autoplay = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.controls = false;
-    video.disablePictureInPicture = true;
-    video.setAttribute('aria-hidden', 'true');
-    original.parentElement.appendChild(video);
-    video.play().catch(function () {});
-    // Reintentar si el navegador móvil exige una interacción inicial.
-    document.addEventListener('pointerdown', function () {
-      if (video.paused) video.play().catch(function () {});
-    }, { passive: true });
+  function installMirrorPhoto(section) {
+    var photo = section.querySelector('#demo2-mirror-photo-frame img');
+    if (!photo) return;
+    photo.classList.add('demo2-mirror-photo');
+    if (!photo.src.includes('gleen-lesly-confirmacion.jpg')) photo.src = '/assets/demo3/media/gleen-lesly-confirmacion.jpg';
+    photo.alt = 'Gleen y Lesly abrazados';
+    var frame = photo.parentElement;
+    frame.style.width = '450.417px';
+    frame.style.height = '600.643px';
+    frame.style.transform = 'translateY(5%) translate(-86.6383px, -109.709px) translate(218.208px, 402.822px) rotate(0deg) translate(-218.208px, -382.822px)';
+    frame.style.transformOrigin = '0px 0px';
+    frame.style.opacity = '1';
   }
 
   function updateMemoriesAccess() {
@@ -108,14 +97,14 @@
         '</div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
-        '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><p class="demo3-long-eyebrow">Un mensaje de nosotros</p><h2 id="storyTitle">Nuestra historia</h2>' +
-          '<p>Hoy queremos celebrar junto a las personas que han acompañado nuestro camino. Gracias por ser parte de este nuevo comienzo.</p></div>' +
+        '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h2 id="storyTitle">Nuestra historia</h2>' +
+          '<p>Un camino juntos. Una vida por compartir.</p></div>' +
           '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-detalles.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-celebration" id="detalles" aria-labelledby="detailsTitle">' +
         '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">El día que compartiremos</p><h2 id="detailsTitle">La celebración</h2>' +
-          '<p class="demo3-long-lead">Sábado 28 de noviembre de 2026<br>Club Campestre “Los Cantaritos” · Sullana</p>' +
-          '<div class="demo3-long-events"><article><span>03:00 PM</span><h3>Ceremonia civil</h3></article><article><span>04:00 PM</span><h3>Consagración</h3></article><article><span>Después</span><h3>Recepción y celebración</h3></article></div>' +
+          '<p class="demo3-long-lead">Sábado 28 de noviembre de 2026</p>' +
+          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:00 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>Después</span><h3>Recepción</h3></article></div>' +
           '<p>Club Campestre “Los Cantaritos”<br>Calle Cola del Alacrán S/N, Sullana<br>Frente al Club Campestre “Pájaro Loco Sport”</p>' +
           '<a class="demo3-long-button" href="https://www.google.com/maps/search/?api=1&amp;query=Club+Campestre+Los+Cantaritos+Cola+del+Alacran+Sullana" target="_blank" rel="noopener">Ver ubicación en el mapa</a>' +
           '<div class="demo3-long-notes"><article><h3>Vestimenta</h3><p>Elegancia clásica en tonos sobrios, cómoda para disfrutar toda la celebración.</p></article>' +
@@ -197,7 +186,7 @@
   function install() {
     var section = document.getElementById(TARGET_SECTION);
     if (!section || !section.parentElement) return;
-    installFramedVideo(section);
+    installMirrorPhoto(section);
     if (window.demo2InviteToken && !new URLSearchParams(location.search).has('invite')) {
       var invitationUrl = new URL(location.href);
       invitationUrl.searchParams.set('invite', window.demo2InviteToken);
@@ -236,7 +225,7 @@
   var pageObserver = new MutationObserver(function () {
     var section = document.getElementById(TARGET_SECTION);
     if (!section) return;
-    installFramedVideo(section);
+    installMirrorPhoto(section);
     trimOriginalCollage(section);
     if (!document.querySelector('.demo2-migrated-sections')) install();
     else if (!document.querySelector('.demo2-wedding-date')) alignOriginalCalendar();

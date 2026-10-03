@@ -22,12 +22,17 @@
   ];
 
   function personalize() {
-    // Mantener el marco y ajustar únicamente la posición vertical de esta foto.
-    document.querySelectorAll('#PBnVwKBzJxQZpBf8 img[src*="7cafb878c428817a3252767e625c279f.png"], #PBnVwKBzJxQZpBf8 img[src*="01c2a6286fa931df44c7777a4daa0304.png"], #PBnVwKBzJxQZpBf8 img[src*="gleen-lesly-confirmacion.jpg"]').forEach(function (image) {
-      if (!image.src.includes('gleen-lesly-confirmacion.jpg')) image.src = '/assets/demo3/media/gleen-lesly-confirmacion.jpg';
+    // Medidas y encuadre elegidos para la fotografía de Historia.
+    document.querySelectorAll('#PBnVwKBzJxQZpBf8 img[src*="7cafb878c428817a3252767e625c279f.png"]:not(.demo2-mirror-photo), #PBnVwKBzJxQZpBf8 img[src*="01c2a6286fa931df44c7777a4daa0304.png"]:not(.demo2-mirror-photo), #PBnVwKBzJxQZpBf8 img[src*="gleen-lesly-confirmacion.jpg"]:not(.demo2-mirror-photo), #PBnVwKBzJxQZpBf8 img[src*="gleen-lesly-2.jpeg"]').forEach(function (image) {
+      if (image.closest('#demo2-mirror-photo-frame')) return;
+      if (!image.src.includes('gleen-lesly-2.jpeg')) image.src = '/assets/demo3/media/gleen-lesly-2.jpeg';
       var frame = image.parentElement;
-      if (frame && frame.style.transform.includes('translate(-17.1707px, -118.744px)')) {
-        frame.style.transform = frame.style.transform.replace('translate(-17.1707px, -118.744px)', 'translate(-17.1707px, -48.744px)');
+      if (frame) {
+        frame.style.width = '275.122px';
+        frame.style.height = '380.997px';
+        frame.style.transform = 'translate(-17.1707px, -48.744px) translate(149.061px, 223.999px) rotate(0deg) translate(-149.061px, -223.999px)';
+        frame.style.transformOrigin = '0px 0px';
+        frame.style.opacity = '1';
       }
     });
     var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);

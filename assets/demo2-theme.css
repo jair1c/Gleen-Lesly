@@ -124,7 +124,7 @@
 .demo2-migrated-sections {
   position: relative;
   z-index: 2;
-  width: min(100%, 600px);
+  width: 100%;
   margin: 0 auto;
   background: #eeece7;
   overflow: hidden;
@@ -269,24 +269,16 @@
   outline-offset: 3px;
 }
 
-/* El video del marco conserva la máscara original, sin interacción ni controles. */
-#PBnVwKBzJxQZpBf8 #LBq6W0L4Bsrslhfb {
-  pointer-events: none !important;
-}
-#PBnVwKBzJxQZpBf8 #LBq6W0L4Bsrslhfb video:not(.demo2-loop-video) {
-  visibility: hidden !important;
-}
-#PBnVwKBzJxQZpBf8 .demo2-loop-video {
-  display: block !important;
-  position: absolute !important;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* Foto del espejo: el encuadre se define en su contenedor. */
+#PBnVwKBzJxQZpBf8 #demo2-mirror-photo-frame { pointer-events: none; }
+#PBnVwKBzJxQZpBf8 .demo2-mirror-photo {
   object-fit: cover;
-  pointer-events: none !important;
 }
-#PBnVwKBzJxQZpBf8 .QhExXw {
-  display: none !important;
+
+/* Recorte de Historia: centrar a los novios y excluir el pastel de la derecha. */
+#PBnVwKBzJxQZpBf8 img[src*="gleen-lesly-2.jpeg"] {
+  object-fit: cover !important;
+  object-position: 36% center !important;
 }
 .demo3-album-button[aria-disabled="true"] {
   opacity: .55;
