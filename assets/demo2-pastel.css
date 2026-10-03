@@ -1,0 +1,80 @@
+/* Paleta de la invitación principal: rosa pétalo y amarillo mantequilla. */
+:root {
+  --invitation-pink: #f5dce3;
+  --invitation-yellow: #fff1c9;
+  --invitation-cream: #fffaf0;
+  --invitation-ink: #60444e;
+  --invitation-accent: #875665;
+  --invitation-line: #d9b8bd;
+}
+
+#PBnVwKBzJxQZpBf8,
+#PBnVwKBzJxQZpBf8 .GDnEHQ,
+#PBnVwKBzJxQZpBf8 ._8jGYJw,
+#PBnVwKBzJxQZpBf8 .fbzKiw {
+  background: linear-gradient(155deg, var(--invitation-pink) 10%, #fbe7d5 55%, var(--invitation-yellow) 100%) !important;
+}
+
+#PBnVwKBzJxQZpBf8 :is(p, a),
+#PBnVwKBzJxQZpBf8 [style*="color: rgb(103, 33, 45)"],
+#PBnVwKBzJxQZpBf8 :is(#LBtb18hX61WmVN3f, #LBCww0zp2db2W2vt) :is(p, a),
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date,
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date * {
+  color: var(--invitation-ink) !important;
+}
+
+#PBnVwKBzJxQZpBf8 .demo2-wedding-date::after { border-color: var(--invitation-accent); }
+#PBnVwKBzJxQZpBf8 :is(#LBpLmQZjpBG7xV3Z, #LB3YdWB5bmG03Ncc, #LB7DX2NhJtvKWFJ2, #LBkKlFzvfF1FscrH) img {
+  filter: sepia(.3) saturate(.45) brightness(1.35);
+}
+
+.demo2-migrated-sections {
+  --demo3-ink: var(--invitation-ink);
+  --demo3-paper: var(--invitation-yellow);
+  --demo3-paper-light: var(--invitation-cream);
+  background: var(--invitation-yellow);
+}
+.demo2-migrated-sections .demo3-long-page {
+  color: var(--invitation-ink);
+  background: var(--invitation-yellow);
+}
+.demo2-migrated-sections :is(.demo3-countdown, .demo3-scroll-hint, .demo3-long-gifts, .demo3-farewell) {
+  background: var(--invitation-yellow);
+}
+.demo2-migrated-sections :is(.demo3-long-story, .demo3-long-celebration, .demo3-social) {
+  color: var(--invitation-ink);
+  background: var(--invitation-pink);
+}
+.demo2-migrated-sections :is(.demo3-long-photo, .demo3-countdown-polaroid, .demo3-gift-grid article) {
+  background: var(--invitation-cream);
+  border-color: var(--invitation-line);
+}
+.demo2-migrated-sections :is(.demo3-long-events article, .demo3-long-notes article, .demo3-album-pending) {
+  border-color: var(--invitation-line);
+}
+.demo2-migrated-sections :is(.demo3-long-notes article, .demo3-album-pending) {
+  background: rgba(255, 250, 240, .55);
+}
+.demo2-migrated-sections :is(.demo3-long-button, .demo3-album-button) {
+  color: var(--invitation-cream);
+  background: var(--invitation-accent);
+  border-color: var(--invitation-accent);
+}
+.demo2-migrated-sections :is(.demo3-long-button, .demo3-album-button):hover {
+  color: var(--invitation-ink);
+  background: var(--invitation-yellow);
+}
+.demo2-migrated-sections .demo3-album-button[aria-disabled="true"] {
+  color: var(--invitation-ink);
+  background: #ead4d7;
+  border-color: var(--invitation-line);
+}
+.demo2-migrated-sections .demo3-back {
+  color: var(--invitation-ink);
+  border-color: var(--invitation-accent);
+}
+.demo2-music-toggle {
+  color: var(--invitation-ink);
+  background: var(--invitation-cream);
+  border-color: var(--invitation-line);
+}
