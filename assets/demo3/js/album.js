@@ -27,7 +27,7 @@
   var entryParams = new URLSearchParams(location.search);
   var cameFromInvitation = entryParams.get('from') === 'invitation' || entryParams.has('invite') || entryParams.has('i');
   var activeIndex = 0;
-  var touchStartX = null;
+  var suppressExpand = false;
   var lastFocus = null;
 
   totalLabel.textContent = String(photos.length).padStart(2, '0');
@@ -110,27 +110,43 @@
     var legacyToken = entryParams.get('i') || '';
     try { if (cameFromInvitation && !token && !legacyToken) token = sessionStorage.getItem('demo3InviteToken') || ''; } catch (error) {}
     var query = token ? '&invite=' + encodeURIComponent(token) : (legacyToken ? '&i=' + encodeURIComponent(legacyToken) : '');
-    return './Home.html#recuerdos' + query;
+    return './home?section=recuerdos' + query;
   }
 
-  document.getElementById('albumPrev').addEventListener('click', function () { selectPhoto(activeIndex - 1, -1); });
-  document.getElementById('albumNext').addEventListener('click', function () { selectPhoto(activeIndex + 1, 1); });
-  document.getElementById('albumExpand').addEventListener('click', openLightbox);
-  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-  lightbox.querySelector('.lightbox-arrow--prev').addEventListener('click', function () { activeIndex = (activeIndex - 1 + photos.length) % photos.length; updatePhoto(); });
-  lightbox.querySelector('.lightbox-arrow--next').addEventListener('click', function () { activeIndex = (activeIndex + 1) % photos.length; updatePhoto(); });
-  lightbox.addEventListener('click', function (event) { if (event.target === lightbox) closeLightbox(); });
-  card.addEventListener('pointerdown', function (event) { touchStartX = event.clientX; });
-  card.addEventListener('pointerup', function (event) {
-    if (touchStartX === null) return;
-    var distance = event.clientX - touchStartX;
-    touchStartX = null;
-    if (Math.abs(distance) < 45) return;
-    selectPhoto(activeIndex + (distance < 0 ? 1 : -1), distance < 0 ? 1 : -1);
+  var photoButton = document.getElementById('albumExpand');
+  photoButton.addEventListener('click', function () {
+    if (suppressExpand) { suppressExpand = false; return; }
+    openLightbox();
   });
-  card.addEventListener('pointercancel', function () { touchStartX = null; });
+  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function (event) { if (event.target === lightbox) closeLightbox(); });
+  function installSwipe(surface, expandable) {
+    var start = null;
+    surface.addEventListener('pointerdown', function (event) {
+      if (!event.isPrimary || event.button !== 0) return;
+      start = { x: event.clientX, y: event.clientY, id: event.pointerId };
+      if (expandable) suppressExpand = false;
+      surface.setPointerCapture(event.pointerId);
+    });
+    surface.addEventListener('pointerup', function (event) {
+      if (!start || start.id !== event.pointerId) return;
+      var dx = event.clientX - start.x;
+      var dy = event.clientY - start.y;
+      start = null;
+      if (expandable) suppressExpand = Math.hypot(dx, dy) > 10;
+      if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      selectPhoto(activeIndex + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    });
+    surface.addEventListener('pointercancel', function () { start = null; });
+  }
+  installSwipe(photoButton, true);
+  installSwipe(lightboxPhoto, false);
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    if (event.key === 'Tab' && lightbox.classList.contains('is-open')) {
+      event.preventDefault();
+      lightbox.querySelector('.lightbox-close').focus();
+    }
     if (event.key === 'ArrowLeft') selectPhoto(activeIndex - 1, -1);
     if (event.key === 'ArrowRight') selectPhoto(activeIndex + 1, 1);
   });

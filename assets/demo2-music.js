@@ -1,12 +1,29 @@
 (function () {
   'use strict';
 
+  var isAlbum = /\/album\.html\/?$/i.test(location.pathname);
+  var savedMusic = null;
+  var navigationSaved = false;
+  try { savedMusic = JSON.parse(sessionStorage.getItem('demo2:music') || 'null'); } catch (_) {}
+
   var music = new Audio('/assets/music/music.mp3');
   music.loop = true;
   music.preload = 'none';
   music.volume = 0.75;
   music.hidden = true;
   document.body.appendChild(music);
+
+  if (savedMusic && Number.isFinite(savedMusic.time) && savedMusic.time >= 0) {
+    music.addEventListener('loadedmetadata', function () {
+      if (Number.isFinite(music.duration) && music.duration > 0) music.currentTime = savedMusic.time % music.duration;
+    }, { once: true });
+  }
+
+  function saveMusic() {
+    var time = music.readyState > 0 ? music.currentTime : (savedMusic && savedMusic.time || 0);
+    try { sessionStorage.setItem('demo2:music', JSON.stringify({ time: time, playing: !music.paused })); } catch (_) {}
+  }
+  window.addEventListener('pagehide', function () { if (!navigationSaved) saveMusic(); });
 
   var button = document.createElement('button');
   button.type = 'button';
@@ -54,6 +71,10 @@
     if (!link) return;
     var url = new URL(link.href, location.href);
     if (url.origin !== location.origin) return;
+    if (/\/album\.html$/i.test(url.pathname) || (isAlbum && /\/(home|home\.html)$/i.test(url.pathname))) {
+      saveMusic();
+      navigationSaved = true;
+    }
     if (url.hash === '#page-1' && link.closest('#PByb2KV5jZ9P1h1c')) playMusic();
     if (url.hash === '#page-0') stopMusic();
   }, true);
@@ -64,5 +85,17 @@
   });
 
   if (location.hash === '#page-1') button.hidden = false;
+  var returningToInvitation = savedMusic && /^\/home\/?$/i.test(location.pathname) && location.hash !== '#page-0';
+  if (isAlbum || returningToInvitation) {
+    button.hidden = false;
+    if (!savedMusic || savedMusic.playing) {
+      playMusic();
+      // Si el navegador bloquea el audio al entrar, iniciar con el primer toque.
+      document.addEventListener('pointerdown', function (event) {
+        if (event.target.closest('.demo2-music-toggle')) return;
+        if (music.paused) playMusic();
+      }, { once: true, passive: true });
+    }
+  }
   refreshButton();
 })();

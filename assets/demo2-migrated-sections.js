@@ -179,6 +179,7 @@
     updateMemoriesAccess();
     if (location.hash === '#inicio') requestAnimationFrame(function () { section.scrollIntoView({ block: 'start' }); });
     var hashTarget = location.hash && wrapper.querySelector(location.hash);
+    if (new URLSearchParams(location.search).get('section') === 'recuerdos') hashTarget = wrapper.querySelector('#recuerdos');
     if (hashTarget) requestAnimationFrame(function () { hashTarget.scrollIntoView({ block: 'start' }); });
   }
 

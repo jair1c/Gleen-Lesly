@@ -135,7 +135,7 @@ const server = http.createServer((req, res) => {
     const stat = fs.statSync(filePath);
     const total = stat.size;
 
-    if (ext === '.mp4' && req.headers.range) {
+    if ((ext === '.mp4' || ext === '.mp3') && req.headers.range) {
       const range = req.headers.range;
       const parts = range.replace(/bytes=/, '').split('-');
       const start = parseInt(parts[0], 10);
@@ -147,7 +147,7 @@ const server = http.createServer((req, res) => {
         'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
         'Accept-Ranges': 'bytes',
         'Content-Length': chunksize,
-        'Content-Type': 'video/mp4'
+        'Content-Type': mimeTypes[ext]
       });
       file.pipe(res);
     } else {

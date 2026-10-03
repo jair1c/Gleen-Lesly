@@ -1,6 +1,8 @@
 @font-face {
-  font-family: "Demo3 Serif";
-  src: url("../fonts/003e82bf2f68067801da6a72d24cdf78.woff") format("woff");
+  font-family: "Album Script";
+  src: url("../fonts/dancing-script-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
   font-display: swap;
 }
 
@@ -123,7 +125,7 @@ html[data-album-entry="direct"] .album-return {
 
 .album-intro h1 {
   margin: 12px 0 21px;
-  font: italic 400 clamp(48px, 10vw, 88px)/.88 "Demo3 Serif", Georgia, serif;
+  font: 600 clamp(44px, 9vw, 80px)/1.15 "Album Script", cursive;
 }
 
 .album-lead {
@@ -136,7 +138,7 @@ html[data-album-entry="direct"] .album-return {
 .album-flourish {
   margin-top: 26px;
   color: var(--album-muted);
-  font: italic 400 22px/1 "Demo3 Serif", Georgia, serif;
+  font: 500 26px/1.2 "Album Script", cursive;
 }
 
 .album-viewer {
@@ -148,9 +150,9 @@ html[data-album-entry="direct"] .album-return {
 .album-deck {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(42px, 1fr) minmax(0, 780px) minmax(42px, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  width: min(100%, 1030px);
+  width: min(100%, 780px);
   margin: 0 auto;
 }
 
@@ -159,6 +161,9 @@ html[data-album-entry="direct"] .album-return {
   position: relative;
   z-index: 2;
   width: 100%;
+  height: clamp(430px, 65svh, 620px);
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 180px;
   padding: clamp(10px, 2vw, 18px) clamp(10px, 2vw, 18px) clamp(18px, 3vw, 30px);
   transform: rotate(var(--card-rotation));
   border: 1px solid rgba(91,82,50,.17);
@@ -188,36 +193,18 @@ html[data-album-entry="direct"] .album-return {
   display: grid;
   width: 100%;
   min-height: 0;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  cursor: zoom-in;
+  touch-action: pan-y pinch-zoom;
   place-items: center;
   overflow: hidden;
   background: #d8d2c8;
-  transition: aspect-ratio .35s ease;
 }
 
-.album-card.is-portrait .album-photo-wrap { aspect-ratio: 4 / 5; }
-.album-photo-wrap > img { width: 100%; height: 100%; object-fit: cover; }
-
-.album-expand {
-  position: absolute;
-  right: 13px;
-  bottom: 13px;
-  display: grid;
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  place-items: center;
-  border: 1px solid rgba(255,255,255,.72);
-  border-radius: 50%;
-  color: #fff;
-  background: rgba(67,62,43,.68);
-  backdrop-filter: blur(5px);
-  cursor: pointer;
-  transition: transform .25s ease, background .25s ease;
-}
-
-.album-expand:hover,
-.album-expand:focus-visible { transform: scale(1.08); background: rgba(67,62,43,.9); }
+.album-photo-wrap > img { width: 100%; height: 100%; min-height: 0; object-fit: contain; user-select: none; }
+.album-photo-wrap:focus-visible { outline: 2px solid var(--album-ink); outline-offset: 3px; }
 
 .album-sample-label {
   position: absolute;
@@ -233,34 +220,10 @@ html[data-album-entry="direct"] .album-return {
 
 .album-caption { padding: clamp(18px, 3vw, 28px) 12px 0; text-align: center; }
 .album-chapter { color: var(--album-muted); }
-.album-caption h2 { margin: 7px 0 5px; font: italic 400 clamp(29px, 5vw, 48px)/1 "Demo3 Serif", Georgia, serif; }
+.album-caption h2 { margin: 7px 0 9px; font: 600 clamp(28px, 5vw, 40px)/1.2 "Album Script", cursive; }
 .album-caption > p:last-child { margin: 0; color: var(--album-muted); font-size: clamp(11px, 1.5vw, 14px); }
 
-.album-arrow,
-.lightbox-arrow,
-.lightbox-close {
-  display: grid;
-  padding: 0;
-  place-items: center;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.album-arrow {
-  z-index: 4;
-  width: clamp(42px, 5vw, 54px);
-  height: clamp(42px, 5vw, 54px);
-  border: 1px solid var(--album-line);
-  background: rgba(238,236,231,.9);
-  box-shadow: 0 8px 26px rgba(64,54,35,.09);
-  font: 300 31px/1 Arial, sans-serif;
-  transition: transform .25s ease, color .25s ease, background .25s ease;
-}
-
-.album-arrow:hover,
-.album-arrow:focus-visible { color: #fff; background: var(--album-ink); transform: scale(1.06); }
-.album-arrow--prev { justify-self: start; }
-.album-arrow--next { justify-self: end; }
+.lightbox-close { display: grid; padding: 0; place-items: center; border-radius: 50%; cursor: pointer; }
 
 .album-progress {
   display: grid;
@@ -325,7 +288,28 @@ html[data-album-entry="direct"] .album-return {
 }
 
 .album-closing img { width: 84px; height: 84px; object-fit: contain; }
-.album-closing p { max-width: 520px; margin: 20px auto 28px; font: italic 400 clamp(31px, 6vw, 54px)/1.05 "Demo3 Serif", Georgia, serif; }
+.album-closing p { max-width: 520px; margin: 20px auto 28px; font: 500 clamp(30px, 6vw, 50px)/1.25 "Album Script", cursive; }
+
+.demo2-music-toggle {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  z-index: 110;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #8c846e;
+  border-radius: 50%;
+  background: #f6f3ed;
+  color: var(--album-ink);
+  box-shadow: 0 3px 12px #1b170c40;
+  font: 24px/1 Georgia, serif;
+  cursor: pointer;
+}
+.demo2-music-toggle[hidden] { display: none !important; }
+.demo2-music-toggle:focus-visible { outline: 2px solid var(--album-ink); outline-offset: 3px; }
 .album-return { display: inline-flex; min-height: 48px; padding: 0 25px; align-items: center; border: 1px solid var(--album-ink); font-size: 9px; transition: color .25s ease, background .25s ease; }
 .album-return:hover,.album-return:focus-visible { color: var(--album-paper-light); background: var(--album-ink); }
 
@@ -334,7 +318,7 @@ html[data-album-entry="direct"] .album-return {
   z-index: 100;
   inset: 0;
   display: grid;
-  grid-template-columns: 54px minmax(0,1fr) 54px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   padding: 18px;
   color: #fff;
@@ -346,9 +330,9 @@ html[data-album-entry="direct"] .album-return {
 
 .album-lightbox.is-open { opacity: 1; visibility: visible; }
 .album-lightbox figure { display: grid; max-width: min(1050px,100%); max-height: 92svh; margin: auto; place-items: center; }
-.album-lightbox figure img { display: block; max-width: 100%; max-height: 82svh; object-fit: contain; box-shadow: 0 20px 65px rgba(0,0,0,.38); }
+.album-lightbox figure img { display: block; max-width: 100%; max-height: calc(100svh - 110px); object-fit: contain; box-shadow: 0 20px 65px rgba(0,0,0,.38); touch-action: pan-y pinch-zoom; user-select: none; }
 .album-lightbox figcaption { margin-top: 13px; font-size: 10px; letter-spacing: .13em; text-align: center; text-transform: uppercase; }
-.lightbox-arrow,.lightbox-close { width: 43px; height: 43px; border: 1px solid rgba(255,255,255,.48); color: #fff; background: transparent; font: 300 28px/1 Arial,sans-serif; }
+.lightbox-close { width: 43px; height: 43px; border: 1px solid rgba(255,255,255,.48); color: #fff; background: transparent; font: 300 28px/1 Arial,sans-serif; }
 .lightbox-close { position: absolute; top: 16px; right: 16px; z-index: 2; font-size: 20px; }
 
 @media (max-width: 640px) {
@@ -356,17 +340,13 @@ html[data-album-entry="direct"] .album-return {
   .album-brand { justify-self: end; }
   .album-date { display: none; }
   .album-intro { min-height: 350px; padding-inline: 28px; }
-  .album-viewer { padding-inline: 10px; }
+  .album-viewer { padding: 28px 10px 44px; }
   .album-deck { grid-template-columns: 1fr; width: min(100% - 20px, 470px); }
-  .album-card { grid-column: 1; grid-row: 1; }
-  .album-arrow { position: absolute; top: 42%; width: 42px; height: 42px; color: #fff; border-color: rgba(255,255,255,.7); background: rgba(67,62,43,.68); backdrop-filter: blur(5px); }
-  .album-arrow--prev { left: 18px; }
-  .album-arrow--next { right: 18px; }
-  .album-caption { padding-inline: 32px; }
-  .album-progress { margin-top: 35px; }
-  .album-index { margin-top: 38px; }
-  .album-lightbox { grid-template-columns: 42px minmax(0,1fr) 42px; padding: 9px; }
-  .lightbox-arrow { width: 38px; height: 38px; }
+  .album-card { grid-column: 1; grid-row: 1; height: clamp(280px, 58svh, 460px); grid-template-rows: minmax(0, 1fr) 125px; }
+  .album-caption { padding: 16px 12px 0; }
+  .album-progress { margin-top: 24px; }
+  .album-index { margin-top: 24px; }
+  .album-lightbox { grid-template-columns: minmax(0, 1fr); padding: 52px 9px 36px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
