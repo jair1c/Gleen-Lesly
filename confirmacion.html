@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Confirma tu asistencia | Gleen y Lesly</title>
+  <link rel="stylesheet" href="assets/demo3/css/demo3-enhancements.css?v=20260929">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#f4f0e8;color:#5b5232;font-family:"Demo3 Text",Georgia,serif}
+    main{max-width:720px;margin:auto;padding:32px 12px 48px}
+    .back{display:inline-block;margin:0 12px 24px;color:inherit;font-size:14px;text-underline-offset:4px}
+    .ornament{text-align:center;font-size:32px;margin-bottom:12px}
+    iframe{display:block;width:100%;height:650px;border:0}
+    .deadline{text-align:center;font-size:14px;line-height:1.6;margin:20px 12px}
+    @media(max-width:430px){main{padding:24px 4px 32px}}
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" id="backLink" href="./home">← Volver a la invitación</a>
+    <div class="ornament" aria-hidden="true">✧</div>
+    <iframe id="confirmationForm" title="Formulario de confirmación de asistencia" scrolling="no"></iframe>
+    <p class="deadline" id="deadline" aria-live="polite"></p>
+  </main>
+  <script>
+    (function () {
+      var token = new URLSearchParams(location.search).get('invite');
+      var frame = document.getElementById('confirmationForm');
+      var formUrl = new URL('./_website-element-widget.html?v=2', location.href);
+      var backUrl = new URL('./home', location.href);
+      if (token) {
+        formUrl.searchParams.set('invite', token);
+        backUrl.searchParams.set('invite', token);
+      }
+      document.getElementById('backLink').href = backUrl.pathname + backUrl.search;
+      window.addEventListener('message', function (event) {
+        if (event.origin !== location.origin || event.source !== frame.contentWindow || !event.data) return;
+        if (event.data.type === 'demo3:rsvp-height' && Number.isFinite(event.data.height)) {
+          frame.style.height = Math.max(300, Math.ceil(event.data.height)) + 'px';
+        }
+        if (event.data.type === 'demo3:invitation-loaded' && /^\d{4}-\d{2}-\d{2}$/.test(event.data.exp)) {
+          var parts = event.data.exp.split('-').map(Number);
+          var date = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2]));
+          if (date.getUTCFullYear() === parts[0] && date.getUTCMonth() === parts[1] - 1 && date.getUTCDate() === parts[2]) {
+            document.getElementById('deadline').textContent = 'Confirma tu asistencia antes del ' + new Intl.DateTimeFormat('es-PE', {day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(date) + '.';
+          }
+        }
+      });
+      frame.src = formUrl.pathname + formUrl.search;
+    })();
+  </script>
+</body>
+</html>

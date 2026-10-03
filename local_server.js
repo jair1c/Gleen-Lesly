@@ -121,12 +121,7 @@ const server = http.createServer((req, res) => {
     decoded = '/_website-element-widget.html';
   }
 
-  // La confirmación ahora está integrada en la página principal.
-  if (decoded === '/rsvp') {
-    res.writeHead(302, { 'Location': '/Home.html#confirmacion' });
-    res.end();
-    return;
-  }
+  if (decoded === '/rsvp') decoded = '/confirmacion.html';
 
   let filePath = path.join(demoDir, decoded);
 
