@@ -33,7 +33,33 @@
         formUrl.searchParams.set('invite', token);
         backUrl.searchParams.set('invite', token);
       }
-      document.getElementById('backLink').href = backUrl.pathname + backUrl.search;
+      var backLink = document.getElementById('backLink');
+      backLink.href = backUrl.pathname + backUrl.search;
+      // Regresar por el historial permite restaurar la página y su posición
+      // desde la memoria del navegador, sin volver a iniciar Canva.
+      var previousUrl;
+      try { previousUrl = new URL(document.referrer); } catch (_) {}
+      var cameFromInvitation = previousUrl && previousUrl.origin === location.origin &&
+        /^\/(home|Home\.html|index\.html)?\/?$/i.test(previousUrl.pathname) &&
+        previousUrl.searchParams.get('invite') === token;
+      backLink.addEventListener('click', function (event) {
+        if (window.parent !== window && event.button === 0 && !event.ctrlKey &&
+            !event.metaKey && !event.shiftKey && !event.altKey) {
+          event.preventDefault();
+          window.parent.postMessage({ type: 'demo2:return-to-invitation' }, location.origin);
+          return;
+        }
+        if (!cameFromInvitation || history.length < 2 || event.button !== 0 ||
+            event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        history.back();
+      });
+      // Si se abrió el formulario directamente, adelantar la descarga de la
+      // invitación para que el enlace de regreso también aproveche la caché.
+      var prefetch = document.createElement('link');
+      prefetch.rel = 'prefetch';
+      prefetch.href = backUrl.href;
+      document.head.appendChild(prefetch);
       window.addEventListener('message', function (event) {
         if (event.origin !== location.origin || event.source !== frame.contentWindow || !event.data) return;
         if (event.data.type === 'demo3:rsvp-height' && Number.isFinite(event.data.height)) {

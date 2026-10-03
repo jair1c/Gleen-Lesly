@@ -5,6 +5,50 @@
   var WEDDING_AT = new Date('2026-11-28T15:00:00-05:00').getTime();
   var MEMORIES_OPEN_AT = new Date('2026-11-28T00:00:00-05:00').getTime();
   var ASSETS = './assets/demo3/';
+  var confirmationScreen = null;
+  var invitationAddress = '';
+  var previousOverflow = '';
+  var backgroundNodes = [];
+
+  function closeConfirmation() {
+    if (!confirmationScreen) return;
+    confirmationScreen.remove();
+    confirmationScreen = null;
+    document.body.style.overflow = previousOverflow;
+    backgroundNodes.forEach(function (item) { item.node.inert = item.inert; });
+    backgroundNodes = [];
+  }
+
+  function openConfirmation(url, restoring) {
+    if (confirmationScreen) return;
+    if (!restoring) invitationAddress = location.href;
+    previousOverflow = document.body.style.overflow;
+    backgroundNodes = Array.from(document.body.children).map(function (node) {
+      var item = { node: node, inert: node.inert };
+      node.inert = true;
+      return item;
+    });
+    confirmationScreen = document.createElement('iframe');
+    confirmationScreen.title = 'Confirma tu asistencia';
+    confirmationScreen.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#f4f0e8';
+    confirmationScreen.src = url.href;
+    document.body.appendChild(confirmationScreen);
+    document.body.style.overflow = 'hidden';
+    if (!restoring) history.pushState({ confirmationScreen: true }, '', url);
+    confirmationScreen.focus();
+  }
+
+  window.addEventListener('popstate', function () {
+    if (location.href === invitationAddress) closeConfirmation();
+    else if (history.state && history.state.confirmationScreen && !confirmationScreen) {
+      openConfirmation(new URL(location.href), true);
+    }
+  });
+  window.addEventListener('message', function (event) {
+    if (confirmationScreen && event.origin === location.origin &&
+        event.source === confirmationScreen.contentWindow && event.data &&
+        event.data.type === 'demo2:return-to-invitation') history.back();
+  });
 
   function installFramedVideo(section) {
     var original = section.querySelector('#LBq6W0L4Bsrslhfb video:not(.demo2-loop-video)');
@@ -204,6 +248,13 @@
     var destination;
     try { destination = new URL(link.getAttribute('href'), location.href); } catch (_) { return; }
     if (destination.origin !== location.origin) return;
+    if (/\/confirmacion\.html$/i.test(destination.pathname) && !event.ctrlKey &&
+        !event.metaKey && !event.shiftKey && !event.altKey && event.button === 0) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openConfirmation(destination);
+      return;
+    }
     if (destination.hash === '#inicio' && link.matches('.demo3-back')) {
       var beginning = document.getElementById(TARGET_SECTION);
       if (!beginning) return;
@@ -221,7 +272,7 @@
       var confirmationUrl = new URL('./confirmacion.html', location.href);
       var token = window.demo2InviteToken || new URLSearchParams(location.search).get('invite');
       if (token) confirmationUrl.searchParams.set('invite', token);
-      location.href = confirmationUrl.href;
+      openConfirmation(confirmationUrl);
       return;
     }
     var hash = { '#page-2': '#detalles', '#page-3': '#nuestra-historia' }[destination.hash];
