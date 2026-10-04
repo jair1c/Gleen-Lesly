@@ -90,27 +90,28 @@
           '<div class="demo3-countdown-grid" aria-live="off">' +
             '<div class="demo3-countdown-item"><span class="demo3-countdown-value" data-unit="days">00</span><span class="demo3-countdown-label">Días</span></div>' +
             '<div class="demo3-countdown-item"><span class="demo3-countdown-value" data-unit="hours">00</span><span class="demo3-countdown-label">Horas</span></div>' +
-            '<div class="demo3-countdown-item"><span class="demo3-countdown-value" data-unit="seconds">0000</span><span class="demo3-countdown-label">Segundos</span></div>' +
+            '<div class="demo3-countdown-item"><span class="demo3-countdown-value" data-unit="minutes">00</span><span class="demo3-countdown-label">Minutos</span></div>' +
+            '<div class="demo3-countdown-item"><span class="demo3-countdown-value" data-unit="seconds">00</span><span class="demo3-countdown-label">Segundos</span></div>' +
           '</div>' +
-          '<figure class="demo3-countdown-polaroid"><img src="' + ASSETS + 'media/gleen-lesly-historia.jpg" alt="Gleen y Lesly juntos" loading="lazy"><figcaption>Gleen &amp; Lesly</figcaption></figure>' +
-          '<p class="demo3-date-line">De la mano hacia un nuevo comienzo.<br>Gracias por acompañarnos.</p>' +
         '</div>' +
       '</section>' +
-      '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
-        '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h2 id="storyTitle">Nuestra historia</h2>' +
-          '<p>Un camino juntos. Una vida por compartir.</p></div>' +
-          '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-detalles.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
-      '</section>' +
       '<section class="demo3-long-section demo3-long-celebration" id="detalles" aria-labelledby="detailsTitle">' +
-        '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">El día que compartiremos</p><h2 id="detailsTitle">La celebración</h2>' +
+        '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">El día que compartiremos</p><h2 id="detailsTitle">Ubicación</h2>' +
           '<p class="demo3-long-lead">Sábado 28 de noviembre de 2026</p>' +
-          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:00 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>Después</span><h3>Recepción</h3></article></div>' +
           '<p>Club Campestre “Los Cantaritos”<br>Calle Cola del Alacrán S/N, Sullana<br>Frente al Club Campestre “Pájaro Loco Sport”</p>' +
           '<a class="demo3-long-button" href="https://www.google.com/maps/search/?api=1&amp;query=Club+Campestre+Los+Cantaritos+Cola+del+Alacran+Sullana" target="_blank" rel="noopener">Ver ubicación en el mapa</a>' +
           '<div class="demo3-long-notes"><article><h3>Vestimenta</h3><p>Elegancia clásica en tonos sobrios, cómoda para disfrutar toda la celebración.</p></article>' +
             '<article><h3>Estacionamiento</h3><p>Habrá estacionamiento para los invitados en el lugar.</p></article>' +
             '<article><h3>Solo adultos</h3><p>Para disfrutar plenamente de la celebración, el evento será solo para adultos.</p></article></div>' +
         '</div>' +
+      '</section>' +
+      '<section class="demo3-long-section demo3-timeline" id="cronograma" aria-labelledby="timelineTitle"><div class="demo3-long-inner"><h2 id="timelineTitle">Nuestro día</h2>' +
+          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:00 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>Después</span><h3>Recepción</h3></article></div>' +
+        '</div></section>' +
+      '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
+        '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h2 id="storyTitle">Nuestra historia</h2>' +
+          '<p>Un camino juntos. Una vida por compartir.</p></div>' +
+          '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-detalles.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-gifts" id="regalos" aria-labelledby="giftsTitle">' +
         '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">Un detalle para nuestro nuevo comienzo</p><h2 id="giftsTitle">Regalos</h2>' +
@@ -135,10 +136,10 @@
     var root = document.querySelector('.demo2-migrated-sections .demo3-countdown-grid');
     if (!root) return;
     var remaining = Math.max(0, WEDDING_AT - Date.now());
-    var values = { days: Math.floor(remaining / 86400000), hours: Math.floor(remaining / 3600000) % 24, seconds: Math.floor(remaining / 1000) % 3600 };
+    var values = { days: Math.floor(remaining / 86400000), hours: Math.floor(remaining / 3600000) % 24, minutes: Math.floor(remaining / 60000) % 60, seconds: Math.floor(remaining / 1000) % 60 };
     Object.keys(values).forEach(function (unit) {
       var node = root.querySelector('[data-unit="' + unit + '"]');
-      if (node) node.textContent = String(values[unit]).padStart(unit === 'seconds' ? 4 : 2, '0');
+      if (node) node.textContent = String(values[unit]).padStart(2, '0');
     });
   }
 
