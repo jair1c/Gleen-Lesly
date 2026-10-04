@@ -65,3 +65,8 @@
 .demo2-migrated-sections .demo3-farewell { background: #fbf5e7; }
 .demo2-migrated-sections .demo3-social-logo { width: 90px; }
 .demo2-migrated-sections .demo3-farewell .demo3-angels { width: 120px; }
+.demo2-migrated-sections .demo3-back {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}

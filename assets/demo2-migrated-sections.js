@@ -99,7 +99,7 @@
         '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">El día que compartiremos</p><h2 id="detailsTitle">Ubicación</h2>' +
           '<p class="demo3-long-lead">Sábado 28 de noviembre de 2026</p>' +
           '<p>Club Campestre “Los Cantaritos”<br>Calle Cola del Alacrán S/N, Sullana<br>Frente al Club Campestre “Pájaro Loco Sport”</p>' +
-          '<a class="demo3-long-button" href="https://www.google.com/maps/search/?api=1&amp;query=Club+Campestre+Los+Cantaritos+Cola+del+Alacran+Sullana" target="_blank" rel="noopener">Ver ubicación en el mapa</a>' +
+          '<a class="demo3-long-button" href="https://www.google.com/maps?q=-4.918821811676025,-80.70159149169922&amp;z=17&amp;hl=es" target="_blank" rel="noopener">Ver ubicación en el mapa</a>' +
           '<div class="demo3-long-notes"><article><h3>Vestimenta</h3><p>Elegancia clásica en tonos sobrios, cómoda para disfrutar toda la celebración.</p></article>' +
             '<article><h3>Estacionamiento</h3><p>Habrá estacionamiento para los invitados en el lugar.</p></article>' +
             '<article><h3>Solo adultos</h3><p>Para disfrutar plenamente de la celebración, el evento será solo para adultos.</p></article></div>' +
@@ -111,14 +111,14 @@
       '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
         '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h2 id="storyTitle">Nuestra historia</h2>' +
           '<p>Un camino juntos. Una vida por compartir.</p></div>' +
-          '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-detalles.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
+          '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-3.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-gifts" id="regalos" aria-labelledby="giftsTitle">' +
         '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">Un detalle para nuestro nuevo comienzo</p><h2 id="giftsTitle">Regalos</h2>' +
           '<p class="demo3-long-lead">Celebrar nuestro amor junto a ustedes es un regalo muy bonito. Si desean acompañarnos también en la construcción de nuestro futuro, recibiremos su detalle con todo nuestro amor.</p>' +
           '<div class="demo3-gift-grid"><article><h3>Gleen Sandoval</h3><p><strong>BCP Soles</strong></p><p>Cuenta: <span class="demo3-gift-number">53592524271077</span></p><p>CCI: <span class="demo3-gift-number">00253519252427107737</span></p><p>Yape: <span class="demo3-gift-number">924 336 163</span></p></article>' +
             '<article><h3>Lesly Castro</h3><p><strong>BCP Soles</strong></p><p>Cuenta: <span class="demo3-gift-number">53596266668076</span></p><p>CCI: <span class="demo3-gift-number">00253519626666807634</span></p><p>Yape: <span class="demo3-gift-number">904 322 221</span></p></article>' +
-            '<article class="demo3-gift-physical"><h3>Regalo físico</h3><p>Si prefieres entregarnos un detalle en persona, lo recibiremos con mucho cariño el día de la boda.</p></article></div>' +
+            '<article class="demo3-gift-physical"><h3>Regalo físico</h3><p>Recibiremos tus regalos con cariño en la casa de la novia.<br>Av. Víctor Raúl, Mz. L, Lt. 12, Ramiro Prialé, Sullana.</p></article></div>' +
         '</div>' +
       '</section>' +
       '<section class="demo3-social demo3-long-section" id="recuerdos" aria-labelledby="socialTitle"><div class="demo3-closing-inner">' +
@@ -144,7 +144,7 @@
   }
 
   function installReveal(root) {
-    var targets = root.querySelectorAll('.demo3-scroll-hint, .demo3-countdown .demo3-closing-inner > *, .demo3-long-story .demo3-long-copy > *, .demo3-long-story .demo3-long-photo, .demo3-long-celebration .demo3-long-inner > *, .demo3-long-events article, .demo3-long-notes article, .demo3-gift-grid article, .demo3-long-rsvp .demo3-rsvp-ornament, .demo3-long-rsvp .demo3-long-deadline, .demo3-social .demo3-closing-inner > *, .demo3-farewell > *');
+    var targets = root.querySelectorAll('.demo3-scroll-hint, .demo3-countdown .demo3-closing-inner > *, .demo3-long-story .demo3-long-copy > *, .demo3-long-story .demo3-long-photo, .demo3-long-celebration .demo3-long-inner > *, .demo3-long-events article, .demo3-long-notes article, .demo3-gift-grid article, .demo3-long-rsvp .demo3-rsvp-ornament, .demo3-long-rsvp .demo3-long-deadline, .demo3-social .demo3-closing-inner > *, .demo3-farewell > :not(.demo3-back)');
     if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       targets.forEach(function (node) { node.classList.add('demo3-reveal', 'is-visible'); });
       return;
