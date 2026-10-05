@@ -25,6 +25,9 @@
     textarea{min-height:88px;resize:vertical}
     .attendees{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .attendees .field{margin-top:12px}
+    .form-section{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+    .hint{margin:0 0 10px;font-size:14px;line-height:1.45}
+    #attendeeSection.hidden{display:none!important}
     .submit{width:100%;min-height:56px;margin-top:20px;padding:15px 18px;color:#fff;background:var(--ink);border:1px solid var(--ink);font:700 11px/1.3 "Demo3 Text",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
     .submit:disabled{opacity:.55;cursor:wait}
     .alert{display:none;margin-top:14px;padding:12px;text-align:center;font-size:14px;line-height:1.45}
@@ -38,16 +41,13 @@
 <body>
   <main class="card">
     <div class="eyebrow">Confirma tu asistencia</div>
-    <h1 class="title">¿Nos acompañas?</h1>
-    <p class="subtitle">Registra tu respuesta y envíanos también la confirmación por WhatsApp.</p>
+    <h1 class="title">¿Celebramos juntos?</h1>
     <div class="summary hidden" id="inviteSummary"><span>Invitación para</span><strong id="summaryName"></strong><span id="summarySeats"></span></div>
     <form id="rsvpForm" novalidate>
-      <div class="row">
-        <div class="field"><label for="attendance">¿Asistirás?</label><select id="attendance" required><option value="" selected disabled>Selecciona</option><option value="si">Sí, asistiré</option><option value="no">No podré asistir</option></select></div>
-        <div class="field" id="peopleWrap"><label for="people">Personas que asistirán</label><select id="people" disabled><option value="1">1 persona</option></select></div>
-      </div>
-      <div class="attendees" id="attendeeFields"></div>
-      <div class="field"><label for="message">Mensaje o bendición</label><textarea id="message" maxlength="500" placeholder="Unas palabras para los novios…"></textarea></div>
+      <div class="field form-section"><label for="attendance">¿Serás parte de este día?</label><select id="attendance" required><option value="" selected disabled>Selecciona</option><option value="si">Síí, ¡felices de ser parte!</option><option value="no">No, celebramos a la distancia</option></select></div>
+      <div class="field form-section" id="peopleWrap"><label for="people">N.º de asistentes</label><p class="hint">Selecciona cuántos asistirán</p><select id="people" disabled><option value="1">1 persona</option></select></div>
+      <div id="attendeeSection" class="field hidden"><label>Nombres de los asistentes</label><p class="hint">Indica el nombre completo de cada persona</p><div class="attendees" id="attendeeFields"></div></div>
+      <div class="field form-section"><label for="message">Tus palabras, para siempre</label><textarea id="message" maxlength="500" placeholder="Unas palabras para los novios…"></textarea></div>
       <button class="submit" id="submitButton" type="submit">Guardar y confirmar por WhatsApp</button>
       <div class="alert" id="alertBox" role="status"></div><div class="saved hidden" id="savedNote">Puedes actualizar tu respuesta hasta la fecha límite.</div>
     </form>
@@ -61,26 +61,27 @@
     function isFamilyInvitation(){return /^familia\b/i.test((invitation&&(invitation.names||invitation.nombre)||'').trim())}
     function renderAttendees(existing=[]){
       fields.innerHTML='';
-      const enabled=attendance.value==='si',count=Number(people.value)||1,family=isFamilyInvitation(),first=family?0:1;
+      const enabled=attendance.value==='si',count=Number(people.value)||1,family=isFamilyInvitation(),first=0;
       fields.classList.toggle('hidden',!enabled||count<=first);
+      document.getElementById('attendeeSection').classList.toggle('hidden',!enabled||count<=first);
       for(let index=first;index<count;index++){
         const group=document.createElement('div');group.className='field';
         const label=document.createElement('label');label.htmlFor='attendee-'+index;
-        label.textContent=family?`Nombre de la persona ${index+1}`:`Nombre del acompañante ${index}`;
+        label.textContent=`Nombre del asistente ${index+1}`;
         const input=document.createElement('input');input.id='attendee-'+index;input.className='attendee-name';input.maxLength=120;input.required=enabled;input.disabled=!enabled;input.placeholder='Nombre y apellido';input.value=existing[index-first]||'';
         group.append(label,input);fields.appendChild(group);
       }
     }
     function savedAttendeeFields(names){
-      if(!isFamilyInvitation())return names.slice(1);
+      if(!isFamilyInvitation())return names;
       const title=(invitation.names||invitation.nombre||'').trim();
       return names.length&&names[0].trim().toLowerCase()===title.toLowerCase()?names.slice(1):names;
     }
-    function applyInvitation(value){invitation=value;if(!value)return;document.getElementById('summaryName').textContent=value.names||value.nombre||'';document.getElementById('summarySeats').textContent=`Hemos reservado ${value.seats} ${Number(value.seats)===1?'cupo':'cupos'} para esta invitación.`;document.getElementById('inviteSummary').classList.remove('hidden');window.parent.postMessage({type:'demo3:invitation-loaded',exp:value.exp},location.origin);setPeopleOptions(Number(value.seats)||1,Number(value.seats)||1);const r=value.rsvp;if(r){attendance.value=r.attendance?'si':'no';setPeopleOptions(Number(value.seats)||1,r.attendeeCount||1);messageInput.value=r.message||'';renderAttendees(savedAttendeeFields(r.attendeeNames||[]));document.getElementById('savedNote').classList.remove('hidden')}else renderAttendees([]);toggleAttendance();if(value.expired||value.active===false){form.querySelectorAll('input,select,textarea').forEach(control=>control.disabled=true);submitButton.disabled=true;submitButton.textContent=value.expired?'Plazo de confirmación finalizado':'Invitación desactivada';alertMessage(value.expired?'El plazo para confirmar asistencia finalizó. Puedes seguir consultando los detalles de la invitación.':'Esta invitación fue desactivada.',true)}else{submitButton.disabled=false;submitButton.textContent='Guardar y confirmar por WhatsApp'}}
+    function applyInvitation(value){invitation=value;if(!value)return;document.getElementById('summaryName').textContent=value.names||value.nombre||'';document.getElementById('summarySeats').textContent=`Hemos reservado ${value.seats} ${Number(value.seats)===1?'lugar':'lugares'} especialmente para ${Number(value.seats)===1?'ti':'ustedes'}.`;document.getElementById('inviteSummary').classList.remove('hidden');window.parent.postMessage({type:'demo3:invitation-loaded',exp:value.exp},location.origin);setPeopleOptions(Number(value.seats)||1,Number(value.seats)||1);const r=value.rsvp;if(r){attendance.value=r.attendance?'si':'no';setPeopleOptions(Number(value.seats)||1,r.attendeeCount||1);messageInput.value=r.message||'';renderAttendees(savedAttendeeFields(r.attendeeNames||[]));document.getElementById('savedNote').classList.remove('hidden')}else renderAttendees([]);toggleAttendance();if(value.expired||value.active===false){form.querySelectorAll('input,select,textarea').forEach(control=>control.disabled=true);submitButton.disabled=true;submitButton.textContent=value.expired?'Plazo de confirmación finalizado':'Invitación desactivada';alertMessage(value.expired?'El plazo para confirmar asistencia finalizó. Puedes seguir consultando los detalles de la invitación.':'Esta invitación fue desactivada.',true)}else{submitButton.disabled=false;submitButton.textContent='Guardar y confirmar por WhatsApp'}}
     function toggleAttendance(){const yes=attendance.value==='si';people.disabled=!yes;renderAttendees(Array.from(document.querySelectorAll('.attendee-name')).map(input=>input.value))}
     async function waitForInvitation(){submitButton.disabled=true;submitButton.textContent='Cargando invitación…';const token=parentToken();if(!token){alertMessage('Para confirmar tu asistencia, abre el enlace personalizado que recibiste.',true);submitButton.textContent='Enlace personalizado requerido';return}try{const response=await fetch('/api/invitation?token='+encodeURIComponent(token),{headers:{Accept:'application/json'},cache:'no-store'});const data=await response.json();if(!response.ok)throw new Error(data.error||'No pudimos abrir esta invitación.');applyInvitation(data.invitation)}catch(error){alertMessage(error.message,true);submitButton.disabled=true;submitButton.textContent='No se pudo cargar la invitación'}}
     attendance.addEventListener('change',toggleAttendance);people.addEventListener('change',()=>renderAttendees(Array.from(document.querySelectorAll('.attendee-name')).map(input=>input.value)));
-    form.addEventListener('submit',async event=>{event.preventDefault();const attending=attendance.value==='si',invitedName=(invitation&&(invitation.names||invitation.nombre)||'').trim(),companions=Array.from(document.querySelectorAll('.attendee-name')).map(input=>input.value.trim()),names=attending?(isFamilyInvitation()?companions:[invitedName,...companions]):[];if(!invitedName)return alertMessage('No pudimos cargar el nombre de esta invitación.',true);if(!attendance.value)return alertMessage('Selecciona si asistirás.',true);if(attending&&names.some(name=>!name))return alertMessage('Completa el nombre de todas las personas que asistirán.',true);const token=parentToken();submitButton.disabled=true;submitButton.textContent='Guardando confirmación…';try{if(!token){throw new Error('Este es un enlace anterior. Solicita el nuevo enlace personalizado para registrar la confirmación en el panel.')}const response=await fetch('/api/invitation',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,attendance:attending,attendeeCount:attending?Number(people.value):0,attendeeNames:names,message:messageInput.value.trim()})});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||'No pudimos guardar la confirmación.');alertMessage(data.whatsappUrl?'Confirmación guardada. Abriendo WhatsApp…':'Confirmación guardada. Falta configurar el número de WhatsApp.',!data.whatsappUrl);document.getElementById('savedNote').classList.remove('hidden');if(data.whatsappUrl)setTimeout(()=>{if(window.top&&window.top!==window.self)window.top.location.href=data.whatsappUrl;else window.location.href=data.whatsappUrl},650)}catch(error){alertMessage(error.message,true)}finally{submitButton.disabled=false;submitButton.textContent='Guardar y confirmar por WhatsApp'}});
+    form.addEventListener('submit',async event=>{event.preventDefault();const attending=attendance.value==='si',invitedName=(invitation&&(invitation.names||invitation.nombre)||'').trim(),companions=Array.from(document.querySelectorAll('.attendee-name')).map(input=>input.value.trim()),names=attending?companions:[];if(!invitedName)return alertMessage('No pudimos cargar el nombre de esta invitación.',true);if(!attendance.value)return alertMessage('Selecciona si asistirás.',true);if(attending&&names.some(name=>!name))return alertMessage('Completa el nombre de todas las personas que asistirán.',true);const token=parentToken();submitButton.disabled=true;submitButton.textContent='Guardando confirmación…';try{if(!token){throw new Error('Este es un enlace anterior. Solicita el nuevo enlace personalizado para registrar la confirmación en el panel.')}const response=await fetch('/api/invitation',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,attendance:attending,attendeeCount:attending?Number(people.value):0,attendeeNames:names,message:messageInput.value.trim()})});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||'No pudimos guardar la confirmación.');alertMessage(data.whatsappUrl?'Confirmación guardada. Abriendo WhatsApp…':'Confirmación guardada. Falta configurar el número de WhatsApp.',!data.whatsappUrl);document.getElementById('savedNote').classList.remove('hidden');if(data.whatsappUrl)setTimeout(()=>{if(window.top&&window.top!==window.self)window.top.location.href=data.whatsappUrl;else window.location.href=data.whatsappUrl},650)}catch(error){alertMessage(error.message,true)}finally{submitButton.disabled=false;submitButton.textContent='Guardar y confirmar por WhatsApp'}});
     if(card&&window.ResizeObserver)new ResizeObserver(reportHeight).observe(card);
     window.addEventListener('load',reportHeight);reportHeight();waitForInvitation();
   </script>

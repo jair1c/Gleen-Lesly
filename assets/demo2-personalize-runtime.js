@@ -16,12 +16,26 @@
     [/Click here/gi, 'Ver detalles'],
     [/Rsvp/gi, 'Confirma'],
     [/June 2027/g, 'Noviembre 2026'],
-    [/4:30PM AT/g, '3:00 PM EN'],
+    [/4:30PM AT/g, '2:30 PM EN'],
     [/Solara Canyon Retreat/gi, 'Los Cantaritos'],
     [/Palm Springs, CA/gi, 'Sullana, Piura']
   ];
 
   function personalize() {
+    var cover = document.getElementById('PByb2KV5jZ9P1h1c');
+    if (cover) {
+      cover.querySelectorAll('img[src*="envelope-white.png"]').forEach(function (image) {
+        var envelope = image.closest('.DF_utQ');
+        if (!envelope || envelope.querySelector('.demo2-cover-bouquet')) return;
+        envelope.classList.add('demo2-cover-envelope');
+        ['left', 'right'].forEach(function (side) {
+          var flowers = document.createElement('span');
+          flowers.className = 'demo2-cover-bouquet demo2-cover-bouquet-' + side;
+          flowers.setAttribute('aria-hidden', 'true');
+          envelope.appendChild(flowers);
+        });
+      });
+    }
     // Medidas y encuadre elegidos para la fotografía de Historia.
     document.querySelectorAll('#PBnVwKBzJxQZpBf8 img[src*="7cafb878c428817a3252767e625c279f.png"]:not(.demo2-mirror-photo), #PBnVwKBzJxQZpBf8 img[src*="01c2a6286fa931df44c7777a4daa0304.png"]:not(.demo2-mirror-photo), #PBnVwKBzJxQZpBf8 img[src*="gleen-lesly-confirmacion.jpg"]:not(.demo2-mirror-photo), #PBnVwKBzJxQZpBf8 img[src*="gleen-lesly-2.jpeg"]').forEach(function (image) {
       if (image.closest('#demo2-mirror-photo-frame')) return;

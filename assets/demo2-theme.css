@@ -1,6 +1,22 @@
 /* Portada del sobre: personalizacion mobile-first. */
+#PByb2KV5jZ9P1h1c .DF_utQ:has(img:is([src*="7dc097ba3aa67c0699091824026f14ed"], [src*="5310eceaf6820799586a435f74b8cecf"], [src*="66a5d3083c1e065b38e126b0b30f7f8a"], [src*="a0d330a7fe0d6fbb85c6ddb138c3c53e"], [src*="3bc59ddb0fee6c496c6a5170c3bc35dd"])) {
+  visibility: hidden !important;
+}
+
+.demo2-cover-envelope { isolation: isolate; overflow: visible !important; }
+.demo2-cover-bouquet {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  background: url("demo3/media/flores-portada-calas-amarillas.png") center / contain no-repeat;
+}
+.demo2-cover-bouquet-left { width: 30%; height: 90%; left: -16%; top: 6%; transform: rotate(-12deg); }
+.demo2-cover-bouquet-right { width: 37%; height: 115%; right: -16%; top: 5%; transform: rotate(8deg); }
+
 #PByb2KV5jZ9P1h1c {
-  background: #171310 url("demo3/media/fondo-historia-calas.png") center / cover no-repeat !important;
+  background: #171310 !important;
+  isolation: isolate;
+  overflow: hidden;
   min-height: 100svh;
 }
 
@@ -17,10 +33,11 @@
 #PByb2KV5jZ9P1h1c::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -18px;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(19, 12, 8, .28), rgba(19, 12, 8, .12) 45%, rgba(19, 12, 8, .34));
+  background: url("demo3/media/gleen-lesly-confirmacion.jpg") center 38% / cover no-repeat;
+  filter: blur(8px) brightness(.52);
 }
 
 #PByb2KV5jZ9P1h1c > div {
@@ -50,7 +67,7 @@
   visibility: hidden;
 }
 
-/* El vino de la portada pasa a marfil para contrastar con los lirios. */
+/* Texto marfil con contraste sobre la fotografía difuminada. */
 #PByb2KV5jZ9P1h1c [style*="color: rgb(103, 33, 45)"] {
   color: #fffaf2 !important;
   text-shadow: 0 2px 12px rgba(18, 10, 6, .52);
@@ -63,12 +80,8 @@
 }
 
 @media (max-width: 640px) {
-  #PByb2KV5jZ9P1h1c {
-    background-position: 54% center !important;
-  }
-
   #PByb2KV5jZ9P1h1c::before {
-    background: linear-gradient(180deg, rgba(18, 11, 8, .34), rgba(18, 11, 8, .12) 42%, rgba(18, 11, 8, .42));
+    background-position: 48% center;
   }
 
 }

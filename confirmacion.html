@@ -27,7 +27,7 @@
     (function () {
       var token = new URLSearchParams(location.search).get('invite');
       var frame = document.getElementById('confirmationForm');
-      var formUrl = new URL('./_website-element-widget.html?v=3', location.href);
+      var formUrl = new URL('./_website-element-widget.html?v=4', location.href);
       var backUrl = new URL('./home', location.href);
       if (token) {
         formUrl.searchParams.set('invite', token);

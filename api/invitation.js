@@ -34,18 +34,21 @@ function publicInvitation(row) {
 
 function whatsappMessage(invitation, attendance, attendeeCount, attendeeNames, message) {
   const lines = [
-    '¡Hola! Confirmo mi asistencia para la boda de Gleen y Lesly:',
+    '*CONFIRMA TU ASISTENCIA*',
+    '¿Celebramos juntos?',
     '',
     `*Invitación para:* ${invitation.guest_name}`,
-    `*Asistencia:* ${attendance ? 'Sí, asistiré 💍' : 'No podré asistir 🤍'}`,
-    `*Cupos reservados:* ${invitation.seats}`
+    `Hemos reservado ${invitation.seats} ${Number(invitation.seats) === 1 ? 'lugar especialmente para ti.' : 'lugares especialmente para ustedes.'}`,
+    '',
+    '*¿Serás parte de este día?*',
+    attendance ? 'Síí, ¡felices de ser parte!' : 'No, celebramos a la distancia'
   ];
   if (attendance) {
-    lines.push(`*Personas confirmadas:* ${attendeeCount}`);
-    lines.push('*Asistentes:*');
+    lines.push('', `*N.º DE ASISTENTES:* ${attendeeCount}`);
+    lines.push('*NOMBRES DE LOS ASISTENTES*');
     attendeeNames.forEach(name => lines.push(`- ${name}`));
   }
-  if (message) lines.push(`*Mensaje:* ${message}`);
+  if (message) lines.push('', '*Tus palabras, para siempre*', message);
   return lines.join('\n');
 }
 
