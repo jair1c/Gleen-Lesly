@@ -55,7 +55,7 @@
 .demo2-migrated-sections .demo3-long-notes article { padding: 14px 10px; }
 .demo2-migrated-sections .demo3-long-notes h3 { font-size: 20px; }
 .demo2-migrated-sections .demo3-long-notes p { font-size: 14px; }
-.demo2-migrated-sections .demo3-long-notes .demo2-dress-note { margin: 14px 0 10px; text-align: center; }
+.demo2-migrated-sections .demo3-long-notes .demo2-dress-note { margin: 14px auto 10px; width: 100%; max-width: none; text-align: center; }
 .demo2-dress-swatches { display: flex; justify-content: center; gap: 12px; }
 .demo2-dress-swatches span {
   display: block;
