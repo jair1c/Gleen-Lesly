@@ -60,6 +60,17 @@
 .demo2-migrated-sections .demo3-event-icon { filter: grayscale(1); }
 .demo2-migrated-sections .demo3-long-story { color: #f7efdc; }
 .demo2-migrated-sections .demo3-long-story h2 { font-size: 30px; margin-bottom: 8px; }
+.demo2-migrated-sections .demo3-long-story .demo2-story-heading {
+  text-align: center;
+  margin: 0 0 20px;
+}
+.demo2-migrated-sections .demo3-long-story .demo2-story-name {
+  margin: 0 0 12px;
+  font: inherit;
+  font-family: "Demo2 Calendar Script", "Demo3 Serif", cursive;
+  font-size: clamp(34px, 7vw, 44px);
+  line-height: 1.15;
+}
 .demo2-migrated-sections .demo3-long-gifts,
 .demo2-migrated-sections .demo3-social,
 .demo2-migrated-sections .demo3-farewell { background: #fffaf0; }

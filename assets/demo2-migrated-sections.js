@@ -109,8 +109,9 @@
           '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:30 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>05:00 PM</span><h3>Recepción</h3></article></div>' +
         '</div></section>' +
       '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
-        '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h2 id="storyTitle">Nuestra historia</h2>' +
-          '<p>Un camino juntos. Una vida por compartir.</p></div>' +
+        '<h2 id="storyTitle" class="demo2-story-heading">Nuestra historia</h2>' +
+        '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h3 class="demo2-story-name">GlenslyLand</h3>' +
+          '<p>Contigo entendí que el amor verdadero no se promete solo en palabras sino en cada pequeño instante que se convierte en eternidad</p></div>' +
           '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-3.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-gifts" id="regalos" aria-labelledby="giftsTitle">' +

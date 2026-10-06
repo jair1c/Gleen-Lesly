@@ -16,9 +16,9 @@
     [/Click here/gi, 'Ver detalles'],
     [/Rsvp/gi, 'Confirma'],
     [/June 2027/g, 'Noviembre 2026'],
-    [/4:30PM AT/g, '3:30 PM EN'],
-    [/Solara Canyon Retreat/gi, 'Los Cantaritos'],
-    [/Palm Springs, CA/gi, 'Sullana, Piura']
+    [/4:30PM AT/g, 'Donde nuestro amor'],
+    [/Solara Canyon Retreat/gi, 'se convierte'],
+    [/Palm Springs, CA/gi, 'en hogar']
   ];
 
   function personalize() {
