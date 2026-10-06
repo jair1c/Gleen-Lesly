@@ -100,7 +100,7 @@
           '<p class="demo3-long-lead">Sábado 28 de noviembre de 2026</p>' +
           '<p>Club Campestre “Los Cantaritos”<br>Calle Cola del Alacrán S/N, Sullana<br>Frente al Club Campestre “Pájaro Loco Sport”</p>' +
           '<a class="demo3-long-button" href="https://www.google.com/maps?q=-4.918821811676025,-80.70159149169922&amp;z=17&amp;hl=es" target="_blank" rel="noopener">Ver ubicación en el mapa</a>' +
-          '<div class="demo3-long-notes"><article><h3>Vestimenta</h3><p>Elegante, con tonos sobrios o pasteles.</p><p class="demo2-dress-note">Agradecemos evitar estos colores:</p><div class="demo2-dress-swatches" role="img" aria-label="Evitar blanco, marfil y amarillo"><span class="demo2-dress-white" aria-hidden="true"></span><span class="demo2-dress-ivory" aria-hidden="true"></span><span class="demo2-dress-yellow" aria-hidden="true"></span></div></article>' +
+          '<div class="demo3-long-notes"><article><h3>Vestimenta</h3><p>Elegante, con tonos sobrios o pasteles.</p><p class="demo2-dress-note">Agradecemos evitar estos colores:</p><div class="demo2-dress-swatches" role="img" aria-label="Evitar blanco, amarillo y rojo"><span class="demo2-dress-white" aria-hidden="true"></span><span class="demo2-dress-yellow" aria-hidden="true"></span><span class="demo2-dress-red" aria-hidden="true"></span></div></article>' +
             '<article><h3>Estacionamiento</h3><p>Habrá estacionamiento para los invitados en el lugar.</p></article>' +
             '<article><h3>Solo adultos</h3><p>Para disfrutar plenamente de la celebración, el evento será solo para adultos.</p></article></div>' +
         '</div>' +

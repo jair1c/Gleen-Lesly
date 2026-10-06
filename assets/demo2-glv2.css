@@ -59,15 +59,15 @@
 .demo2-dress-swatches { display: flex; justify-content: center; gap: 12px; }
 .demo2-dress-swatches span {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 48px;
   border: 1px solid #b9bba8;
-  border-radius: 4px;
+  border-radius: 50% 50% 0 0 / 36% 36% 0 0;
   box-shadow: 0 2px 4px rgba(70,81,61,.08);
 }
 .demo2-dress-white { background: #fff; }
-.demo2-dress-ivory { background: #f3ebd5; }
-.demo2-dress-yellow { background: #ffe797; }
+.demo2-dress-yellow { background: #f5eaba; }
+.demo2-dress-red { background: #c63535; }
 .demo2-migrated-sections .demo3-timeline { text-align: center; background: #fffaf0; }
 .demo2-migrated-sections .demo3-long-events { margin: 8px 0 0; }
 .demo2-migrated-sections .demo3-event-icon { filter: grayscale(1); }
