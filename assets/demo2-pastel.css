@@ -1,18 +1,18 @@
-/* Paleta de la invitación principal: rosa pétalo y amarillo mantequilla. */
+/* Paleta de la invitación principal: amarillo mantequilla, marfil y verde salvia. */
 :root {
-  --invitation-pink: #f5dce3;
+  --invitation-pink: #e8eddd;
   --invitation-yellow: #fff1c9;
   --invitation-cream: #fffaf0;
-  --invitation-ink: #60444e;
-  --invitation-accent: #875665;
-  --invitation-line: #d9b8bd;
+  --invitation-ink: #46513d;
+  --invitation-accent: #667455;
+  --invitation-line: #d6d9bc;
 }
 
 #PBnVwKBzJxQZpBf8,
 #PBnVwKBzJxQZpBf8 .GDnEHQ,
 #PBnVwKBzJxQZpBf8 ._8jGYJw,
 #PBnVwKBzJxQZpBf8 .fbzKiw {
-  background: linear-gradient(155deg, var(--invitation-pink) 10%, #fbe7d5 55%, var(--invitation-yellow) 100%) !important;
+  background: linear-gradient(155deg, var(--invitation-cream) 10%, #fff5d9 55%, var(--invitation-yellow) 100%) !important;
 }
 
 #PBnVwKBzJxQZpBf8 :is(p, a),
@@ -40,10 +40,10 @@
   transform: scaleX(-1);
 }
 #PBnVwKBzJxQZpBf8 #LBpLmQZjpBG7xV3Z img {
-  filter: url("demo2-pastel-filters.svg#rose-cord");
+  filter: url("demo2-pastel-filters.svg?v=20261006g#butter-accent");
 }
 #PBnVwKBzJxQZpBf8 :is(#LB3YdWB5bmG03Ncc, #LB7DX2NhJtvKWFJ2, #LBkKlFzvfF1FscrH) img {
-  filter: url("demo2-pastel-filters.svg#rose-petals");
+  filter: url("demo2-pastel-filters.svg?v=20261006g#butter-petals");
 }
 
 .demo2-migrated-sections {
@@ -84,7 +84,7 @@
 }
 .demo2-migrated-sections .demo3-album-button[aria-disabled="true"] {
   color: var(--invitation-ink);
-  background: #ead4d7;
+  background: #e8eddd;
   border-color: var(--invitation-line);
 }
 .demo2-migrated-sections .demo3-back {
@@ -198,4 +198,9 @@
   inset: 0;
   background: url('./demo3/media/marco-encaje-blanco.png') center / contain no-repeat;
   pointer-events: none;
+}
+
+/* Bordes y adornos amarillos, conservando las fotografías originales. */
+#PBnVwKBzJxQZpBf8 img:is([src*="6d7538c3b267dba4940820b9458df1e6"], [src*="dddd4d4577e73fc796fca4ef04460b62"], [src*="f90204c8c3fd00fe113c67946f11e728"]) {
+  filter: url("demo2-pastel-filters.svg?v=20261006g#butter-accent");
 }

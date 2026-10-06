@@ -1,15 +1,15 @@
 /* Secciones inferiores con la paleta y proporciones de GLv2. */
 .demo2-migrated-sections {
-  --invitation-pink: #fbf5e7;
-  --invitation-yellow: #fbf5e7;
-  --invitation-cream: #fbf5e7;
-  --invitation-ink: #24231e;
-  --invitation-accent: #3a342e;
-  --invitation-line: #ded8ca;
-  --demo3-ink: #24231e;
-  --demo3-paper: #fbf5e7;
-  --demo3-paper-light: #fbf5e7;
-  background: #fbf5e7;
+  --invitation-pink: #fffaf0;
+  --invitation-yellow: #fffaf0;
+  --invitation-cream: #fffaf0;
+  --invitation-ink: #46513d;
+  --invitation-accent: #667455;
+  --invitation-line: #d6d9bc;
+  --demo3-ink: #46513d;
+  --demo3-paper: #fffaf0;
+  --demo3-paper-light: #fffaf0;
+  background: #fffaf0;
 }
 .demo2-migrated-sections .demo3-scroll-hint { display: none; }
 .demo2-migrated-sections .demo3-long-section {
@@ -35,7 +35,7 @@
 }
 .demo2-migrated-sections .demo3-countdown-value { font-size: clamp(32px, 7vw, 48px); }
 .demo2-migrated-sections .demo3-countdown-label { font-size: 9px; }
-.demo2-migrated-sections .demo3-long-celebration { background: #fbf5e7; }
+.demo2-migrated-sections .demo3-long-celebration { background: #fffaf0; }
 .demo2-migrated-sections .demo3-long-eyebrow { font-size: 10px; }
 .demo2-migrated-sections .demo3-long-lead { font-size: 17px; margin-bottom: 20px; }
 .demo2-migrated-sections .demo3-long-celebration .demo3-long-inner > p:last-of-type {
@@ -43,9 +43,9 @@
   line-height: 1.5;
 }
 .demo2-migrated-sections .demo3-long-button {
-  color: #24231e;
+  color: #46513d;
   background: transparent;
-  border: 1px solid #28251f;
+  border: 1px solid #667455;
   border-radius: 30px;
   min-height: 34px;
   padding: 8px 24px;
@@ -55,18 +55,31 @@
 .demo2-migrated-sections .demo3-long-notes article { padding: 14px 10px; }
 .demo2-migrated-sections .demo3-long-notes h3 { font-size: 20px; }
 .demo2-migrated-sections .demo3-long-notes p { font-size: 14px; }
-.demo2-migrated-sections .demo3-timeline { text-align: center; background: #fbf5e7; }
+.demo2-migrated-sections .demo3-timeline { text-align: center; background: #fffaf0; }
 .demo2-migrated-sections .demo3-long-events { margin: 8px 0 0; }
 .demo2-migrated-sections .demo3-event-icon { filter: grayscale(1); }
 .demo2-migrated-sections .demo3-long-story { color: #f7efdc; }
 .demo2-migrated-sections .demo3-long-story h2 { font-size: 30px; margin-bottom: 8px; }
 .demo2-migrated-sections .demo3-long-gifts,
 .demo2-migrated-sections .demo3-social,
-.demo2-migrated-sections .demo3-farewell { background: #fbf5e7; }
+.demo2-migrated-sections .demo3-farewell { background: #fffaf0; }
 .demo2-migrated-sections .demo3-social-logo { width: 90px; }
 .demo2-migrated-sections .demo3-farewell .demo3-angels { width: 120px; }
 .demo2-migrated-sections .demo3-back {
   opacity: 1;
   visibility: visible;
   transform: none;
+}
+
+/* Paleta final aprobada: amarillo pastel, marfil, salvia y celeste tenue. */
+.demo2-migrated-sections { --invitation-yellow: #fff1c9; --invitation-pink: #e8eddd; }
+.demo2-migrated-sections .demo3-timeline,
+.demo2-migrated-sections .demo3-long-gifts { background: #fff1c9; }
+.demo2-migrated-sections .demo3-social { background: #edf3f4; }
+.demo2-migrated-sections .demo3-farewell { background: #e8eddd; }
+.demo2-migrated-sections :is(.demo3-long-button,.demo3-album-button) {
+  color: #46513d; background: #fff1c9; border-color: #c7cba9;
+}
+.demo2-migrated-sections :is(.demo3-long-button,.demo3-album-button):hover {
+  color: #fffaf0; background: #667455;
 }

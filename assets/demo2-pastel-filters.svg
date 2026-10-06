@@ -1,11 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <filter id="butter-petals" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values=".18 .18 .18 0 .73 .17 .17 .17 0 .67 .13 .13 .13 0 .46 0 0 0 1 0"/>
+    </filter>
+    <filter id="butter-accent" color-interpolation-filters="sRGB" x="-10%" y="-10%" width="120%" height="120%">
+      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 6 -3 -3 0 0" result="raw"/>
+      <feComponentTransfer in="raw" result="red"><feFuncA type="linear" slope="2" intercept="-.35"/></feComponentTransfer>
+      <feComposite in="red" in2="SourceAlpha" operator="in" result="mask"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" values=".2 .2 .2 0 .71 .19 .19 .19 0 .65 .14 .14 .14 0 .44 0 0 0 1 0" result="butter"/>
+      <feComposite in="butter" in2="mask" operator="in" result="accent"/>
+      <feComposite in="SourceGraphic" in2="mask" operator="out" result="original"/>
+      <feComposite in="accent" in2="original" operator="over"/>
+    </filter>
     <filter id="rose-petals" color-interpolation-filters="sRGB">
       <feColorMatrix type="matrix" values=".22 .22 .22 0 .56 .19 .19 .19 0 .39 .19 .19 .19 0 .43 0 0 0 1 0"/>
     </filter>
     <!-- Recolor only the wine tones; keep ivory paper and green leaves intact. -->
     <filter id="butter-flowers" color-interpolation-filters="sRGB" x="-10%" y="-10%" width="120%" height="120%">
-      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 5 -2.5 -2.5 0 0" result="red-mask"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 5 -2.5 -2.5 0 0" result="raw-red-mask"/>
+      <feComponentTransfer in="raw-red-mask" result="red-mask"><feFuncA type="linear" slope="2" intercept="-.35"/></feComponentTransfer>
       <feComposite in="red-mask" in2="SourceAlpha" operator="in" result="mask"/>
       <feColorMatrix in="SourceGraphic" type="matrix" values=".32 .32 .32 0 .35 .28 .28 .28 0 .31 .2 .2 .2 0 .22 0 0 0 1 0" result="yellow"/>
       <feComposite in="yellow" in2="mask" operator="in" result="flowers"/>
@@ -13,12 +26,20 @@
       <feComposite in="flowers" in2="original" operator="over"/>
     </filter>
     <filter id="rose-cord" color-interpolation-filters="sRGB" x="-10%" y="-10%" width="120%" height="120%">
-      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 6 -3 -3 0 0" result="red-mask"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 6 -3 -3 0 0" result="raw-red-mask"/>
+      <feComponentTransfer in="raw-red-mask" result="red-mask"><feFuncA type="linear" slope="2" intercept="-.35"/></feComponentTransfer>
       <feComposite in="red-mask" in2="SourceAlpha" operator="in" result="mask"/>
       <feColorMatrix in="SourceGraphic" type="matrix" values=".26 .26 .26 0 .49 .23 .23 .23 0 .33 .23 .23 .23 0 .37 0 0 0 1 0" result="pink"/>
       <feComposite in="pink" in2="mask" operator="in" result="cord"/>
       <feComposite in="SourceGraphic" in2="mask" operator="out" result="original"/>
-      <feComposite in="cord" in2="original" operator="over"/>
+      <feComposite in="cord" in2="original" operator="over" result="rose-base"/>
+      <!-- Keep the round wax seal pink while the surrounding cord turns butter yellow. -->
+      <feImage href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 565 782'%3E%3Cpath fill='white' fill-rule='evenodd' d='M0 0H565V782H0Z M445 465a68 68 0 1 0 0 136a68 68 0 1 0 0-136Z'/%3E%3C/svg%3E" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="cord-area"/>
+      <feComposite in="mask" in2="cord-area" operator="in" result="yellow-mask"/>
+      <feColorMatrix in="SourceGraphic" type="matrix" values=".2 .2 .2 0 .71 .19 .19 .19 0 .65 .14 .14 .14 0 .44 0 0 0 1 0" result="butter"/>
+      <feComposite in="butter" in2="yellow-mask" operator="in" result="yellow-cord"/>
+      <feComposite in="rose-base" in2="yellow-mask" operator="out" result="base"/>
+      <feComposite in="yellow-cord" in2="base" operator="over"/>
     </filter>
   </defs>
 </svg>
