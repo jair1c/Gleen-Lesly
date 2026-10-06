@@ -16,12 +16,19 @@
     [/Click here/gi, 'Ver detalles'],
     [/Rsvp/gi, 'Confirma'],
     [/June 2027/g, 'Noviembre 2026'],
-    [/4:30PM AT/g, '2:30 PM EN'],
+    [/4:30PM AT/g, '3:30 PM EN'],
     [/Solara Canyon Retreat/gi, 'Los Cantaritos'],
     [/Palm Springs, CA/gi, 'Sullana, Piura']
   ];
 
   function personalize() {
+    document.querySelectorAll('#PBnVwKBzJxQZpBf8 img[src*="c0ee131f077bdcc4ff40793de2e0bc5a"]').forEach(function (image) {
+      var sprig = image.closest('.DF_utQ');
+      if (sprig) sprig.classList.add('demo2-white-right-sprig');
+    });
+    document.querySelectorAll('#PBnVwKBzJxQZpBf8 :is(#LB1xXZSfCqPKtJ29, #LB6nzg1R47TjYcCY) img').forEach(function (image) {
+      if (!image.src.includes('flores-blancas-referencia.png')) image.src = '/assets/demo3/media/flores-blancas-referencia.png';
+    });
     var cover = document.getElementById('PByb2KV5jZ9P1h1c');
     if (cover) {
       cover.querySelectorAll('img[src*="envelope-white.png"]').forEach(function (image) {

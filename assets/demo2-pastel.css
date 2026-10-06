@@ -24,8 +24,26 @@
 }
 
 #PBnVwKBzJxQZpBf8 .demo2-wedding-date::after { border-color: var(--invitation-accent); }
-#PBnVwKBzJxQZpBf8 :is(#LBpLmQZjpBG7xV3Z, #LB3YdWB5bmG03Ncc, #LB7DX2NhJtvKWFJ2, #LBkKlFzvfF1FscrH) img {
-  filter: sepia(.3) saturate(.45) brightness(1.35);
+#PBnVwKBzJxQZpBf8 :is(#LB1xXZSfCqPKtJ29, #LB6nzg1R47TjYcCY, .demo2-white-right-sprig) img {
+  visibility: hidden;
+  filter: none;
+}
+#PBnVwKBzJxQZpBf8 :is(#LB1xXZSfCqPKtJ29, #LB6nzg1R47TjYcCY, .demo2-white-right-sprig)::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 -18%;
+  pointer-events: none;
+  background: url("demo3/media/flores-blancas-referencia.png") center / contain no-repeat;
+}
+#PBnVwKBzJxQZpBf8 .demo2-white-right-sprig::after {
+  inset: 0 -35% 0 0;
+  transform: scaleX(-1);
+}
+#PBnVwKBzJxQZpBf8 #LBpLmQZjpBG7xV3Z img {
+  filter: url("demo2-pastel-filters.svg#rose-cord");
+}
+#PBnVwKBzJxQZpBf8 :is(#LB3YdWB5bmG03Ncc, #LB7DX2NhJtvKWFJ2, #LBkKlFzvfF1FscrH) img {
+  filter: url("demo2-pastel-filters.svg#rose-petals");
 }
 
 .demo2-migrated-sections {

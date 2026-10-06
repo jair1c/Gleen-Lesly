@@ -2,7 +2,7 @@
   'use strict';
 
   var TARGET_SECTION = 'PBnVwKBzJxQZpBf8';
-  var WEDDING_AT = new Date('2026-11-28T14:30:00-05:00').getTime();
+  var WEDDING_AT = new Date('2026-11-28T15:30:00-05:00').getTime();
   var MEMORIES_OPEN_AT = new Date('2026-11-28T00:00:00-05:00').getTime();
   var ASSETS = './assets/demo3/';
   var confirmationScreen = null;
@@ -106,7 +106,7 @@
         '</div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-timeline" id="cronograma" aria-labelledby="timelineTitle"><div class="demo3-long-inner"><h2 id="timelineTitle">Itinerario</h2>' +
-          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>02:30 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>03:30 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>Después</span><h3>Recepción</h3></article></div>' +
+          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:30 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>05:00 PM</span><h3>Recepción</h3></article></div>' +
         '</div></section>' +
       '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
         '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h2 id="storyTitle">Nuestra historia</h2>' +

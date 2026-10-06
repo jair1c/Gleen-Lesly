@@ -10,11 +10,13 @@
     *{box-sizing:border-box}
     html,body{overflow:hidden}
     body{margin:0;padding:12px;color:var(--ink);background:transparent;font-family:"Demo3 Text",Georgia,serif}
-    .card{padding:28px 26px 30px;background:rgba(248,245,238,.98);border:1px solid rgba(91,82,50,.25);box-shadow:0 9px 24px rgba(50,43,29,.09)}
+    .card{position:relative;isolation:isolate;overflow:hidden;padding:28px 26px 30px;color:#fffaf2;background:#171310;border:1px solid rgba(255,250,242,.25);box-shadow:0 9px 24px rgba(18,10,6,.2)}
+    .card::before{content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:url("assets/demo3/media/gleen-lesly-detalles.jpg") center 38% / cover no-repeat;filter:blur(8px) brightness(.52)}
+    .card .eyebrow,.card .title,.card label,.card .hint,.card .saved{text-shadow:0 1px 8px rgba(18,10,6,.42)}
     .eyebrow{text-align:center;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
     .title{margin:8px 0 12px;text-align:center;font:italic 400 43px/1.05 "Demo3 Serif",Georgia,serif}
     .subtitle{margin:0 auto 22px;max-width:38ch;text-align:center;font-size:15px;line-height:1.55}
-    .summary{margin:0 0 18px;padding:14px 16px;text-align:center;background:#eae5da;border:1px solid rgba(91,82,50,.14);font-size:14px;line-height:1.5}
+    .summary{margin:0 0 18px;padding:14px 16px;text-align:center;background:rgba(23,19,16,.4);border:1px solid rgba(255,250,242,.25);font-size:14px;line-height:1.5}
     .summary strong{display:block;font-size:18px}
     .field{margin-top:15px}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -25,7 +27,7 @@
     textarea{min-height:88px;resize:vertical}
     .attendees{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .attendees .field{margin-top:12px}
-    .form-section{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+    .form-section{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,250,242,.3)}
     .hint{margin:0 0 10px;font-size:14px;line-height:1.45}
     #attendeeSection.hidden{display:none!important}
     .submit{width:100%;min-height:56px;margin-top:20px;padding:15px 18px;color:#fff;background:var(--ink);border:1px solid var(--ink);font:700 11px/1.3 "Demo3 Text",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
@@ -35,6 +37,7 @@
     .alert.error{display:block;color:#fff;background:var(--error)}
     .saved{margin-top:11px;text-align:center;font-size:13px;font-style:italic}
     .hidden{display:none!important}
+    @media(max-width:640px){.card::before{background-position:48% center}}
     @media(max-width:430px){body{padding:8px}.card{padding:23px 18px 26px}.row,.attendees{grid-template-columns:1fr}.title{font-size:38px}}
   </style>
 </head>
