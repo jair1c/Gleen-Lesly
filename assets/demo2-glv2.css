@@ -71,15 +71,49 @@
   transform: none;
 }
 
-/* Paleta final aprobada: amarillo pastel, marfil, salvia y celeste tenue. */
+/* Paleta final aprobada: amarillo pastel, marfil y salvia. */
 .demo2-migrated-sections { --invitation-yellow: #fff1c9; --invitation-pink: #e8eddd; }
 .demo2-migrated-sections .demo3-timeline,
 .demo2-migrated-sections .demo3-long-gifts { background: #fff1c9; }
-.demo2-migrated-sections .demo3-social { background: #edf3f4; }
+.demo2-migrated-sections .demo3-social { background: #fff1c9; }
 .demo2-migrated-sections .demo3-farewell { background: #e8eddd; }
 .demo2-migrated-sections :is(.demo3-long-button,.demo3-album-button) {
   color: #46513d; background: #fff1c9; border-color: #c7cba9;
 }
 .demo2-migrated-sections :is(.demo3-long-button,.demo3-album-button):hover {
   color: #fffaf0; background: #667455;
+}
+
+/* Cada capítulo tiene un ambiente propio dentro de la misma paleta. */
+.demo2-migrated-sections .demo3-long-section {
+  position: relative;
+  border-top: 1px solid rgba(102,116,85,.14);
+}
+.demo2-migrated-sections .demo3-long-celebration {
+  background: radial-gradient(ellipse at 12% 8%, #fff1c980, transparent 60%),
+    linear-gradient(145deg, #fffdf6, #f4f1e3);
+}
+.demo2-migrated-sections .demo3-timeline {
+  background: radial-gradient(ellipse at 85% 18%, #fffaf0aa, transparent 65%),
+    linear-gradient(125deg, #ffedb5, #fff5d9);
+}
+.demo2-migrated-sections .demo3-long-gifts {
+  background: radial-gradient(ellipse at 15% 85%, #fff1c966, transparent 60%),
+    linear-gradient(150deg, #f0f2e5, #e1e8d3);
+}
+.demo2-migrated-sections .demo3-social {
+  background: radial-gradient(ellipse at 50% 0%, #ffe8a7a6, transparent 65%),
+    linear-gradient(180deg, #fff9e8, #fffdf6);
+}
+.demo2-migrated-sections .demo3-farewell {
+  background: radial-gradient(ellipse at 50% 35%, #fff8de, transparent 70%),
+    linear-gradient(135deg, #e6ebd8, #f4edcd);
+}
+.demo2-migrated-sections :is(.demo3-long-celebration,.demo3-timeline,.demo3-long-gifts,.demo3-social,.demo3-farewell) {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+.demo2-migrated-sections :is(.demo3-long-notes article,.demo3-gift-grid article) {
+  background: rgba(255,253,246,.8);
+  border-color: rgba(102,116,85,.22);
 }
