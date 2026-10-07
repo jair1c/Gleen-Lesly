@@ -9,3 +9,31 @@
 .guest-lightbox{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:55px 18px 25px;background:rgba(24,21,16,.92);opacity:0;visibility:hidden;transition:.25s ease}.guest-lightbox.is-open{opacity:1;visibility:visible}.guest-lightbox figure{max-width:min(100%,980px);max-height:100%;margin:0;text-align:center}.guest-lightbox img{display:block;max-width:100%;max-height:78vh;margin:auto;object-fit:contain}.guest-lightbox figcaption{margin-top:12px;color:#fff;font-size:13px}.lightbox-close{position:absolute;top:16px;right:18px;width:42px;height:42px;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.55);border-radius:50%;font-size:27px;cursor:pointer}
 @media(max-width:620px){.guest-header{grid-template-columns:1fr auto;min-height:62px;padding:8px 13px}.guest-brand{justify-self:start;grid-column:1}.guest-brand img{width:40px;height:40px}.guest-back{grid-row:2;grid-column:1/-1;justify-self:center;padding:8px 0 2px}.guest-back[hidden]+.guest-brand{grid-column:1}.guest-date{grid-column:2}.guest-hero{min-height:560px;padding:72px 18px}.guest-hero h1{font-size:55px}.upload-section{padding:34px 12px}.upload-card{padding:25px 18px}.upload-heading,.gallery-heading{gap:12px}.upload-number{font-size:27px}.preview-grid{grid-template-columns:repeat(2,1fr)}.gallery-section{padding:54px 10px}.gallery-heading,.gallery-note{padding:0 8px}.guest-gallery{columns:2 145px;column-gap:8px}.guest-photo{margin-bottom:8px}.guest-photo span{font-size:10px}.guest-closing{padding:58px 18px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* El álbum de invitados comparte la baraja y la paleta de la invitación. */
+:root { --ink:#46513d; --deep:#526044; --paper:#fffaf0; --paper-2:#e8eddd; --blush:#f5eaba; --rose:#667455; --white:#fffdf6; }
+.guest-header { color:var(--ink); background:linear-gradient(125deg,#fffaf0,#f5eaba); border-color:#d6d9bc; }
+.guest-hero { min-height:360px; padding:65px 20px; background:radial-gradient(ellipse at 20% 10%,#fff1c9aa,transparent 65%),linear-gradient(145deg,#fffdf6,#f4f1e3); }
+.upload-section { background:linear-gradient(125deg,#f5eaba,#fff5d9); }
+.gallery-section { background:linear-gradient(150deg,#fffaf0,#e8eddd); }
+.guest-closing { background:linear-gradient(135deg,#e6ebd8,#f4edcd); }
+.primary-button { color:var(--ink); background:#f5eaba; border-color:#c7cba9; }
+.primary-button:not(:disabled):hover { color:#fffaf0; background:#667455; }
+.guest-gallery { columns:auto; width:min(100%,1000px); }
+.guest-gallery .album-deck { width:min(100% - 28px,780px); }
+.guest-gallery .album-card { grid-template-rows:minmax(0,1fr) 140px; }
+.guest-gallery .album-caption h2 { font-size:clamp(24px,5vw,36px); overflow-wrap:anywhere; }
+.guest-gallery .album-photo-wrap { background:#e8eddd; }
+.guest-gallery .album-card::before,.guest-gallery .album-card::after { background:#fff5d9; }
+.guest-deck-controls { display:flex; align-items:center; justify-content:center; gap:25px; margin:32px auto 0; }
+.guest-deck-controls button { width:44px; height:44px; border:1px solid #c7cba9; border-radius:50%; background:#f5eaba; color:var(--ink); cursor:pointer; font-size:22px; }
+.guest-deck-controls button:disabled { opacity:.4; cursor:default; }
+.guest-deck-controls span { min-width:60px; text-align:center; font-size:12px; }
+.guest-gallery .album-thumbs { padding:12px 14px 20px; }
+@media(max-width:620px) {
+  .guest-hero { min-height:340px; padding:56px 18px; }
+  .guest-gallery { columns:auto; }
+  .guest-gallery .album-card { height:clamp(400px,65svh,550px); grid-template-rows:minmax(0,1fr) 130px; }
+  .guest-gallery .album-caption { padding-top:16px; }
+}
+@media(prefers-reduced-motion:reduce) { .guest-gallery * { transition:none!important; } }

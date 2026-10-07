@@ -95,16 +95,15 @@
           '</div>' +
         '</div>' +
       '</section>' +
-      '<section class="demo3-long-section demo3-long-celebration" id="detalles" aria-labelledby="detailsTitle">' +
-        '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">El día que compartiremos</p><h2 id="detailsTitle">Ubicación</h2>' +
-          '<p class="demo3-long-lead">Sábado 28 de noviembre de 2026</p>' +
-          '<p>Club Campestre “Los Cantaritos”<br>Calle Cola del Alacrán S/N, Sullana<br>Frente al Club Campestre “Pájaro Loco Sport”</p>' +
-          '<a class="demo3-long-button" href="https://www.google.com/maps?q=-4.918821811676025,-80.70159149169922&amp;z=17&amp;hl=es" target="_blank" rel="noopener">Ver ubicación en el mapa</a>' +
-          '<div class="demo3-long-notes"><article><h3>Vestimenta</h3><p>Elegante, con tonos sobrios o pasteles.</p><p class="demo2-dress-note">Agradecemos evitar estos colores:</p><div class="demo2-dress-swatches" role="img" aria-label="Evitar blanco, amarillo y rojo"><span class="demo2-dress-white" aria-hidden="true"></span><span class="demo2-dress-yellow" aria-hidden="true"></span><span class="demo2-dress-red" aria-hidden="true"></span></div></article>' +
-            '<article><h3>Estacionamiento</h3><p>Habrá estacionamiento para los invitados en el lugar.</p></article>' +
-            '<article><h3>Solo adultos</h3><p>Amamos a los pequeños, pero esta vez hemos decidido celebrar solo con adultos</p></article></div>' +
-        '</div>' +
-      '</section>' +
+      '<section class="demo3-long-section demo3-long-celebration demo2-family" id="detalles" aria-labelledby="detailsTitle">' +
+        '<div class="demo3-long-inner"><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
+          '<div class="demo2-family-grid"><article><h3>Padres del novio</h3><p>Reyna de los Milagros Castillo Heredia</p><p>Glen Pablo Sandoval Ruiz</p></article>' +
+          '<article><h3>Padres de la novia</h3><p>Julio Castro Tassara</p><p>Verónica Valdez Becerra de Castro</p></article></div>' +
+          '<h2 class="demo2-family-together">Junto a</h2><div class="demo2-family-grid">' +
+          '<article class="demo2-family-witnesses"><h3>Testigos</h3><p>Gian Navarro Garrido</p><p>Rosa Arcela Ojeda</p></article>' +
+          '<article><h3>Padrinos del novio</h3><p>Jorge Luis Garcia Espinoza</p><p>Ruth Flores Calle</p></article>' +
+          '<article><h3>Padrinos de la novia</h3><p>Jaime Valdiviezo Marcelo</p><p>Heydy Abab Burgos</p></article></div>' +
+        '</div></section>' +
       '<section class="demo3-long-section demo3-timeline" id="cronograma" aria-labelledby="timelineTitle"><div class="demo3-long-inner"><h2 id="timelineTitle">Itinerario</h2>' +
           '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:30 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>05:00 PM</span><h3>Recepción</h3></article></div>' +
         '</div></section>' +
@@ -125,8 +124,7 @@
       '<section class="demo3-social demo3-long-section" id="recuerdos" aria-labelledby="socialTitle"><div class="demo3-closing-inner">' +
         '<img class="demo3-social-logo" src="' + ASSETS + 'branding/lg-monogram.png" alt="Monograma de Gleen y Lesly"><div class="demo3-kicker">Comparte este recuerdo</div><h2 id="socialTitle">Etiqueta a los novios</h2>' +
         '<p class="demo3-closing-copy">Durante nuestra boda comparte tus fotografías y videos con nosotros en redes sociales.</p><div class="demo3-tags"><span>#GleenyLes</span><span>#GlenslyLand</span></div>' +
-        '<div class="demo3-memory-links"><div class="demo3-album-pending"><strong>Álbum de los novios</strong><span>Recorre nuestra baraja de momentos y fotografías.</span><a class="demo3-album-button" href="./album.html?from=invitation">Ver álbum de fotos</a></div>' +
-          '<div class="demo3-album-pending demo3-guest-memories"><strong>Recuerdos de nuestros invitados</strong><span>Comparte las fotos que captures durante la celebración.</span><a class="demo3-album-button" data-guest-memories-link aria-disabled="true" tabindex="-1">Disponible el 28 de noviembre</a></div></div>' +
+        '<div class="demo3-memory-links"><div class="demo3-album-pending demo3-guest-memories"><strong>Nuestros recuerdos</strong><span>Comparte las fotos que captures durante la celebración.</span><a class="demo3-album-button" data-guest-memories-link aria-disabled="true" tabindex="-1">Disponible el 28 de noviembre</a></div></div>' +
       '</div></section>' +
       '<section class="demo3-farewell demo3-long-section" id="con-carino"><img class="demo3-angels" src="' + ASSETS + 'media/ac55e3d49fc01691837c45349775e860.png" alt="Angelitos decorativos">' +
         '<div class="demo3-kicker">Con cariño</div><h2>Gleen &amp; Lesly</h2><a class="demo3-back" href="#inicio">Volver al inicio</a></section>' +
@@ -213,7 +211,8 @@
     updateMemoriesAccess();
     if (location.hash === '#inicio') requestAnimationFrame(function () { section.scrollIntoView({ block: 'start' }); });
     var hashTarget = location.hash && wrapper.querySelector(location.hash);
-    if (new URLSearchParams(location.search).get('section') === 'recuerdos') hashTarget = wrapper.querySelector('#recuerdos');
+    var requestedSection = new URLSearchParams(location.search).get('section');
+    if (requestedSection === 'recuerdos' || requestedSection === 'detalles') hashTarget = wrapper.querySelector('#' + requestedSection);
     if (hashTarget) requestAnimationFrame(function () { hashTarget.scrollIntoView({ block: 'start' }); });
   }
 
@@ -266,7 +265,16 @@
       openConfirmation(confirmationUrl);
       return;
     }
-    var hash = { '#page-2': '#detalles', '#page-3': '#nuestra-historia' }[destination.hash];
+    if (destination.hash === '#page-2') {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      var detailsUrl = new URL('./detalles.html', location.href);
+      var detailsToken = window.demo2InviteToken || new URLSearchParams(location.search).get('invite');
+      if (detailsToken) detailsUrl.searchParams.set('invite', detailsToken);
+      location.href = detailsUrl.href;
+      return;
+    }
+    var hash = { '#page-3': '#nuestra-historia' }[destination.hash];
     if (!hash) return;
     var target = document.querySelector('.demo2-migrated-sections ' + hash);
     if (!target) return;

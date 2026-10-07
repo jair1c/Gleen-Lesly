@@ -5,6 +5,9 @@
   var token = params.get('invite') || '';
   var selected = [];
   var lastGallerySignature = '';
+  var activePhoto = 0;
+  var swipeStart = null;
+  var suppressClickUntil = 0;
   var input = document.getElementById('photoInput');
   var chooseButton = document.getElementById('choosePhotos');
   var submitButton = document.getElementById('submitPhotos');
@@ -41,18 +44,42 @@
   }
 
   function renderGallery(photos) {
-    var signature = photos.map(function (photo) { return photo.id; }).join('|');
+    var signature = JSON.stringify(photos.map(function (photo) { return [photo.id, photo.url, photo.caption]; }));
     if (signature === lastGallerySignature) return;
     lastGallerySignature = signature;
     if (!photos.length) {
+      gallery._photos = [];
       gallery.innerHTML = '<div class="gallery-empty"><span>♡</span><strong>Muy pronto comenzará esta colección</strong><p>Los primeros recuerdos aparecerán aquí durante la celebración.</p></div>';
       return;
     }
-    gallery.innerHTML = photos.map(function (photo, index) {
-      var caption = escapeHtml(photo.caption || 'Un recuerdo compartido');
-      return '<button class="guest-photo" type="button" data-index="' + index + '"><img src="' + escapeHtml(photo.url) + '" alt="' + caption + '" loading="lazy"><span>' + caption + '</span></button>';
-    }).join('');
     gallery._photos = photos;
+    activePhoto = Math.min(activePhoto, photos.length - 1);
+    gallery.innerHTML = '<div class="album-deck"><article class="album-card"><button class="album-photo-wrap" id="guestExpand" type="button" aria-label="Ampliar fotografía"><img id="guestDeckPhoto" alt="" draggable="false"></button><div class="album-caption"><p class="album-chapter" id="guestChapter"></p><h2 id="guestDeckCaption"></h2><p>Un instante visto por quienes nos quieren</p></div></article></div>' +
+      '<div class="guest-deck-controls"><button type="button" data-deck-step="-1" aria-label="Fotografía anterior">←</button><span id="guestDeckCount" aria-live="polite"></span><button type="button" data-deck-step="1" aria-label="Fotografía siguiente">→</button></div>' +
+      '<div class="album-index"><p>Selecciona un recuerdo</p><div class="album-thumbs" aria-label="Índice de fotografías">' + photos.map(function (photo, index) {
+        return '<button class="album-thumb" type="button" data-deck-index="' + index + '" aria-label="Ver fotografía ' + (index + 1) + '"><img src="' + escapeHtml(photo.url) + '" alt="" loading="lazy"></button>';
+      }).join('') + '</div></div><p class="album-hint">Desliza para cambiar de foto. Toca la imagen para verla a pantalla completa.</p>';
+    showPhoto(activePhoto);
+  }
+
+  function showPhoto(index) {
+    var photos = gallery._photos || [];
+    if (!photos.length) return;
+    activePhoto = (index + photos.length) % photos.length;
+    var photo = photos[activePhoto];
+    var image = document.getElementById('guestDeckPhoto');
+    image.src = photo.url;
+    image.alt = photo.caption || 'Un recuerdo compartido';
+    document.getElementById('guestExpand').dataset.index = activePhoto;
+    document.getElementById('guestDeckCaption').textContent = photo.caption || 'Un recuerdo compartido';
+    document.getElementById('guestChapter').textContent = 'Recuerdo ' + (activePhoto + 1);
+    document.getElementById('guestDeckCount').textContent = (activePhoto + 1) + ' / ' + photos.length;
+    gallery.querySelectorAll('[data-deck-index]').forEach(function (button) {
+      var current = Number(button.dataset.deckIndex) === activePhoto;
+      button.classList.toggle('is-active', current);
+      button.setAttribute('aria-pressed', String(current));
+    });
+    gallery.querySelectorAll('[data-deck-step]').forEach(function (button) { button.disabled = photos.length < 2; });
   }
 
   function escapeHtml(value) {
@@ -189,6 +216,11 @@
   });
 
   gallery.addEventListener('click', function (event) {
+    if (Date.now() < suppressClickUntil) return;
+    var step = event.target.closest('[data-deck-step]');
+    if (step) { showPhoto(activePhoto + Number(step.dataset.deckStep)); return; }
+    var thumb = event.target.closest('[data-deck-index]');
+    if (thumb) { showPhoto(Number(thumb.dataset.deckIndex)); return; }
     var button = event.target.closest('[data-index]');
     if (!button || !gallery._photos) return;
     var photo = gallery._photos[Number(button.dataset.index)];
@@ -199,6 +231,25 @@
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     lightbox.querySelector('.lightbox-close').focus();
+  });
+  gallery.addEventListener('pointerdown', function (event) {
+    if (event.target.closest('.album-photo-wrap')) swipeStart = { x: event.clientX, y: event.clientY };
+  });
+  gallery.addEventListener('pointerup', function (event) {
+    if (!swipeStart) return;
+    var dx = event.clientX - swipeStart.x, dy = event.clientY - swipeStart.y;
+    swipeStart = null;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+      showPhoto(activePhoto + (dx < 0 ? 1 : -1));
+      suppressClickUntil = Date.now() + 350;
+      event.preventDefault();
+    }
+  });
+  gallery.addEventListener('pointercancel', function () { swipeStart = null; });
+  gallery.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault(); showPhoto(activePhoto + (event.key === 'ArrowRight' ? 1 : -1));
+    }
   });
   function closeLightbox() { lightbox.classList.remove('is-open'); lightbox.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
   lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);

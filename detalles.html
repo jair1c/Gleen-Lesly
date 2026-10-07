@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Detalles de la celebración · GlenslyLand</title>
+  <link rel="stylesheet" href="assets/demo3/css/demo3-enhancements.css">
+  <link rel="stylesheet" href="assets/demo3/css/long-invitation.css">
+  <link rel="stylesheet" href="assets/demo2-pastel.css?v=20261006g">
+  <link rel="stylesheet" href="assets/demo2-glv2.css?v=20261006t">
+  <style>body{margin:0;background:#fffaf0;font-family:"Demo3 Text",Georgia,serif}.details-back{display:inline-block;margin-bottom:28px;color:#46513d;font-size:14px;text-underline-offset:4px}.details-page{text-align:center}.details-page .demo3-long-notes{grid-template-columns:1fr;max-width:520px;margin:32px auto 0}.details-page .demo3-long-notes article{padding:22px 18px}.details-page .demo3-long-notes article p{max-width:35ch}</style>
+</head>
+<body>
+  <main class="demo2-migrated-sections details-page">
+    <section class="demo3-long-section demo3-long-celebration">
+      <div class="demo3-long-inner">
+        <a class="details-back" id="backToInvitation" href="./home?section=detalles">← Volver a la invitación</a>
+        <p class="demo3-long-eyebrow">El día que compartiremos</p>
+        <h1>Detalles de la celebración</h1>
+        <h2>Ubicación</h2>
+        <p class="demo3-long-lead">Sábado 28 de noviembre de 2026</p>
+        <p>Club Campestre “Los Cantaritos”<br>Calle Cola del Alacrán S/N, Sullana<br>Frente al Club Campestre “Pájaro Loco Sport”</p>
+        <a class="demo3-long-button" href="https://www.google.com/maps?q=-4.918821811676025,-80.70159149169922&amp;z=17&amp;hl=es" target="_blank" rel="noopener">Ver ubicación en el mapa</a>
+        <div class="demo3-long-notes">
+          <article><h3>Vestimenta</h3><p>Elegante, con tonos sobrios o pasteles.</p><p class="demo2-dress-note">Agradecemos evitar estos colores:</p><div class="demo2-dress-swatches" role="img" aria-label="Evitar blanco, amarillo y rojo"><span class="demo2-dress-white" aria-hidden="true"></span><span class="demo2-dress-yellow" aria-hidden="true"></span><span class="demo2-dress-red" aria-hidden="true"></span></div></article>
+          <article><h3>Estacionamiento</h3><p>Para mayor seguridad y tranquilidad, podrás dejar tu movilidad en el tercer espacio de la recepción.</p></article>
+          <article><h3>Solo adultos</h3><p>Amamos a los pequeños, pero esta vez hemos decidido celebrar solo con adultos</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    var backLink=document.getElementById('backToInvitation');
+    var backUrl=new URL(backLink.href);
+    var inviteToken=new URLSearchParams(location.search).get('invite');
+    if(inviteToken)backUrl.searchParams.set('invite',inviteToken);
+    backLink.href=backUrl.href;
+  </script>
+</body>
+</html>
