@@ -112,7 +112,8 @@
 .demo2-family .demo2-family-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 36px; max-width:780px; margin:30px auto 0; text-align:center; }
 .demo2-family .demo2-family-grid article { padding:20px 12px; border-top:1px solid rgba(102,116,85,.22); }
 .demo2-family .demo2-family-grid h3 { font-size:17px; letter-spacing:.06em; margin:0 0 16px; color:#667455; }
-.demo2-family .demo2-family-grid p { max-width:none; margin:8px auto; font-size:20px; line-height:1.45; }
+.demo2-family .demo2-family-grid p { max-width:none; margin:3px auto; font-size:20px; line-height:1.3; }
+.demo2-family .demo2-family-grid p::before { content:"\2022\00a0"; color:#667455; }
 .demo2-family .demo2-family-witnesses { grid-column:1 / -1; }
 .demo2-family .demo2-family-together { margin-top:42px; }
 @media(max-width:600px) {
