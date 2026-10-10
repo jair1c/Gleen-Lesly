@@ -35,6 +35,12 @@
     var inviteToken=new URLSearchParams(location.search).get('invite');
     if(inviteToken)backUrl.searchParams.set('invite',inviteToken);
     backLink.href=backUrl.href;
+    if(new URLSearchParams(location.search).get('embedded')==='1' && window.parent!==window) {
+      backLink.addEventListener('click',function(event){
+        event.preventDefault();
+        window.parent.postMessage('demo2:close-details',location.origin);
+      });
+    }
   </script>
 </body>
 </html>

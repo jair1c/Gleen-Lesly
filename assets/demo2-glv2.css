@@ -154,6 +154,12 @@
 }
 
 /* Fondo de papel floral enviado por los novios. */
+.demo2-family-seal { position:relative; width:94px; height:94px; margin:-82px auto 24px; display:grid; place-items:center; }
+.demo2-family-seal img { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 4px #241a1655); }
+.demo2-details-open { overflow:hidden; }
+#demo2-details-dialog { width:100vw; max-width:none; height:100dvh; max-height:none; padding:0; border:0; margin:0; background:#fffaf0; }
+#demo2-details-dialog::backdrop { background:#fffaf0; }
+#demo2-details-dialog iframe { display:block; width:100%; height:100%; border:0; }
 #LBtb18hX61WmVN3f p,
 #LBCww0zp2db2W2vt p { text-align:center !important; }
 #LBtb18hX61WmVN3f > .aF9o6Q { translate:5px 0; }
@@ -165,19 +171,26 @@
   --H97cbQ:76px !important;
   line-height:1.1 !important; margin:0 !important;
 }
-#LBCww0zp2db2W2vt > .aF9o6Q { translate:5px 0; }
+#LBCww0zp2db2W2vt > .aF9o6Q { translate:5px -24px; }
 .demo2-migrated-sections .demo2-family {
-  padding-left:18px; padding-right:18px;
-  background:#f8f6ef url('./demo3/media/papel-textura-familia.png') center top / 320px auto repeat;
+  padding:440px 24px 64px;
+  background:linear-gradient(180deg,transparent 220px,#433b2c66 500px),url('./demo3/media/familias-atardecer.jpeg') center top / cover no-repeat;
 }
 .demo2-family > .demo3-long-inner {
+  position:relative; isolation:isolate;
   box-sizing:border-box;
   max-width:900px;
-  padding:48px 38px;
-  background:transparent;
-  border:0;
-  box-shadow:none;
+  padding:64px 70px 100px;
+  background:#fffdf7 url('./demo3/media/papel-textura-familia.png') center / 320px auto repeat;
+  border:1px solid #d7d2bd;
+  outline:0;
+  box-shadow:0 12px 36px #211c2440;
   color:#46513d;
+}
+.demo2-family > .demo3-long-inner::before {
+  content:""; position:absolute; inset:4px; z-index:-1; pointer-events:none;
+  background:url('./demo3/branding/marco-botanico-tarjeta.png') center / 100% 100% no-repeat;
+  opacity:.7;
 }
 .demo2-family .demo2-family-grid article { background:transparent; border:0; }
 .demo2-family .demo2-family-grid h3 {
@@ -191,8 +204,8 @@
 }
 .demo2-family .demo2-family-together,
 .demo2-family .demo2-family-grid p {
-  font-family:Georgia, "Times New Roman", serif !important;
-  font-style:normal !important;
+  font-family:"Demo3 Serif", Georgia, serif !important;
+  font-style:italic !important;
 }
 .demo2-family #detailsTitle {
   font-family:"Demo2 Calendar Script", "Demo3 Serif", cursive;
@@ -204,10 +217,12 @@
 }
 .demo2-family #detailsTitle + .demo2-family-grid { grid-template-columns:1fr; gap:12px; }
 @media(max-width:600px) {
-  .demo2-family > .demo3-long-inner { padding:20px 0; }
+  .demo2-migrated-sections .demo2-family { padding:360px 18px 48px; background-size:auto 680px; background-color:#b4a68b; background-position:center -160px; }
+  .demo2-family > .demo3-long-inner { padding:60px 38px 90px; }
   .demo2-family .demo2-family-grid article { padding:18px 6px; }
   .demo2-family .demo2-family-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
   .demo2-family .demo2-family-grid p { font-size:17px; overflow-wrap:break-word; }
   .demo2-family #detailsTitle + .demo2-family-grid p { font-size:19px; }
   .demo2-family .demo2-family-grid h3 { font-size:25px; }
+  .demo2-family .demo2-family-together + .demo2-family-grid { grid-template-columns:1fr; }
 }

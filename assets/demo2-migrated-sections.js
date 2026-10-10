@@ -96,7 +96,7 @@
         '</div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-celebration demo2-family" id="detalles" aria-labelledby="detailsTitle">' +
-        '<div class="demo3-long-inner"><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
+        '<div class="demo3-long-inner"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
           '<div class="demo2-family-grid"><article><h3>Padres del novio</h3><p>Reyna de los Milagros Castillo Heredia</p><p>Glen Pablo Sandoval Ruiz</p></article>' +
           '<article><h3>Padres de la novia</h3><p>Julio Castro Tassara</p><p>Verónica Valdez Becerra de Castro</p></article></div>' +
           '<h2 class="demo2-family-together">Junto a</h2><div class="demo2-family-grid">' +
@@ -271,7 +271,23 @@
       var detailsUrl = new URL('./detalles.html', location.href);
       var detailsToken = window.demo2InviteToken || new URLSearchParams(location.search).get('invite');
       if (detailsToken) detailsUrl.searchParams.set('invite', detailsToken);
-      location.href = detailsUrl.href;
+      detailsUrl.searchParams.set('embedded', '1');
+      var detailsDialog = document.getElementById('demo2-details-dialog');
+      if (!detailsDialog) {
+        detailsDialog = document.createElement('dialog');
+        detailsDialog.id = 'demo2-details-dialog';
+        var detailsFrame = document.createElement('iframe');
+        detailsFrame.title = 'Detalles de la celebración';
+        detailsDialog.appendChild(detailsFrame);
+        document.body.appendChild(detailsDialog);
+        detailsDialog.addEventListener('close', function () { document.documentElement.classList.remove('demo2-details-open'); });
+        window.addEventListener('message', function (message) {
+          if (message.origin === location.origin && message.source === detailsFrame.contentWindow && message.data === 'demo2:close-details') detailsDialog.close();
+        });
+      }
+      detailsDialog.querySelector('iframe').src = detailsUrl.href;
+      document.documentElement.classList.add('demo2-details-open');
+      detailsDialog.showModal();
       return;
     }
     var hash = { '#page-3': '#nuestra-historia' }[destination.hash];
