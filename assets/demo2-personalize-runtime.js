@@ -13,7 +13,7 @@
     [/WITH LOVE/gi, 'CON AMOR'],
     [/Our Story/gi, 'Historia'],
     [/Details/gi, 'Detalles'],
-    [/Click here/gi, 'Ver detalles'],
+    [/Click here/gi, 'Toca aquí'],
     [/Rsvp/gi, 'Confirma'],
     [/June 2027/g, 'Noviembre 2026'],
     [/4:30PM AT/g, 'Donde nuestro amor'],

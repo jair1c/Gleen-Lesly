@@ -113,7 +113,6 @@
 .demo2-family .demo2-family-grid article { padding:20px 12px; border-top:1px solid rgba(102,116,85,.22); }
 .demo2-family .demo2-family-grid h3 { font-size:17px; letter-spacing:.06em; margin:0 0 16px; color:#667455; }
 .demo2-family .demo2-family-grid p { max-width:none; margin:3px auto; font-size:20px; line-height:1.3; }
-.demo2-family .demo2-family-grid p::before { content:"\2022\00a0"; color:#667455; }
 .demo2-family .demo2-family-witnesses { grid-column:1 / -1; }
 .demo2-family .demo2-family-together { margin-top:42px; }
 @media(max-width:600px) {
@@ -155,6 +154,18 @@
 }
 
 /* Fondo de papel floral enviado por los novios. */
+#LBtb18hX61WmVN3f p,
+#LBCww0zp2db2W2vt p { text-align:center !important; }
+#LBtb18hX61WmVN3f > .aF9o6Q { translate:5px 0; }
+#LBtb18hX61WmVN3f ._2UyCZQ {
+  display:flex; justify-content:center; align-items:baseline; gap:14px;
+  white-space:nowrap; padding-top:32px;
+}
+#LBtb18hX61WmVN3f p {
+  --H97cbQ:76px !important;
+  line-height:1.1 !important; margin:0 !important;
+}
+#LBCww0zp2db2W2vt > .aF9o6Q { translate:5px 0; }
 .demo2-migrated-sections .demo2-family {
   padding-left:18px; padding-right:18px;
   background:#f8f6ef url('./demo3/media/papel-textura-familia.png') center top / 320px auto repeat;
