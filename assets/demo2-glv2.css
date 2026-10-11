@@ -195,7 +195,7 @@
 }
 .demo2-family .demo2-family-grid article { background:transparent; border:0; }
 .demo2-family .demo2-family-grid h3 {
-  font-family:"Demo2 Calendar Script", "Demo3 Serif", cursive;
+  font-family:"Demo3 Serif", Georgia, serif;
   font-size:30px; line-height:1.3; letter-spacing:0; font-weight:400;
   color:#46513d;
 }
@@ -203,10 +203,14 @@
   display:table; margin:38px auto 0; padding:8px 0;
   background:transparent; border-radius:0;
 }
-.demo2-family .demo2-family-together,
-.demo2-family .demo2-family-grid p {
+.demo2-family .demo2-family-together {
   font-family:"Demo3 Serif", Georgia, serif !important;
   font-style:italic !important;
+}
+.demo2-family .demo2-family-grid p {
+  font-family:"Demo3 Text", Georgia, serif !important;
+  font-style:normal !important;
+  font-weight:400;
 }
 .demo2-family #detailsTitle {
   font-family:"Demo2 Calendar Script", "Demo3 Serif", cursive;

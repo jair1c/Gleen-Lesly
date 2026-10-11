@@ -9,7 +9,7 @@
     [/A LOVE LETTER FROM/g, 'UNA CARTA DE AMOR DE'],
     [/CLICK TO OPEN\.\.\./gi, 'CLIC PARA ABRIR...'],
     [/BACK TO ENVELOPE/gi, 'VOLVER AL SOBRE'],
-    [/THE WEDDING OF/g, 'LA BODA DE'],
+    [/THE WEDDING OF/g, '¡Una Nueva Familia!'],
     [/WITH LOVE/gi, 'CON AMOR'],
     [/Our Story/gi, 'Historia'],
     [/Details/gi, 'Detalles'],

@@ -2,7 +2,7 @@
   'use strict';
 
   var TARGET_SECTION = 'PBnVwKBzJxQZpBf8';
-  var WEDDING_AT = new Date('2026-11-28T15:30:00-05:00').getTime();
+  var WEDDING_AT = new Date('2026-11-28T15:00:00-05:00').getTime();
   var MEMORIES_OPEN_AT = new Date('2026-11-28T00:00:00-05:00').getTime();
   var ASSETS = './assets/demo3/';
   var confirmationScreen = null;
@@ -96,22 +96,22 @@
         '</div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-celebration demo2-family" id="detalles" aria-labelledby="detailsTitle">' +
-        '<div class="demo3-long-inner demo2-family-cards"><div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-amarillo-pastel.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
+        '<div class="demo3-long-inner demo2-family-cards"><div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-melon.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
           '<div class="demo2-family-grid"><article><h3>Padres del novio</h3><p>Reyna de los Milagros Castillo Heredia</p><p>Glen Pablo Sandoval Ruiz</p></article>' +
           '<article><h3>Padres de la novia</h3><p>Julio Castro Tassara</p><p>Verónica Valdez Becerra de Castro</p></article></div>' +
           '<div class="demo2-family-grid">' +
           '<article class="demo2-family-witnesses"><h3>Testigos</h3><p>Gian Navarro Garrido</p><p>Rosa Arcela Ojeda</p></article></div></div>' +
-          '<div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-amarillo-pastel.png" alt=""></div><h2 class="demo2-family-together">Junto a nuestros padrinos</h2><div class="demo2-family-grid">' +
+          '<div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-melon.png" alt=""></div><h2 class="demo2-family-together">Junto a nuestros padrinos</h2><div class="demo2-family-grid">' +
           '<article><h3>Padrinos del novio</h3><p>Jorge Luis Garcia Espinoza</p><p>Ruth Flores Calle</p></article>' +
           '<article><h3>Padrinos de la novia</h3><p>Jaime Valdiviezo Marcelo</p><p>Heydy Abab Burgos</p></article></div></div>' +
         '</div></section>' +
       '<section class="demo3-long-section demo3-timeline" id="cronograma" aria-labelledby="timelineTitle"><div class="demo3-long-inner"><h2 id="timelineTitle">Itinerario</h2>' +
-          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:30 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>05:00 PM</span><h3>Recepción</h3></article></div>' +
+          '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:00 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>05:00 PM</span><h3>Recepción</h3></article></div>' +
         '</div></section>' +
       '<section class="demo3-long-section demo3-long-story" id="nuestra-historia" aria-labelledby="storyTitle">' +
         '<h2 id="storyTitle" class="demo2-story-heading">Nuestra historia</h2>' +
         '<div class="demo3-long-inner demo3-long-split"><div class="demo3-long-copy"><h3 class="demo2-story-name">GlenslyLand</h3>' +
-          '<p>Contigo entendí que el amor verdadero no se promete solo en palabras sino en cada pequeño instante que se convierte en eternidad</p></div>' +
+          '<p>Entendimos que el amor verdadero no se promete solo en palabras sino en cada pequeño instante que se convierte en eternidad</p></div>' +
           '<figure class="demo3-long-photo"><img src="' + ASSETS + 'media/gleen-lesly-3.jpg" alt="Fotografía de Gleen y Lesly" loading="lazy"></figure></div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-gifts" id="regalos" aria-labelledby="giftsTitle">' +
