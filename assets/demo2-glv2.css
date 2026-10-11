@@ -181,8 +181,8 @@
   box-sizing:border-box;
   max-width:900px;
   padding:64px 70px 100px;
-  background:#fffdf7 url('./demo3/media/papel-textura-familia.png') center / 320px auto repeat;
-  border:1px solid #d7d2bd;
+  background:#f8f8f6;
+  border:1px solid #e2e2df;
   outline:0;
   box-shadow:0 12px 36px #211c2440;
   color:#46513d;
@@ -190,7 +190,8 @@
 .demo2-family > .demo3-long-inner::before {
   content:""; position:absolute; inset:4px; z-index:-1; pointer-events:none;
   background:url('./demo3/branding/marco-botanico-tarjeta.png') center / 100% 100% no-repeat;
-  opacity:.7;
+  filter:grayscale(1) brightness(1.2);
+  opacity:.85;
 }
 .demo2-family .demo2-family-grid article { background:transparent; border:0; }
 .demo2-family .demo2-family-grid h3 {
@@ -225,4 +226,25 @@
   .demo2-family #detailsTitle + .demo2-family-grid p { font-size:19px; }
   .demo2-family .demo2-family-grid h3 { font-size:25px; }
   .demo2-family .demo2-family-together + .demo2-family-grid { grid-template-columns:1fr; }
+}
+
+/* Dos tarjetas compactas sobre amarillo pastel. */
+.demo2-migrated-sections .demo2-family {
+  padding:64px 18px 40px;
+  background:linear-gradient(155deg, #ffe6a1 0%, #fff0bd 45%, #fff9e8 100%);
+}
+.demo2-family > .demo3-long-inner.demo2-family-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; max-width:1000px; padding:0; background:transparent; border:0; box-shadow:none; }
+.demo2-family > .demo2-family-cards::before { content:none; }
+.demo2-family-card { position:relative; isolation:isolate; padding:40px 30px 32px; background:#f8f8f6; border:1px solid #e2e2df; box-shadow:0 8px 24px #55482418; }
+.demo2-family-card::before { content:""; position:absolute; inset:4px; z-index:-1; pointer-events:none; background:url('./demo3/branding/marco-botanico-tarjeta.png') center / 100% 100% no-repeat; filter:grayscale(1) brightness(1.2); opacity:.85; }
+.demo2-family-card .demo2-family-seal { width:72px; height:72px; margin:-76px auto 16px; }
+.demo2-family-card #detailsTitle, .demo2-family-card .demo2-family-together { font-family:"Demo2 Calendar Script","Demo3 Serif",cursive !important; font-size:36px; line-height:1.2; margin:0 auto 18px; padding:0; }
+.demo2-family-card .demo2-family-grid, .demo2-family-card #detailsTitle + .demo2-family-grid { grid-template-columns:1fr; gap:12px; margin:12px auto 0; }
+.demo2-family-card .demo2-family-grid article { padding:6px 0; }
+.demo2-family-card .demo2-family-grid h3 { font-size:32px; margin:0 0 8px; }
+.demo2-family-card .demo2-family-grid p, .demo2-family-card #detailsTitle + .demo2-family-grid p { font-size:22px; line-height:1.3; }
+@media(max-width:700px) {
+ .demo2-family > .demo3-long-inner.demo2-family-cards { grid-template-columns:1fr; gap:56px; max-width:500px; }
+ .demo2-family-card { padding:40px 28px 30px; }
+ .demo2-family-card #detailsTitle, .demo2-family-card .demo2-family-together { font-size:34px; }
 }

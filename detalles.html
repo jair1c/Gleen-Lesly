@@ -7,8 +7,22 @@
   <link rel="stylesheet" href="assets/demo3/css/demo3-enhancements.css">
   <link rel="stylesheet" href="assets/demo3/css/long-invitation.css">
   <link rel="stylesheet" href="assets/demo2-pastel.css?v=20261006g">
-  <link rel="stylesheet" href="assets/demo2-glv2.css?v=20261006t">
-  <style>body{margin:0;background:#fffaf0;font-family:"Demo3 Text",Georgia,serif}.details-back{display:inline-block;margin-bottom:28px;color:#46513d;font-size:14px;text-underline-offset:4px}.details-page{text-align:center}.details-page .demo3-long-notes{grid-template-columns:1fr;max-width:520px;margin:32px auto 0}.details-page .demo3-long-notes article{padding:22px 18px}.details-page .demo3-long-notes article p{max-width:35ch}</style>
+  <link rel="stylesheet" href="assets/demo2-glv2.css?v=20261011c">
+  <style>body{margin:0;background:#fffaf0;font-family:"Demo3 Text",Georgia,serif}.details-back{display:inline-block;margin-bottom:28px;color:#46513d;font-size:14px;text-underline-offset:4px}.details-page{text-align:center}.details-page .demo3-long-notes{grid-template-columns:1fr;max-width:520px;margin:32px auto 0}.details-page .demo3-long-notes article{padding:22px 18px}.details-page .demo3-long-notes article p{max-width:35ch}
+body{background:#171310;isolation:isolate;min-height:100svh}
+body::before{content:"";position:fixed;inset:-18px;z-index:0;pointer-events:none;background:url("assets/demo3/media/gleen-lesly-detalles.jpg") center 38% / cover no-repeat;filter:blur(8px) brightness(.52)}
+.demo2-migrated-sections.details-page{position:relative;z-index:1;background:transparent;padding:24px 12px 40px}
+.details-page .demo3-long-celebration{position:relative;isolation:isolate;overflow:hidden;max-width:720px;margin:auto;background:#171310;padding:28px 20px;color:#fffaf2;border:1px solid rgba(255,250,242,.25);box-shadow:0 9px 24px rgba(18,10,6,.2)}
+.details-page .demo3-long-celebration::before{content:"";position:absolute;inset:-18px;z-index:-1;pointer-events:none;background:url("assets/demo3/media/gleen-lesly-detalles.jpg") center 38% / cover no-repeat;filter:blur(8px) brightness(.52)}
+.details-page{--demo3-ink:#fffaf2;--invitation-ink:#fffaf2}
+.details-page :is(h1,h2,h3,p,.details-back){color:#fffaf2}
+.details-page .demo3-long-notes article{background:rgba(23,19,16,.4);border-color:rgba(255,250,242,.25)}
+.details-page .demo3-long-button{background:#fff1c9;color:#46513d;border-color:#d6d9bc}
+.details-page h2{font-size:42px}
+.details-page .demo3-long-notes{margin-top:20px;gap:16px}
+.details-page .demo3-long-notes article{padding:16px}
+@media(max-width:640px){body::before{background-position:48% center}}
+</style>
 </head>
 <body>
   <main class="demo2-migrated-sections details-page">

@@ -96,13 +96,14 @@
         '</div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-celebration demo2-family" id="detalles" aria-labelledby="detailsTitle">' +
-        '<div class="demo3-long-inner"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
+        '<div class="demo3-long-inner demo2-family-cards"><div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-amarillo-pastel.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
           '<div class="demo2-family-grid"><article><h3>Padres del novio</h3><p>Reyna de los Milagros Castillo Heredia</p><p>Glen Pablo Sandoval Ruiz</p></article>' +
           '<article><h3>Padres de la novia</h3><p>Julio Castro Tassara</p><p>Verónica Valdez Becerra de Castro</p></article></div>' +
-          '<h2 class="demo2-family-together">Junto a</h2><div class="demo2-family-grid">' +
-          '<article class="demo2-family-witnesses"><h3>Testigos</h3><p>Gian Navarro Garrido</p><p>Rosa Arcela Ojeda</p></article>' +
+          '<div class="demo2-family-grid">' +
+          '<article class="demo2-family-witnesses"><h3>Testigos</h3><p>Gian Navarro Garrido</p><p>Rosa Arcela Ojeda</p></article></div></div>' +
+          '<div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-amarillo-pastel.png" alt=""></div><h2 class="demo2-family-together">Junto a nuestros padrinos</h2><div class="demo2-family-grid">' +
           '<article><h3>Padrinos del novio</h3><p>Jorge Luis Garcia Espinoza</p><p>Ruth Flores Calle</p></article>' +
-          '<article><h3>Padrinos de la novia</h3><p>Jaime Valdiviezo Marcelo</p><p>Heydy Abab Burgos</p></article></div>' +
+          '<article><h3>Padrinos de la novia</h3><p>Jaime Valdiviezo Marcelo</p><p>Heydy Abab Burgos</p></article></div></div>' +
         '</div></section>' +
       '<section class="demo3-long-section demo3-timeline" id="cronograma" aria-labelledby="timelineTitle"><div class="demo3-long-inner"><h2 id="timelineTitle">Itinerario</h2>' +
           '<div class="demo3-long-events" aria-label="Programa de la celebración"><article><img class="demo3-event-icon" src="/assets/demo3/icons/civil.svg" alt="" aria-hidden="true"><span>03:30 PM</span><h3>Ceremonia civil</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/chapel.svg" alt="" aria-hidden="true"><span>04:00 PM</span><h3>Consagración</h3></article><article><img class="demo3-event-icon" src="/assets/demo3/icons/reception.svg" alt="" aria-hidden="true"><span>05:00 PM</span><h3>Recepción</h3></article></div>' +
