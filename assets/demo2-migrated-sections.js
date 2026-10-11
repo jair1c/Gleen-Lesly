@@ -96,12 +96,12 @@
         '</div>' +
       '</section>' +
       '<section class="demo3-long-section demo3-long-celebration demo2-family" id="detalles" aria-labelledby="detailsTitle">' +
-        '<div class="demo3-long-inner demo2-family-cards"><div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-melon.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
+        '<div class="demo3-long-inner demo2-family-cards"><div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-vino.png" alt="Sello con el monograma de Gleen y Lesly"></div><h2 id="detailsTitle">Con la bendición y compañía<br>de nuestros padres</h2>' +
           '<div class="demo2-family-grid"><article><h3>Padres del novio</h3><p>Reyna de los Milagros Castillo Heredia</p><p>Glen Pablo Sandoval Ruiz</p></article>' +
           '<article><h3>Padres de la novia</h3><p>Julio Castro Tassara</p><p>Verónica Valdez Becerra de Castro</p></article></div>' +
           '<div class="demo2-family-grid">' +
           '<article class="demo2-family-witnesses"><h3>Testigos</h3><p>Gian Navarro Garrido</p><p>Rosa Arcela Ojeda</p></article></div></div>' +
-          '<div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-melon.png" alt=""></div><h2 class="demo2-family-together">Junto a nuestros padrinos</h2><div class="demo2-family-grid">' +
+          '<div class="demo2-family-card"><div class="demo2-family-seal"><img src="' + ASSETS + 'branding/sello-lacre-gl-vino.png" alt=""></div><h2 class="demo2-family-together">Junto a nuestros padrinos</h2><div class="demo2-family-grid">' +
           '<article><h3>Padrinos del novio</h3><p>Jorge Luis Garcia Espinoza</p><p>Ruth Flores Calle</p></article>' +
           '<article><h3>Padrinos de la novia</h3><p>Jaime Valdiviezo Marcelo</p><p>Heydy Abab Burgos</p></article></div></div>' +
         '</div></section>' +
