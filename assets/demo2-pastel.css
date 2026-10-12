@@ -40,7 +40,8 @@
   transform: scaleX(-1);
 }
 #PBnVwKBzJxQZpBf8 #LBpLmQZjpBG7xV3Z img {
-  filter: url("demo2-pastel-filters.svg?v=20261006g#butter-accent");
+  /* Recupera el tono vino original del sello y la cinta del calendario. */
+  filter: none;
 }
 #PBnVwKBzJxQZpBf8 :is(#LB3YdWB5bmG03Ncc, #LB7DX2NhJtvKWFJ2, #LBkKlFzvfF1FscrH) img {
   filter: url("demo2-pastel-filters.svg?v=20261006g#butter-petals");
