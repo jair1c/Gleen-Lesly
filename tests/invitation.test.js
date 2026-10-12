@@ -1,6 +1,8 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const handler = require('../api/invitation');
+const fs = require('node:fs');
+const vm = require('node:vm');
 
 const token = 'personalized_invitation_token_12345';
 const invitation = {
@@ -25,6 +27,18 @@ function mockSupabase(rows = [invitation]) {
   };
   return requests;
 }
+
+test('el formulario reemplaza el texto anterior y conserva el destinatario', () => {
+  const browser = { URL };
+  vm.runInNewContext(fs.readFileSync(require.resolve('../assets/rsvp-whatsapp-message'), 'utf8'), browser);
+  const oldUrl = 'https://api.whatsapp.com/send?phone=51985627087&text=CONFIRMA%20TU%20ASISTENCIA';
+  const updated = browser.formatRsvpWhatsAppMessage.updateUrl(oldUrl, { guest_name: 'Ana Muñoz', seats: 1 }, true, 1, ['Ana Muñoz'], 'Gracias');
+  const link = new URL(updated);
+  assert.equal(link.searchParams.get('phone'), '51985627087');
+  assert.match(link.searchParams.get('text'), /Yo, Ana Muñoz, confirmo.*asistiré/);
+  assert.doesNotMatch(link.searchParams.get('text'), /CONFIRMA TU ASISTENCIA/);
+  assert.match(link.searchParams.get('text'), /Tus palabras, para siempre\*\nGracias/);
+});
 
 test('invitación personalizada: lectura, cupos, guardado y enlace de WhatsApp', async () => {
   const oldFetch = global.fetch;
