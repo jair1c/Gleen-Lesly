@@ -55,14 +55,14 @@
       <div class="alert" id="alertBox" role="status"></div><div class="saved hidden" id="savedNote">Puedes actualizar tu respuesta hasta la fecha límite.</div>
     </form>
   </main>
-  <script src="assets/rsvp-whatsapp-message.js?v=20261011m"></script>
+  <script src="assets/rsvp-whatsapp-message.js?v=20261011n"></script>
   <script>
     const form=document.getElementById('rsvpForm'),attendance=document.getElementById('attendance'),people=document.getElementById('people'),fields=document.getElementById('attendeeFields'),messageInput=document.getElementById('message'),submitButton=document.getElementById('submitButton'),alertBox=document.getElementById('alertBox'),card=document.querySelector('.card');let invitation=null,resizeFrame=0;
     function reportHeight(){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{const height=Math.ceil(card.getBoundingClientRect().height+24);window.parent.postMessage({type:'demo3:rsvp-height',height},location.origin)})}
     function alertMessage(text,error=false){alertBox.textContent=text;alertBox.className='alert '+(error?'error':'success')}
     function parentToken(){const ownToken=new URLSearchParams(location.search).get('invite');if(ownToken)return ownToken;try{return new URLSearchParams(window.parent.location.search).get('invite')||window.parent.demo2InviteToken||''}catch(_){return ''}}
     function setPeopleOptions(max,selected){people.innerHTML='';for(let count=1;count<=max;count++){const option=document.createElement('option');option.value=String(count);option.textContent=count+(count===1?' persona':' personas');people.appendChild(option)}people.value=String(Math.min(Math.max(Number(selected)||1,1),max))}
-    function isFamilyInvitation(){return /^familia\b/i.test((invitation&&(invitation.names||invitation.nombre)||'').trim())}
+    function isFamilyInvitation(){return /^(?:familia\b|fam\.?\s)/i.test((invitation&&(invitation.names||invitation.nombre)||'').trim())}
     function renderAttendees(existing=[]){
       fields.innerHTML='';
       const enabled=attendance.value==='si',count=Number(people.value)||1,family=isFamilyInvitation(),first=0;
@@ -72,7 +72,7 @@
         const group=document.createElement('div');group.className='field';
         const label=document.createElement('label');label.htmlFor='attendee-'+index;
         label.textContent=`Nombre del asistente ${index+1}`;
-        const input=document.createElement('input');input.id='attendee-'+index;input.className='attendee-name';input.maxLength=120;input.required=enabled;input.disabled=!enabled;input.placeholder='Nombre y apellido';input.value=existing[index-first]||'';
+        const input=document.createElement('input');input.id='attendee-'+index;input.className='attendee-name';input.maxLength=120;input.required=enabled;input.disabled=!enabled;input.placeholder='Nombre y apellido';input.value=existing[index-first]!==undefined?existing[index-first]:(index===0&&Number(invitation.seats)===1&&!family?(invitation.names||invitation.nombre||'').trim():'');
         group.append(label,input);fields.appendChild(group);
       }
     }

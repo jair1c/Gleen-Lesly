@@ -37,7 +37,9 @@ test('el formulario reemplaza el texto anterior y conserva el destinatario', () 
   assert.equal(link.searchParams.get('phone'), '51985627087');
   assert.match(link.searchParams.get('text'), /Yo, Ana Muñoz, confirmo.*asistiré/);
   assert.doesNotMatch(link.searchParams.get('text'), /CONFIRMA TU ASISTENCIA/);
-  assert.match(link.searchParams.get('text'), /Tus palabras, para siempre\*\nGracias/);
+  assert.doesNotMatch(link.searchParams.get('text'), /Tus palabras, para siempre|Gracias/);
+  const declined = browser.formatRsvpWhatsAppMessage.updateUrl(oldUrl, { guest_name: 'Ana Muñoz', seats: 1 }, false, 0, [], 'Gracias');
+  assert.doesNotMatch(new URL(declined).searchParams.get('text'), /Tus palabras, para siempre|Gracias/);
 });
 
 test('invitación personalizada: lectura, cupos, guardado y enlace de WhatsApp', async () => {
@@ -77,7 +79,9 @@ test('invitación personalizada: lectura, cupos, guardado y enlace de WhatsApp',
     const saved = JSON.parse(requests.find(request => request.options.method === 'POST').options.body);
     assert.equal(saved.attendee_count, 2);
     assert.deepEqual(saved.attendee_names, ['Familia Prueba', 'Acompañante']);
+    assert.equal(saved.message, 'Gracias');
     const attendingText = new URL(res.body.whatsappUrl).searchParams.get('text');
+    assert.doesNotMatch(attendingText, /Tus palabras, para siempre|Gracias/);
     assert.match(attendingText, /Nosotros, Familia Prueba, confirmamos con mucha alegría/);
     assert.match(attendingText, /N.º DE ASISTENTES:\* 2/);
     assert.match(attendingText, /- Familia Prueba\n- Acompañante/);

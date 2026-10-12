@@ -18,7 +18,6 @@ function whatsappMessage(invitation, attendance, attendeeCount, attendeeNames, m
     lines.push('*NOMBRES DE LOS ASISTENTES*');
     attendeeNames.forEach(name => lines.push(`- ${name}`));
   }
-  if (message) lines.push('', '*Tus palabras, para siempre*', message);
   lines.push('', attendance ? '¡Nos vemos en GlenslyLand! 🥂' : '¡Que su historia en GlenslyLand sea maravillosa!', '', '#Gleen&Les');
   return lines.join('\n');
 }
