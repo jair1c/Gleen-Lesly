@@ -33,15 +33,14 @@ function publicInvitation(row) {
 }
 
 function whatsappMessage(invitation, attendance, attendeeCount, attendeeNames, message) {
+  const individual = Number(invitation.seats) === 1 && !/^(?:familia\b|fam\.?\s)/i.test(invitation.guest_name.trim());
+  const introduction = individual ? `Yo, ${invitation.guest_name}` : `Nosotros, ${invitation.guest_name}`;
   const lines = [
-    '*CONFIRMA TU ASISTENCIA*',
-    '¿Celebramos juntos?',
+    '¡Hola! 🤍',
     '',
-    `*Invitación para:* ${invitation.guest_name}`,
-    `Hemos reservado ${invitation.seats} ${Number(invitation.seats) === 1 ? 'lugar especialmente para ti.' : 'lugares especialmente para ustedes.'}`,
-    '',
-    '*¿Serás parte de este día?*',
-    attendance ? 'Síí, ¡felices de ser parte!' : 'No, celebramos a la distancia'
+    attendance
+      ? `${introduction}, ${individual ? 'confirmo' : 'confirmamos'} con mucha alegría que ${individual ? 'asistiré' : 'asistiremos'} a este día tan especial. Será un placer celebrarlo junto a ustedes. ✨`
+      : `${introduction}, esta vez no ${individual ? 'podré' : 'podremos'} acompañarlos, pero ${individual ? 'deseo' : 'deseamos'} que Dios bendiga siempre su matrimonio y su nuevo hogar. ✨`
   ];
   if (attendance) {
     lines.push('', `*N.º DE ASISTENTES:* ${attendeeCount}`);
@@ -49,6 +48,7 @@ function whatsappMessage(invitation, attendance, attendeeCount, attendeeNames, m
     attendeeNames.forEach(name => lines.push(`- ${name}`));
   }
   if (message) lines.push('', '*Tus palabras, para siempre*', message);
+  lines.push('', attendance ? '¡Nos vemos en GlenslyLand! 🥂' : '¡Que su historia en GlenslyLand sea maravillosa!', '', '#Gleen&Les');
   return lines.join('\n');
 }
 

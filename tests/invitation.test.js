@@ -63,6 +63,32 @@ test('invitación personalizada: lectura, cupos, guardado y enlace de WhatsApp',
     const saved = JSON.parse(requests.find(request => request.options.method === 'POST').options.body);
     assert.equal(saved.attendee_count, 2);
     assert.deepEqual(saved.attendee_names, ['Familia Prueba', 'Acompañante']);
+    const attendingText = new URL(res.body.whatsappUrl).searchParams.get('text');
+    assert.match(attendingText, /Nosotros, Familia Prueba, confirmamos con mucha alegría/);
+    assert.match(attendingText, /N.º DE ASISTENTES:\* 2/);
+    assert.match(attendingText, /- Familia Prueba\n- Acompañante/);
+    assert.match(attendingText, /¡Nos vemos en GlenslyLand! 🥂/);
+    assert.match(attendingText, /#Gleen&Les$/);
+
+    mockSupabase([{ ...invitation, guest_name: 'Ana Castro', seats: 1 }]);
+    res = response();
+    await handler({ method: 'POST', body: { token, attendance: false, attendeeCount: 0, attendeeNames: [] } }, res);
+    assert.equal(res.statusCode, 200);
+    const decliningText = new URL(res.body.whatsappUrl).searchParams.get('text');
+    assert.match(decliningText, /Yo, Ana Castro, esta vez no podré acompañarlos, pero deseo/);
+    assert.match(decliningText, /¡Que su historia en GlenslyLand sea maravillosa!/);
+    assert.doesNotMatch(decliningText, /ASISTENTES|Familia Prueba/);
+    res = response();
+    await handler({ method: 'POST', body: { token, attendance: true, attendeeCount: 1, attendeeNames: ['Ana Castro'] } }, res);
+    assert.equal(res.statusCode, 200);
+    const individualText = new URL(res.body.whatsappUrl).searchParams.get('text');
+    assert.match(individualText, /Yo, Ana Castro, confirmo con mucha alegría que asistiré/);
+    assert.match(individualText, /N.º DE ASISTENTES:\* 1/);
+    assert.doesNotMatch(individualText, /Nosotros|asistiremos/);
+    mockSupabase();
+    res = response();
+    await handler({ method: 'POST', body: { token, attendance: false, attendeeCount: 0, attendeeNames: [] } }, res);
+    assert.match(new URL(res.body.whatsappUrl).searchParams.get('text'), /Nosotros, Familia Prueba, esta vez no podremos acompañarlos, pero deseamos/);
   } finally {
     global.fetch = oldFetch;
     if (oldUrl === undefined) delete process.env.SUPABASE_URL; else process.env.SUPABASE_URL = oldUrl;
