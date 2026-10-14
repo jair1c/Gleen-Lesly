@@ -29,7 +29,7 @@
       return item;
     });
     confirmationScreen = document.createElement('iframe');
-    confirmationScreen.title = 'Confirma tu asistencia';
+    confirmationScreen.title = /regalos\.html$/i.test(url.pathname) ? 'Detalles para nuestro hogar' : 'Confirma tu asistencia';
     confirmationScreen.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#f4f0e8';
     confirmationScreen.src = url.href;
     document.body.appendChild(confirmationScreen);
@@ -116,10 +116,11 @@
       '</section>' +
       '<section class="demo3-long-section demo3-long-gifts" id="regalos" aria-labelledby="giftsTitle">' +
         '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">Un detalle para nuestro nuevo comienzo</p><h2 id="giftsTitle">Regalos</h2>' +
-          '<p class="demo3-long-lead">Celebrar nuestro amor junto a ustedes es un regalo muy bonito. Si desean acompañarnos también en la construcción de nuestro futuro, recibiremos su detalle con todo nuestro amor.</p>' +
+          '<p class="demo3-long-lead">Celebrar nuestro amor junto a ti es un regalo muy bonito. Si deseas tener un detalle para acompañarnos en la construcción de nuestro futuro, hemos preparado estas opciones con mucho cariño.</p>' +
+          '<p><a class="demo3-long-button" href="regalos.html' + (new URLSearchParams(location.search).get('invite') ? '?invite=' + encodeURIComponent(new URLSearchParams(location.search).get('invite')) : '') + '">Ver ideas para nuestro hogar</a></p>' +
           '<div class="demo3-gift-grid"><article><h3>Gleen Sandoval</h3><p><strong>BCP Soles</strong></p><p>Cuenta: <span class="demo3-gift-number">53592524271077</span></p><p>CCI: <span class="demo3-gift-number">00253519252427107737</span></p><p>Yape: <span class="demo3-gift-number">924 336 163</span></p></article>' +
             '<article><h3>Lesly Castro</h3><p><strong>BCP Soles</strong></p><p>Cuenta: <span class="demo3-gift-number">53596266668076</span></p><p>CCI: <span class="demo3-gift-number">00253519626666807634</span></p><p>Yape: <span class="demo3-gift-number">904 322 221</span></p></article>' +
-            '<article class="demo3-gift-physical"><h3>Regalo físico</h3><p>Recibiremos tus regalos con cariño en la casa de la novia.<br>Av. Víctor Raúl, Mz. L, Lt. 12, Ramiro Prialé, Sullana.</p></article></div>' +
+            '<article class="demo3-gift-physical"><h3>Detalles para nuestro hogar</h3><p>Recibiremos tus regalos con cariño en la casa de la novia.<br>Av. Víctor Raúl, Mz. L, Lt. 12, Ramiro Prialé, Sullana.</p></article></div>' +
         '</div>' +
       '</section>' +
       '<section class="demo3-social demo3-long-section" id="recuerdos" aria-labelledby="socialTitle"><div class="demo3-closing-inner">' +
@@ -213,7 +214,7 @@
     if (location.hash === '#inicio') requestAnimationFrame(function () { section.scrollIntoView({ block: 'start' }); });
     var hashTarget = location.hash && wrapper.querySelector(location.hash);
     var requestedSection = new URLSearchParams(location.search).get('section');
-    if (requestedSection === 'recuerdos' || requestedSection === 'detalles') hashTarget = wrapper.querySelector('#' + requestedSection);
+    if (requestedSection === 'recuerdos' || requestedSection === 'detalles' || requestedSection === 'regalos') hashTarget = wrapper.querySelector('#' + requestedSection);
     if (hashTarget) requestAnimationFrame(function () { hashTarget.scrollIntoView({ block: 'start' }); });
   }
 
@@ -239,7 +240,7 @@
     var destination;
     try { destination = new URL(link.getAttribute('href'), location.href); } catch (_) { return; }
     if (destination.origin !== location.origin) return;
-    if (/\/confirmacion\.html$/i.test(destination.pathname) && !event.ctrlKey &&
+    if (/\/(confirmacion|regalos)\.html$/i.test(destination.pathname) && !event.ctrlKey &&
         !event.metaKey && !event.shiftKey && !event.altKey && event.button === 0) {
       event.preventDefault();
       event.stopImmediatePropagation();

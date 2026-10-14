@@ -42,6 +42,7 @@
     </section>
   </main>
   <div class="toast" id="toast" role="status"></div>
+  <script defer src="/assets/admin-gifts.js?v=20261014a"></script>
   <script>
     const API='/api/admin',SESSION_KEY='lg_admin_session';const state={token:sessionStorage.getItem(SESSION_KEY)||'',email:'',invitations:[]};const $=id=>document.getElementById(id);
     function showToast(message,error=false){const toast=$('toast');toast.textContent=message;toast.className='toast show'+(error?' error':'');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>toast.className='toast',3200)}

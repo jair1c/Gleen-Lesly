@@ -1,0 +1,138 @@
+[
+  {
+    "id": "regalo-1",
+    "name": "Hervidor",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/140214908/Hervidor-Electrico-Oster-BVSTKT673SS-1.7L/140214909",
+    "image": "https://media.falabella.com/falabellaPE/140214909_01/public"
+  },
+  {
+    "id": "regalo-2",
+    "name": "Juego de Platos Blancos",
+    "url": null,
+    "image": "assets/gifts/regalo-2.svg",
+    "reference": true
+  },
+  {
+    "id": "regalo-3",
+    "name": "Juego de vasos sin diseño",
+    "url": null,
+    "image": "assets/gifts/regalo-3.svg",
+    "reference": true
+  },
+  {
+    "id": "regalo-4",
+    "name": "Licuadora",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/19741731/licuadora-con-motor-reversible-1-5l-rojo-blender-blstpyg1310rbg-053/19741731",
+    "image": "https://media.falabella.com/falabellaPE/19741731_6/public"
+  },
+  {
+    "id": "regalo-5",
+    "name": "Freidora de aire",
+    "url": "https://simple.ripley.com.pe/freidora-de-aire-oster-4l-digital-con-recubrimiento-diamondforce-con-ventana-y-luz-interna-10-programas-ckstaf40wddf-2019343969453p?color_80=Negro",
+    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2019343969453/full_image-2019343969453"
+  },
+  {
+    "id": "regalo-6",
+    "name": "Cocina de 4 hornillas",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/155014293/combo1883-sole-encimera-vidrio-4-hornillas-60cm-camp-extractora-nyx/155014294",
+    "image": "https://media.falabella.com/falabellaPE/155014294_01/public"
+  },
+  {
+    "id": "regalo-7",
+    "name": "Olla arrocera",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/150967863/olla-arrocera-oster-ckstrcb10dfblk-1-8-l-negro/150967864",
+    "image": "https://media.falabella.com/falabellaPE/150967864_01/public"
+  },
+  {
+    "id": "regalo-8",
+    "name": "Plancha",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/16268383/plancha-thomas-th-7170/16268383",
+    "image": "https://media.falabella.com/falabellaPE/16268383_1/public"
+  },
+  {
+    "id": "regalo-9",
+    "name": "Plancha a vapor",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/19036898/vaporizador-de-mano-plegable-oster/19036898",
+    "image": "https://media.falabella.com/falabellaPE/19036898_1/public"
+  },
+  {
+    "id": "regalo-10",
+    "name": "Sandwichera",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/20637948/sandwichera-oster-750w-antiadherente/20637948",
+    "image": "https://media.falabella.com/falabellaPE/20637948_02/public"
+  },
+  {
+    "id": "regalo-11",
+    "name": "Cafetera",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/20926138/cafetera-programable-12-tazas-negra-oster/20926138",
+    "image": "https://media.falabella.com/falabellaPE/20926138_01/public"
+  },
+  {
+    "id": "regalo-12",
+    "name": "Cortinas",
+    "url": null,
+    "image": "assets/gifts/regalo-12.svg",
+    "reference": true
+  },
+  {
+    "id": "regalo-13",
+    "name": "Plancha Freidora",
+    "url": "https://simple.ripley.com.pe/grill-y-parrilla-electrico-2-en-1-whiteline-revestimiento-antiadherente-pmp20000574453?color_80=Negro",
+    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/2623/PMP20000574453/full_image-1.png"
+  },
+  {
+    "id": "regalo-14",
+    "name": "Juego comedor",
+    "url": "https://www.promart.pe/juego-de-comedor-alif-4-sillas-de-ambienta-home-1001628730/p",
+    "image": "https://promart.vteximg.com.br/arquivos/ids/11646385-1000-1000/imageUrl_1.jpg?v=639273277843330000"
+  },
+  {
+    "id": "regalo-15",
+    "name": "Muebles",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/129666779/sofa-cama-futon-elgin-beige-91x182x80cm/129666798",
+    "image": "https://media.falabella.com/sodimacPE/9034692_400/public"
+  },
+  {
+    "id": "regalo-16",
+    "name": "Refrigeradora",
+    "url": null,
+    "image": "assets/gifts/regalo-16.svg",
+    "reference": true
+  },
+  {
+    "id": "regalo-17",
+    "name": "Juego de Ollas antiadherentes",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/prod17390125/juego-de-ollas-38-piezas-antiadherente-victoria-tramontina/882891850",
+    "image": "https://media.falabella.com/falabellaPE/882891845_1/public"
+  },
+  {
+    "id": "regalo-18",
+    "name": "Tetera",
+    "url": "https://simple.ripley.com.pe/tetera-ripley-home-negro-27l-2086342831494p?color_80=Negro",
+    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2086342831494/full_image-2086342831494"
+  },
+  {
+    "id": "regalo-19",
+    "name": "Lavadora",
+    "url": "https://tottus.falabella.com.pe/tottus-pe/product/142935278/lavadora-samsung-19kg-ai-wash-ecobubble-wa80f19s8bpe/142935301",
+    "image": "https://media.falabella.com/tottusPE/43512376_1/public"
+  },
+  {
+    "id": "regalo-20",
+    "name": "Set de 12 Utensilios de Silicona",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/156813921/set-x12-utensilios-de-cocina/156813967",
+    "image": "https://media.falabella.com/falabellaPE/156813968_01/public"
+  },
+  {
+    "id": "regalo-21",
+    "name": "Espejo decorativo de forma irregular",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/113325369/espejo-decorativo-forma-irregular-drop-60x105cm/113325371",
+    "image": "https://media.falabella.com/sodimacPE/8835497_02/public"
+  },
+  {
+    "id": "regalo-22",
+    "name": "Edredón + Juego de sábanas King size 100% Algodón",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/131163351/Edredon-+-Juego-de-sabanas-King-size-100-Algodon/131163352",
+    "image": "https://media.falabella.com/falabellaPE/131163352_01/public"
+  }
+]
