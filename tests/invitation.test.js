@@ -5,6 +5,24 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 
 const token = 'personalized_invitation_token_12345';
+test('la confirmación sigue abierta durante el último día en horario de Perú', async () => {
+  const RealDate = Date;
+  let now = '2026-11-06T12:00:00-05:00';
+  class Clock extends RealDate { static now() { return new RealDate(now).getTime(); } }
+  const context = { module: { exports: {} }, Date: Clock, URL, console, require: name =>
+    name.includes('rsvp-whatsapp-message') ? require('../assets/rsvp-whatsapp-message') : {
+      ...require('../api/_lib/supabase'),
+      supabaseRequest: async () => [{ id: 'date-test', guest_name: 'Invitado', seats: 1, expires_at: '2026-11-06', active: true, rsvps: [] }]
+    }
+  };
+  vm.runInNewContext(fs.readFileSync(require.resolve('../api/invitation'), 'utf8'), context);
+  for (const [instant, expired] of [['2026-11-06T12:00:00-05:00', false], ['2026-11-06T23:59:59-05:00', false], ['2026-11-07T00:00:00-05:00', true]]) {
+    now = instant;
+    const res = response();
+    await context.module.exports({ method: 'GET', url: '/api/invitation?token=' + token }, res);
+    assert.equal(res.body.invitation.expired, expired);
+  }
+});
 const invitation = {
   id: 'guest-1', guest_name: 'Familia Prueba', seats: 2,
   expires_at: '2099-10-23', active: true, status: 'pending', rsvps: []

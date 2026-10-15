@@ -5,7 +5,7 @@ function validToken(token) {
 }
 
 function isExpired(date) {
-  return Date.now() >= new Date(`${date}T00:00:00-05:00`).getTime();
+  return Date.now() >= new Date(`${date}T23:59:59.999-05:00`).getTime();
 }
 
 async function findInvitation(token) {

@@ -5,7 +5,7 @@ async function findGuest(token) {
   if (!/^[A-Za-z0-9_-]{20,128}$/.test(token)) return null;
   const rows = await supabaseRequest(`invitations?access_token=eq.${encodeURIComponent(token)}&select=id,active,expires_at&limit=1`);
   const guest = rows[0];
-  return guest && guest.active && Date.now() < new Date(`${guest.expires_at}T00:00:00-05:00`).getTime() ? guest : null;
+  return guest && guest.active && Date.now() < new Date(`${guest.expires_at}T23:59:59.999-05:00`).getTime() ? guest : null;
 }
 
 module.exports = async function handler(req, res) {
