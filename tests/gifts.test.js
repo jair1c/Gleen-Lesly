@@ -32,7 +32,7 @@ function fixture() {
     await context.module.exports({ method, body, headers: {}, url: '/api/gifts' + query }, res);
     return res;
   };
-  return { call, reservations };
+  return { call, reservations, suggestions };
 }
 
 test('dos elecciones simultáneas: una reserva y un conflicto, sin divulgar identidad', async () => {
@@ -60,4 +60,16 @@ test('solo una invitación válida puede elegir, liberar y proponer otro detalle
 test('el detalle privado de regalos requiere una sesión de administrador', async () => {
   const { call } = fixture();
   assert.equal((await call('GET', null, '?view=admin')).statusCode, 401);
+});
+
+test('no permite otro regalo con el mismo nombre normalizado ni revela al invitado', async () => {
+  const { call, suggestions } = fixture();
+  await call('POST', { token, action: 'suggest', description: 'Cafetera eléctrica' });
+  assert.equal((await call('POST', { token, action: 'suggest', description: 'CAFETERA   ELECTRICA' })).statusCode, 200);
+  suggestions.push({ invitation_id: 'another-guest', description: '  Juego de sábanas  ' });
+  const duplicate = await call('POST', { token, action: 'suggest', description: 'JUEGO  DE SABANAS' });
+  assert.equal(duplicate.statusCode, 409);
+  assert.match(duplicate.data.error, /Otro invitado ya eligió/);
+  assert.equal(JSON.stringify(duplicate.data).includes('another-guest'), false);
+  assert.equal(suggestions[0].description, 'CAFETERA ELECTRICA');
 });

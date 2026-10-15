@@ -1,6 +1,10 @@
 const catalog = require('../assets/gift-catalog.json');
 const { cleanText, getBody, requireAdmin, sendJson, supabaseRequest } = require('./_lib/supabase');
 
+function giftName(value) {
+  return cleanText(value, 500).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
 async function findGuest(token) {
   if (!/^[A-Za-z0-9_-]{20,128}$/.test(token)) return null;
   const rows = await supabaseRequest(`invitations?access_token=eq.${encodeURIComponent(token)}&select=id,active,expires_at&limit=1`);
@@ -31,6 +35,10 @@ module.exports = async function handler(req, res) {
     if (body.action === 'suggest') {
       const description = cleanText(body.description, 500);
       if (!description) return sendJson(res, 400, { error: 'Cuéntanos qué otro detalle deseas llevar.' });
+      const suggestions = await supabaseRequest('gift_suggestions?select=invitation_id,description');
+      if (suggestions.some(item => item.invitation_id !== guest.id && giftName(item.description) === giftName(description))) {
+        return sendJson(res, 409, { error: 'Otro invitado ya eligió un regalo con ese nombre. Por favor, escribe otro detalle para evitar regalos repetidos.' });
+      }
       await supabaseRequest('gift_suggestions?on_conflict=invitation_id', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({ invitation_id: guest.id, description, updated_at: new Date().toISOString() }) });
       return sendJson(res, 200, { ok: true });
     }

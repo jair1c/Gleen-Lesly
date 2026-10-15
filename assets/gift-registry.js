@@ -45,7 +45,7 @@
     try {
       var response = await fetch('/api/gifts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ token: token }, body)) });
       var data = await response.json();
-      if (!response.ok) { if (response.status === 409) await load(); throw new Error(data.error); }
+      if (!response.ok) { if (response.status === 409 && body.action !== 'suggest') await load(); throw new Error(data.error); }
       await load();
       var message = body.action === 'suggest' ? 'Tu detalle quedó guardado. ¡Muchas gracias por acompañarnos!' : body.action === 'release' ? 'Tu elección quedó liberada.' : 'Este detalle quedó elegido por ti. ¡Muchas gracias!';
       (body.action === 'suggest' ? otherStatus : status).textContent = message;
