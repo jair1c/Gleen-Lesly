@@ -255,3 +255,7 @@
  .demo2-family-card { padding:40px 28px 60px; }
  .demo2-family-card #detailsTitle, .demo2-family-card .demo2-family-together { font-size:34px; }
 }
+
+/* Acceso visible al catálogo dentro de los regalos físicos. */
+.demo2-migrated-sections .demo3-gift-physical .demo2-gift-ideas-button { display:block; margin:20px auto 0; padding:15px 18px; max-width:360px; background:#111; border-color:#111; color:#fff; text-transform:none; letter-spacing:0; font-size:16px; line-height:1.4; text-align:center; }
+.demo2-migrated-sections .demo3-gift-physical .demo2-gift-ideas-button:hover { background:#333; border-color:#333; color:#fff; }

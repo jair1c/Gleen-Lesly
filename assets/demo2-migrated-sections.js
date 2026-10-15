@@ -117,10 +117,9 @@
       '<section class="demo3-long-section demo3-long-gifts" id="regalos" aria-labelledby="giftsTitle">' +
         '<div class="demo3-long-inner"><p class="demo3-long-eyebrow">Un detalle para nuestro nuevo comienzo</p><h2 id="giftsTitle">Regalos</h2>' +
           '<p class="demo3-long-lead">Celebrar nuestro amor junto a ti es un regalo muy bonito. Si deseas tener un detalle para acompañarnos en la construcción de nuestro futuro, hemos preparado estas opciones con mucho cariño.</p>' +
-          '<p><a class="demo3-long-button" href="regalos.html' + (new URLSearchParams(location.search).get('invite') ? '?invite=' + encodeURIComponent(new URLSearchParams(location.search).get('invite')) : '') + '">Ver ideas para nuestro hogar</a></p>' +
           '<div class="demo3-gift-grid"><article><h3>Gleen Sandoval</h3><p><strong>BCP Soles</strong></p><p>Cuenta: <span class="demo3-gift-number">53592524271077</span></p><p>CCI: <span class="demo3-gift-number">00253519252427107737</span></p><p>Yape: <span class="demo3-gift-number">924 336 163</span></p></article>' +
             '<article><h3>Lesly Castro</h3><p><strong>BCP Soles</strong></p><p>Cuenta: <span class="demo3-gift-number">53596266668076</span></p><p>CCI: <span class="demo3-gift-number">00253519626666807634</span></p><p>Yape: <span class="demo3-gift-number">904 322 221</span></p></article>' +
-            '<article class="demo3-gift-physical"><h3>Detalles para nuestro hogar</h3><p>Recibiremos tus regalos con cariño en la casa de la novia.<br>Av. Víctor Raúl, Mz. L, Lt. 12, Ramiro Prialé, Sullana.</p></article></div>' +
+            '<article class="demo3-gift-physical"><h3>Detalles para nuestro hogar</h3><p>Recibiremos tus regalos con cariño en la casa de la novia.<br>Av. Víctor Raúl, Mz. L, Lt. 12, Ramiro Prialé, Sullana.</p><a class="demo3-long-button demo2-gift-ideas-button" href="regalos.html' + (new URLSearchParams(location.search).get('invite') ? '?invite=' + encodeURIComponent(new URLSearchParams(location.search).get('invite')) : '') + '">click aquí para ver las ideas de regalos</a></article></div>' +
         '</div>' +
       '</section>' +
       '<section class="demo3-social demo3-long-section" id="recuerdos" aria-labelledby="socialTitle"><div class="demo3-closing-inner">' +

@@ -69,7 +69,7 @@
   },
   {
     "id": "regalo-12",
-    "name": "Cortinas",
+    "name": "Cortinas color perla",
     "url": null,
     "image": "assets/gifts/regalo-12.svg",
     "reference": true
@@ -134,5 +134,53 @@
     "name": "Edredón + Juego de sábanas King size 100% Algodón",
     "url": "https://www.falabella.com.pe/falabella-pe/product/131163351/Edredon-+-Juego-de-sabanas-King-size-100-Algodon/131163352",
     "image": "https://media.falabella.com/falabellaPE/131163352_01/public"
+  },
+  {
+    "id": "regalo-23",
+    "name": "Panel para TV de 65 pulgadas Cartagena",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/154324713/panel-para-tv-65-r-150-cartagena-26-5-x-150-0-x-32-0-cm/154324714",
+    "image": "https://media.falabella.com/sodimacPE/4481275_01/public"
+  },
+  {
+    "id": "regalo-24",
+    "name": "Ducha flexible con manguera",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/145323271/Banos-De-Manguera-Ducha-Flexible-Ducha-Llave-De-Ducha/145323272",
+    "image": "https://media.falabella.com/falabellaPE/145323272_01/public"
+  },
+  {
+    "id": "regalo-25",
+    "name": "Set de 2 cojines Flanel grafito",
+    "url": "https://www.sodimac.com.pe/sodimac-pe/articulo/146712332/-x-/146712335",
+    "image": "https://media.falabella.com/sodimacPE/916068X_400/public"
+  },
+  {
+    "id": "regalo-26",
+    "name": "Set de accesorios de baño de cerámica blanca",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/883093730/set-accesorios-de-bano-ceramica-blanca-basement-home/883093730",
+    "image": "https://media.falabella.com/falabellaPE/883093730_1/public"
+  },
+  {
+    "id": "regalo-28",
+    "name": "Mesa lateral blanca",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/131869269/mesa-lateral-blanca-48x48x46cm/131869272",
+    "image": "https://media.falabella.com/tottusPE/43337130_1/public"
+  },
+  {
+    "id": "regalo-29",
+    "name": "Juego de cubiertos Benetton de 24 piezas",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/883377125/juego-de-cubiertos-24-piezas-benetton/883377125",
+    "image": "https://media.falabella.com/falabellaPE/883377125_001/public"
+  },
+  {
+    "id": "regalo-30",
+    "name": "Set de 4 vasos Clear Roma de 330 ml",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/883663099/set-x4-vasos-clear-roma-330-ml/883663099",
+    "image": "https://media.falabella.com/falabellaPE/883663099_005/public"
+  },
+  {
+    "id": "regalo-27",
+    "name": "Espejo LED BRUCE de 50 × 70 cm",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/152004165/porta-papel-higenico-de-acero-inox-para-bano/152004166",
+    "image": "https://media.falabella.com/falabellaPE/152004166_01/public"
   }
 ]

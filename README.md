@@ -16,7 +16,7 @@ Este repositorio está listo para desplegar en Vercel:
 
 ## Detalles para nuestro hogar
 
-`regalos.html?invite=TOKEN` muestra las 22 ideas de la lista compartida por los novios, con enlaces originales de compra. `assets/gift-catalog.json` contiene el catálogo importado el 14 de octubre de 2026; cambios posteriores en Google Sheets deben importarse nuevamente.
+`regalos.html?invite=TOKEN` muestra las ideas de regalos compartidas por los novios, con enlaces originales de compra. `assets/gift-catalog.json` contiene el catálogo importado el 14 de octubre de 2026; cambios posteriores en Google Sheets deben importarse nuevamente.
 
 Las elecciones y propuestas se guardan en Supabase, en `gift_reservations` y `gift_suggestions`. El SQL de configuración reproducible está en `gift-registry-setup.sql` y ya se ejecutó en el proyecto lesly-gleen. Las tablas tienen RLS y solo el servidor puede acceder. Una clave única evita elecciones simultáneas del mismo regalo. Los invitados pueden liberar sus propias elecciones; el panel privado muestra quién eligió cada regalo y las propuestas adicionales. La hoja original no se modifica automáticamente.
 
