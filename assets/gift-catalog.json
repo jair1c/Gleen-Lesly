@@ -13,11 +13,10 @@
     "reference": true
   },
   {
-    "id": "regalo-3",
-    "name": "Juego de vasos sin diseño",
-    "url": null,
-    "image": "assets/gifts/regalo-3.svg",
-    "reference": true
+    "id": "regalo-30",
+    "name": "Set de 4 vasos Clear Roma de 330 ml",
+    "url": "https://www.falabella.com.pe/falabella-pe/product/883663099/set-x4-vasos-clear-roma-330-ml/883663099",
+    "image": "https://media.falabella.com/falabellaPE/883663099_005/public"
   },
   {
     "id": "regalo-4",
@@ -170,12 +169,6 @@
     "name": "Juego de cubiertos Benetton de 24 piezas",
     "url": "https://www.falabella.com.pe/falabella-pe/product/883377125/juego-de-cubiertos-24-piezas-benetton/883377125",
     "image": "https://media.falabella.com/falabellaPE/883377125_001/public"
-  },
-  {
-    "id": "regalo-30",
-    "name": "Set de 4 vasos Clear Roma de 330 ml",
-    "url": "https://www.falabella.com.pe/falabella-pe/product/883663099/set-x4-vasos-clear-roma-330-ml/883663099",
-    "image": "https://media.falabella.com/falabellaPE/883663099_005/public"
   },
   {
     "id": "regalo-27",
