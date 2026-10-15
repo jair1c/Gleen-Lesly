@@ -201,7 +201,11 @@
   pointer-events: none;
 }
 
-/* Bordes y adornos amarillos, conservando las fotografías originales. */
-#PBnVwKBzJxQZpBf8 img:is([src*="6d7538c3b267dba4940820b9458df1e6"], [src*="dddd4d4577e73fc796fca4ef04460b62"], [src*="f90204c8c3fd00fe113c67946f11e728"]) {
+/* El encaje conserva su blanco y el borde originales. */
+#PBnVwKBzJxQZpBf8 img[src*="6d7538c3b267dba4940820b9458df1e6"] {
+  filter: none;
+}
+/* El resto de adornos mantiene el acento pastel. */
+#PBnVwKBzJxQZpBf8 img:is([src*="dddd4d4577e73fc796fca4ef04460b62"], [src*="f90204c8c3fd00fe113c67946f11e728"]) {
   filter: url("demo2-pastel-filters.svg?v=20261006g#butter-accent");
 }
