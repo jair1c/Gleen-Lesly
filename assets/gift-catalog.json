@@ -3,177 +3,285 @@
     "id": "regalo-1",
     "name": "Hervidor",
     "url": "https://www.falabella.com.pe/falabella-pe/product/140214908/Hervidor-Electrico-Oster-BVSTKT673SS-1.7L/140214909",
-    "image": "https://media.falabella.com/falabellaPE/140214909_01/public"
+    "image": "https://media.falabella.com/falabellaPE/140214909_01/public",
+    "aliases": [
+      "hervidor"
+    ]
   },
   {
     "id": "regalo-2",
     "name": "Juego de Platos Blancos",
     "url": null,
     "image": "assets/gifts/regalo-2.svg",
-    "reference": true
+    "reference": true,
+    "aliases": [
+      "platos",
+      "vajilla"
+    ]
   },
   {
     "id": "regalo-30",
     "name": "Set de 4 vasos Clear Roma de 330 ml",
     "url": "https://www.falabella.com.pe/falabella-pe/product/883663099/set-x4-vasos-clear-roma-330-ml/883663099",
-    "image": "https://media.falabella.com/falabellaPE/883663099_005/public"
+    "image": "https://media.falabella.com/falabellaPE/883663099_005/public",
+    "aliases": [
+      "vasos"
+    ]
   },
   {
     "id": "regalo-4",
     "name": "Licuadora",
     "url": "https://www.falabella.com.pe/falabella-pe/product/19741731/licuadora-con-motor-reversible-1-5l-rojo-blender-blstpyg1310rbg-053/19741731",
-    "image": "https://media.falabella.com/falabellaPE/19741731_6/public"
+    "image": "https://media.falabella.com/falabellaPE/19741731_6/public",
+    "aliases": [
+      "licuadora"
+    ]
   },
   {
     "id": "regalo-5",
     "name": "Freidora de aire",
     "url": "https://simple.ripley.com.pe/freidora-de-aire-oster-4l-digital-con-recubrimiento-diamondforce-con-ventana-y-luz-interna-10-programas-ckstaf40wddf-2019343969453p?color_80=Negro",
-    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2019343969453/full_image-2019343969453"
+    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2019343969453/full_image-2019343969453",
+    "aliases": [
+      "freidora de aire",
+      "air fryer"
+    ]
   },
   {
     "id": "regalo-6",
     "name": "Cocina de 4 hornillas",
     "url": "https://www.falabella.com.pe/falabella-pe/product/155014293/combo1883-sole-encimera-vidrio-4-hornillas-60cm-camp-extractora-nyx/155014294",
-    "image": "https://media.falabella.com/falabellaPE/155014294_01/public"
+    "image": "https://media.falabella.com/falabellaPE/155014294_01/public",
+    "aliases": [
+      "cocina",
+      "encimera"
+    ]
   },
   {
     "id": "regalo-7",
     "name": "Olla arrocera",
     "url": "https://www.falabella.com.pe/falabella-pe/product/150967863/olla-arrocera-oster-ckstrcb10dfblk-1-8-l-negro/150967864",
-    "image": "https://media.falabella.com/falabellaPE/150967864_01/public"
+    "image": "https://media.falabella.com/falabellaPE/150967864_01/public",
+    "aliases": [
+      "arrocera"
+    ]
   },
   {
     "id": "regalo-8",
     "name": "Plancha",
     "url": "https://www.falabella.com.pe/falabella-pe/product/16268383/plancha-thomas-th-7170/16268383",
-    "image": "https://media.falabella.com/falabellaPE/16268383_1/public"
+    "image": "https://media.falabella.com/falabellaPE/16268383_1/public",
+    "aliases": [
+      "plancha"
+    ]
   },
   {
     "id": "regalo-9",
     "name": "Plancha a vapor",
     "url": "https://www.falabella.com.pe/falabella-pe/product/19036898/vaporizador-de-mano-plegable-oster/19036898",
-    "image": "https://media.falabella.com/falabellaPE/19036898_1/public"
+    "image": "https://media.falabella.com/falabellaPE/19036898_1/public",
+    "aliases": [
+      "plancha a vapor",
+      "vaporizador"
+    ]
   },
   {
     "id": "regalo-10",
     "name": "Sandwichera",
     "url": "https://www.falabella.com.pe/falabella-pe/product/20637948/sandwichera-oster-750w-antiadherente/20637948",
-    "image": "https://media.falabella.com/falabellaPE/20637948_02/public"
+    "image": "https://media.falabella.com/falabellaPE/20637948_02/public",
+    "aliases": [
+      "sandwichera"
+    ]
   },
   {
     "id": "regalo-11",
     "name": "Cafetera",
     "url": "https://www.falabella.com.pe/falabella-pe/product/20926138/cafetera-programable-12-tazas-negra-oster/20926138",
-    "image": "https://media.falabella.com/falabellaPE/20926138_01/public"
+    "image": "https://media.falabella.com/falabellaPE/20926138_01/public",
+    "aliases": [
+      "cafetera"
+    ]
   },
   {
     "id": "regalo-12",
     "name": "Cortinas color perla",
     "url": null,
     "image": "assets/gifts/regalo-12.svg",
-    "reference": true
+    "reference": true,
+    "aliases": [
+      "cortina",
+      "cortinas",
+      "cortina perla"
+    ],
+    "reservedExternally": true
   },
   {
     "id": "regalo-13",
     "name": "Plancha Freidora",
     "url": "https://simple.ripley.com.pe/grill-y-parrilla-electrico-2-en-1-whiteline-revestimiento-antiadherente-pmp20000574453?color_80=Negro",
-    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/2623/PMP20000574453/full_image-1.png"
+    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/MKP/2623/PMP20000574453/full_image-1.png",
+    "aliases": [
+      "plancha freidora",
+      "parrilla",
+      "grill"
+    ]
   },
   {
     "id": "regalo-14",
     "name": "Juego comedor",
     "url": "https://www.promart.pe/juego-de-comedor-alif-4-sillas-de-ambienta-home-1001628730/p",
-    "image": "https://promart.vteximg.com.br/arquivos/ids/11646385-1000-1000/imageUrl_1.jpg?v=639273277843330000"
+    "image": "https://promart.vteximg.com.br/arquivos/ids/11646385-1000-1000/imageUrl_1.jpg?v=639273277843330000",
+    "aliases": [
+      "comedor"
+    ]
   },
   {
     "id": "regalo-15",
     "name": "Sofá blanco perlado",
     "url": "https://www.falabella.com.pe/falabella-pe/product/148775416/Sofa-Curvo-Elegante-Doris-Ambienta-Home/148775417",
-    "image": "https://media.falabella.com/falabellaPE/148775417_01/public"
+    "image": "https://media.falabella.com/falabellaPE/148775417_01/public",
+    "aliases": [
+      "sofa",
+      "sillon",
+      "mueble"
+    ]
   },
   {
     "id": "regalo-16",
     "name": "Refrigeradora",
     "url": null,
     "image": "assets/gifts/regalo-16.svg",
-    "reference": true
+    "reference": true,
+    "aliases": [
+      "refrigeradora",
+      "nevera"
+    ]
   },
   {
     "id": "regalo-17",
     "name": "Juego de Ollas antiadherentes",
     "url": "https://www.falabella.com.pe/falabella-pe/product/prod17390125/juego-de-ollas-38-piezas-antiadherente-victoria-tramontina/882891850",
-    "image": "https://media.falabella.com/falabellaPE/882891845_1/public"
+    "image": "https://media.falabella.com/falabellaPE/882891845_1/public",
+    "aliases": [
+      "ollas"
+    ]
   },
   {
     "id": "regalo-18",
     "name": "Tetera",
     "url": "https://simple.ripley.com.pe/tetera-ripley-home-negro-27l-2086342831494p?color_80=Negro",
-    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2086342831494/full_image-2086342831494"
+    "image": "https://rimage.ripley.com.pe/home.ripley/Attachment/WOP/1/2086342831494/full_image-2086342831494",
+    "aliases": [
+      "tetera"
+    ]
   },
   {
     "id": "regalo-19",
     "name": "Lavadora",
     "url": "https://tottus.falabella.com.pe/tottus-pe/product/142935278/lavadora-samsung-19kg-ai-wash-ecobubble-wa80f19s8bpe/142935301",
-    "image": "https://media.falabella.com/tottusPE/43512376_1/public"
+    "image": "https://media.falabella.com/tottusPE/43512376_1/public",
+    "aliases": [
+      "lavadora"
+    ]
   },
   {
     "id": "regalo-20",
     "name": "Set de 12 Utensilios de Silicona",
     "url": "https://www.falabella.com.pe/falabella-pe/product/156813921/set-x12-utensilios-de-cocina/156813967",
-    "image": "https://media.falabella.com/falabellaPE/156813968_01/public"
+    "image": "https://media.falabella.com/falabellaPE/156813968_01/public",
+    "aliases": [
+      "utensilios"
+    ]
   },
   {
     "id": "regalo-21",
     "name": "Espejo decorativo de forma irregular",
     "url": "https://www.falabella.com.pe/falabella-pe/product/113325369/espejo-decorativo-forma-irregular-drop-60x105cm/113325371",
-    "image": "https://media.falabella.com/sodimacPE/8835497_02/public"
+    "image": "https://media.falabella.com/sodimacPE/8835497_02/public",
+    "aliases": [
+      "espejo",
+      "espejo decorativo",
+      "espejo irregular"
+    ]
   },
   {
     "id": "regalo-22",
     "name": "Edredón + Juego de sábanas King size 100% Algodón",
     "url": "https://www.falabella.com.pe/falabella-pe/product/131163351/Edredon-+-Juego-de-sabanas-King-size-100-Algodon/131163352",
-    "image": "https://media.falabella.com/falabellaPE/131163352_01/public"
+    "image": "https://media.falabella.com/falabellaPE/131163352_01/public",
+    "aliases": [
+      "edredon",
+      "sabana",
+      "sabanas"
+    ]
   },
   {
     "id": "regalo-23",
     "name": "Panel para TV de 65 pulgadas Cartagena",
     "url": "https://www.falabella.com.pe/falabella-pe/product/154324713/panel-para-tv-65-r-150-cartagena-26-5-x-150-0-x-32-0-cm/154324714",
-    "image": "https://media.falabella.com/sodimacPE/4481275_01/public"
+    "image": "https://media.falabella.com/sodimacPE/4481275_01/public",
+    "aliases": [
+      "panel para tv",
+      "panel de tv",
+      "panel tv"
+    ]
   },
   {
     "id": "regalo-24",
     "name": "Ducha flexible con manguera",
     "url": "https://www.falabella.com.pe/falabella-pe/product/145323271/Banos-De-Manguera-Ducha-Flexible-Ducha-Llave-De-Ducha/145323272",
-    "image": "https://media.falabella.com/falabellaPE/145323272_01/public"
+    "image": "https://media.falabella.com/falabellaPE/145323272_01/public",
+    "aliases": [
+      "ducha",
+      "manguera de ducha"
+    ]
   },
   {
     "id": "regalo-25",
     "name": "Set de 2 cojines Flanel grafito",
     "url": "https://www.sodimac.com.pe/sodimac-pe/articulo/146712332/-x-/146712335",
-    "image": "https://media.falabella.com/sodimacPE/916068X_400/public"
+    "image": "https://media.falabella.com/sodimacPE/916068X_400/public",
+    "aliases": [
+      "cojin",
+      "cojines"
+    ]
   },
   {
     "id": "regalo-26",
     "name": "Set de accesorios de baño de cerámica blanca",
     "url": "https://www.falabella.com.pe/falabella-pe/product/883093730/set-accesorios-de-bano-ceramica-blanca-basement-home/883093730",
-    "image": "https://media.falabella.com/falabellaPE/883093730_1/public"
+    "image": "https://media.falabella.com/falabellaPE/883093730_1/public",
+    "aliases": [
+      "accesorios de bano"
+    ]
   },
   {
     "id": "regalo-28",
     "name": "Mesa lateral blanca",
     "url": "https://www.falabella.com.pe/falabella-pe/product/131869269/mesa-lateral-blanca-48x48x46cm/131869272",
-    "image": "https://media.falabella.com/tottusPE/43337130_1/public"
+    "image": "https://media.falabella.com/tottusPE/43337130_1/public",
+    "aliases": [
+      "mesa lateral"
+    ]
   },
   {
     "id": "regalo-29",
     "name": "Juego de cubiertos Benetton de 24 piezas",
     "url": "https://www.falabella.com.pe/falabella-pe/product/883377125/juego-de-cubiertos-24-piezas-benetton/883377125",
-    "image": "https://media.falabella.com/falabellaPE/883377125_001/public"
+    "image": "https://media.falabella.com/falabellaPE/883377125_001/public",
+    "aliases": [
+      "cubiertos"
+    ]
   },
   {
     "id": "regalo-27",
     "name": "Espejo LED BRUCE de 50 × 70 cm",
     "url": "https://www.falabella.com.pe/falabella-pe/product/152004165/porta-papel-higenico-de-acero-inox-para-bano/152004166",
-    "image": "https://media.falabella.com/falabellaPE/152004166_01/public"
+    "image": "https://media.falabella.com/falabellaPE/152004166_01/public",
+    "aliases": [
+      "espejo led",
+      "espejo bruce"
+    ]
   }
 ]

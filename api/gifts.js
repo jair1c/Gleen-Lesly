@@ -1,4 +1,5 @@
 const catalog = require('../assets/gift-catalog.json');
+const { matchingIds } = require('./_lib/gift-matching');
 const { cleanText, getBody, requireAdmin, sendJson, supabaseRequest } = require('./_lib/supabase');
 
 function giftName(value) {
@@ -20,13 +21,15 @@ module.exports = async function handler(req, res) {
         await requireAdmin(req);
         const reservations = await supabaseRequest('gift_reservations?select=gift_id,created_at,invitations(guest_name)&order=created_at.desc');
         const suggestions = await supabaseRequest('gift_suggestions?select=description,updated_at,invitations(guest_name)&order=updated_at.desc');
-        return sendJson(res, 200, { reservations: reservations.map(row => ({ name: catalog.find(item => item.id === row.gift_id)?.name || row.gift_id, guest: row.invitations?.guest_name || '', date: row.created_at })), suggestions: suggestions.map(row => ({ description: row.description, guest: row.invitations?.guest_name || '', date: row.updated_at })) });
+        const external = catalog.filter(item => item.reservedExternally && !reservations.some(row => row.gift_id === item.id)).map(item => ({ name: item.name, guest: 'Elegido fuera de la lista', date: null }));
+        return sendJson(res, 200, { reservations: reservations.map(row => ({ name: catalog.find(item => item.id === row.gift_id)?.name || row.gift_id, guest: row.invitations?.guest_name || '', date: row.created_at })).concat(external), suggestions: suggestions.map(row => ({ description: row.description, guest: row.invitations?.guest_name || '', date: row.updated_at })) });
       }
       const token = params.get('token') || '';
       const guest = await findGuest(token);
       const rows = await supabaseRequest('gift_reservations?select=gift_id,invitation_id');
-      const own = guest ? await supabaseRequest(`gift_suggestions?invitation_id=eq.${guest.id}&select=description&limit=1`) : [];
-      return sendJson(res, 200, { gifts: catalog.map(item => ({ ...item, reserved: rows.some(row => row.gift_id === item.id), mine: !!guest && rows.some(row => row.gift_id === item.id && row.invitation_id === guest.id) })), canReserve: !!guest, suggestion: own[0]?.description || '' });
+      const suggestions = await supabaseRequest('gift_suggestions?select=invitation_id,description');
+      const suggestedIds = new Set(suggestions.flatMap(row => matchingIds(row.description)));
+      return sendJson(res, 200, { gifts: catalog.map(item => ({ ...item, reserved: !!item.reservedExternally || rows.some(row => row.gift_id === item.id) || suggestedIds.has(item.id), mine: !item.reservedExternally && !!guest && rows.some(row => row.gift_id === item.id && row.invitation_id === guest.id) })), canReserve: !!guest, suggestion: suggestions.find(row => guest && row.invitation_id === guest.id)?.description || '' });
     }
     if (req.method !== 'POST') return sendJson(res, 405, { error: 'Método no permitido.' });
     const body = await getBody(req);
@@ -36,7 +39,11 @@ module.exports = async function handler(req, res) {
       const description = cleanText(body.description, 500);
       if (!description) return sendJson(res, 400, { error: 'Cuéntanos qué otro detalle deseas llevar.' });
       const suggestions = await supabaseRequest('gift_suggestions?select=invitation_id,description');
-      if (suggestions.some(item => item.invitation_id !== guest.id && giftName(item.description) === giftName(description))) {
+      const reservations = await supabaseRequest('gift_reservations?select=gift_id');
+      const ids = matchingIds(description);
+      const picked = new Set([...catalog.filter(item => item.reservedExternally).map(item => item.id), ...reservations.map(row => row.gift_id)]);
+      if (ids.some(id => picked.has(id))) return sendJson(res, 409, { error: 'Ya hay un regalo escogido con ese nombre. Por favor, elige otro detalle para evitar regalos repetidos.' });
+      if (suggestions.some(item => item.invitation_id !== guest.id && (giftName(item.description) === giftName(description) || matchingIds(item.description).some(id => ids.includes(id))))) {
         return sendJson(res, 409, { error: 'Otro invitado ya eligió un regalo con ese nombre. Por favor, escribe otro detalle para evitar regalos repetidos.' });
       }
       await supabaseRequest('gift_suggestions?on_conflict=invitation_id', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }, body: JSON.stringify({ invitation_id: guest.id, description, updated_at: new Date().toISOString() }) });
@@ -44,9 +51,12 @@ module.exports = async function handler(req, res) {
     }
     const item = catalog.find(item => item.id === body.giftId);
     if (!item) return sendJson(res, 400, { error: 'Ese regalo no está en nuestra lista.' });
+    if (item.reservedExternally) return sendJson(res, 409, { error: 'Este regalo ya está escogido. Por favor, elige otro detalle.' });
     if (body.action === 'release') {
       await supabaseRequest(`gift_reservations?gift_id=eq.${item.id}&invitation_id=eq.${guest.id}`, { method: 'DELETE' });
     } else if (body.action === 'reserve') {
+      const suggestions = await supabaseRequest('gift_suggestions?select=description');
+      if (suggestions.some(row => matchingIds(row.description).includes(item.id))) return sendJson(res, 409, { error: 'Ya hay un regalo escogido con ese nombre. Por favor, elige otro detalle.' });
       // La clave única en gift_id decide también entre dos elecciones simultáneas.
       await supabaseRequest('gift_reservations', { method: 'POST', body: JSON.stringify({ gift_id: item.id, invitation_id: guest.id }) });
     } else return sendJson(res, 400, { error: 'Acción no válida.' });

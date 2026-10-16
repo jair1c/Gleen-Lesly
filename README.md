@@ -22,6 +22,10 @@ Las elecciones y propuestas se guardan en Supabase, en `gift_reservations` y `gi
 
 Requiere las mismas variables Supabase del RSVP. Pruebas: `node --test tests/gifts.test.js`.
 
+`gift-registry-validation.sql` sincroniza nombres y alias de `assets/gift-catalog.json` con las reglas privadas de Supabase. Debe actualizarse y ejecutarse al cambiar esos alias o `reservedExternally`. Los triggers cruzan elecciones del catálogo con propuestas escritas y serializan sus escrituras para impedir duplicados concurrentes. Las cortinas figuran como elegidas fuera de la lista, sin atribuirlas a un invitado ficticio.
+
+No hay un límite diario de 20 invitaciones en la aplicación. El límite de 20 corresponde a los cupos de una invitación. El panel conserva visible el último enlace creado si la copia automática o la actualización posterior de la lista falla. Pruebas: `node --test tests/admin-invitations.test.js`.
+
 El formulario integrado en `Home.html` usa `?invite=TOKEN` y consulta `GET /api/invitation` para mostrar el nombre, los cupos y la respuesta previa. Al enviar, `POST /api/invitation` guarda la confirmación en las tablas `invitations` y `rsvps` del mismo proyecto Supabase que demo33 y luego prepara WhatsApp. No se guarda en los archivos CSV/JSON antiguos.
 
 Configura `SUPABASE_URL`, `SUPABASE_SECRET_KEY` y `WHATSAPP_NUMBER` como variables de entorno del despliegue. Para el servidor local, cópialas a `.env.local` (ignorado por Git), usando `.env.example` como plantilla. Los enlaces personalizados deben apuntar a demo2 con el parámetro `invite`; los enlaces generados con dominio de demo33 no cambian automáticamente.

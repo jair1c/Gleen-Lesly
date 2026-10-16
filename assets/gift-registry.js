@@ -60,7 +60,7 @@
     try {
       var response = await fetch('assets/gift-catalog.json');
       if (!response.ok) throw new Error('catalog');
-      gifts = (await response.json()).map(function (gift) { return Object.assign({}, gift, { unknown: true }); });
+      gifts = (await response.json()).map(function (gift) { return Object.assign({}, gift, { reserved: !!gift.reservedExternally, unknown: !gift.reservedExternally }); });
       available.disabled = true; render();
     } catch (_) { status.textContent = 'No pudimos cargar la lista. Vuelve a intentarlo en un momento.'; }
   });

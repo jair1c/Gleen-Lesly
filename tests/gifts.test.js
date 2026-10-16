@@ -25,7 +25,7 @@ function fixture() {
     }
     return reservations;
   } };
-  const context = { module: { exports: {} }, require: p => p.includes('gift-catalog') ? catalog : helper, URL, Date, console };
+  const context = { module: { exports: {} }, require: p => p.includes('gift-catalog') ? catalog : p.includes('gift-matching') ? require('../api/_lib/gift-matching') : helper, URL, Date, console };
   vm.runInNewContext(fs.readFileSync(require.resolve('../api/gifts'), 'utf8'), context);
   const call = async (method, body, query = '') => {
     const res = { setHeader() {}, end(s) { this.data = JSON.parse(s); } };
@@ -45,6 +45,32 @@ test('dos elecciones simultáneas: una reserva y un conflicto, sin divulgar iden
   assert.equal(JSON.stringify(publicList.data).includes('guest-1'), false);
   const personal = await call('GET', null, '?token=' + token);
   assert.equal(personal.data.gifts[0].mine, true);
+});
+
+test('las cortinas quedan reservadas y no se pueden elegir ni proponer en singular o plural', async () => {
+  const { call } = fixture();
+  const list = await call('GET', null, '?token=' + token);
+  const curtains = list.data.gifts.find(item => item.id === 'regalo-12');
+  assert.equal(curtains.reserved, true);
+  assert.equal(curtains.mine, false);
+  for (const action of ['reserve', 'release']) assert.equal((await call('POST', { token, action, giftId: curtains.id })).statusCode, 409);
+  for (const description of ['cortina', 'CORTINAS', 'Unas cortinas color perla', 'Llevaré una cortina', 'Una cafetera y unas cortinas']) {
+    const response = await call('POST', { token, action: 'suggest', description });
+    assert.equal(response.statusCode, 409, description);
+    assert.match(response.data.error, /Ya hay un regalo escogido/);
+  }
+});
+
+test('cruza regalos del catálogo y propuestas en ambas direcciones sin bloquear variantes distintas', async () => {
+  const { call, reservations } = fixture();
+  reservations.push({ gift_id: 'regalo-10', invitation_id: 'another-guest' });
+  assert.equal((await call('POST', { token, action: 'suggest', description: 'Una sandwichera' })).statusCode, 409);
+  await call('POST', { token, action: 'suggest', description: 'Una cafetera eléctrica' });
+  assert.equal((await call('POST', { token, action: 'reserve', giftId: 'regalo-11' })).statusCode, 409);
+  const list = await call('GET');
+  assert.equal(list.data.gifts.find(item => item.id === 'regalo-11').reserved, true);
+  reservations.push({ gift_id: 'regalo-8', invitation_id: 'another-guest' });
+  assert.equal((await call('POST', { token, action: 'suggest', description: 'Plancha a vapor' })).statusCode, 200);
 });
 test('solo una invitación válida puede elegir, liberar y proponer otro detalle', async () => {
   const { call, reservations } = fixture();
