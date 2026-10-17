@@ -22,7 +22,7 @@
   if (token) {
     var back = document.getElementById('backToInvite');
     back.hidden = false;
-    back.href = '/save-the-date?section=recuerdos&invite=' + encodeURIComponent(token);
+    back.href = '/home?section=recuerdos&invite=' + encodeURIComponent(token);
   }
 
   function setStatus(message, type) {
@@ -95,7 +95,9 @@
         uploadMessage.textContent = data.upload.message;
         chooseButton.disabled = !data.upload.allowed;
         chooseButton.textContent = data.upload.allowed ? 'Seleccionar fotografías' : (data.upload.code === 'not_started' ? 'Disponible desde el 28 de noviembre' : 'Carga no disponible');
-        if (data.invitation) uploadMessage.textContent = data.invitation.names + ', ' + data.upload.message.charAt(0).toLowerCase() + data.upload.message.slice(1);
+        if (data.invitation) {
+          uploadMessage.textContent = data.invitation.names + ', ' + data.upload.message.charAt(0).toLowerCase() + data.upload.message.slice(1);
+        }
       }
     }).catch(function (error) {
       if (!silent) {
@@ -181,13 +183,21 @@
 
   submitButton.addEventListener('click', function () {
     if (!selected.length) return;
+    var uploaderName = document.getElementById('uploaderName');
+    if (uploaderName.value.trim().length < 3) {
+      setStatus('Escribe tu nombre y apellido para identificar tus fotografías.', 'error');
+      uploaderName.focus();
+      return;
+    }
+    var uploadReceipt = '';
     chooseButton.disabled = true;
     submitButton.disabled = true;
     setStatus('Preparando el envío seguro…');
     api({ method: 'POST', body: {
-      action: 'prepare', token: token,
+      action: 'prepare', token: token, uploaderName: uploaderName.value.trim(),
       files: selected.map(function (item) { return { name:item.name, type:item.type, size:item.blob.size, width:item.width, height:item.height }; })
     }}).then(function (data) {
+      uploadReceipt = data.receipt;
       var publicKey = data.publishableKey || '';
       return Promise.all(data.uploads.map(function (upload, index) {
         var form = new FormData();
@@ -202,16 +212,15 @@
       }));
     }).then(function (ids) {
       setStatus('Comprobando las fotografías…');
-      return api({ method: 'POST', body: { action: 'finalize', token: token, photoIds: ids } });
+      return api({ method: 'POST', body: { action: 'finalize', receipt: uploadReceipt } });
     }).then(function (data) {
       clearSelection();
       setStatus(data.message, 'success');
     }).catch(function (error) {
       setStatus(error.message, 'error');
     }).finally(function () {
-      chooseButton.disabled = false;
       submitButton.disabled = false;
-      loadContext(true);
+      loadContext(false);
     });
   });
 

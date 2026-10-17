@@ -23,7 +23,9 @@ async function signedRows(rows) {
   return rows.map(row => ({
     id: row.id,
     invitationId: row.invitation_id,
-    guestName: row.invitations && row.invitations.guest_name || 'Invitado',
+    guestName: row.uploader_name || row.invitations && row.invitations.guest_name || 'Invitado',
+    source: row.invitation_id ? 'invitation' : 'qr',
+    invitationName: row.invitations && row.invitations.guest_name || '',
     url: row.url || '',
     originalName: row.original_name,
     width: row.width,
@@ -49,7 +51,7 @@ module.exports = async function handler(req, res) {
   try {
     const user = await requireAdmin(req);
     if (req.method === 'GET') {
-      const rows = await supabaseRequest('guest_photos?status=neq.uploading&select=id,invitation_id,storage_path,original_name,width,height,size_bytes,caption,status,created_at,uploaded_at,approved_at,invitations(guest_name)&order=created_at.desc&limit=300');
+      const rows = await supabaseRequest('guest_photos?status=neq.uploading&select=id,invitation_id,uploader_name,storage_path,original_name,width,height,size_bytes,caption,status,created_at,uploaded_at,approved_at,invitations(guest_name)&order=created_at.desc&limit=300');
       return sendJson(res, 200, { photos: await signedRows(rows) });
     }
 

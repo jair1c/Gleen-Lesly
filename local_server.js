@@ -33,8 +33,8 @@ const invitationApi = require('./api/invitation');
 const server = http.createServer((req, res) => {
   let decoded = decodeURI(req.url.split('?')[0]);
 
-  if (decoded === '/api/gifts') {
-    Promise.resolve(require('./api/gifts')(req, res)).catch(() => {
+  if (decoded === '/api/gifts' || decoded === '/api/guest-photos') {
+    Promise.resolve(require(decoded === '/api/gifts' ? './api/gifts' : './api/guest-photos')(req, res)).catch(() => {
       if (!res.writableEnded) { res.statusCode = 500; res.end(JSON.stringify({ error: 'Error interno.' })); }
     });
     return;

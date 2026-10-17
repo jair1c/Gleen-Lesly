@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/demo3/images/0e0be3f439c80cb354719e8ea9791e11.png">
   <link rel="stylesheet" href="./assets/demo3/css/album.css?v=20261006f">
   <link rel="stylesheet" href="./assets/demo3/css/recuerdos.css?v=20261006s">
-  <script defer src="./assets/demo3/js/recuerdos.js?v=20261006s"></script>
+  <script defer src="./assets/demo3/js/recuerdos.js?v=20261017a"></script>
 </head>
 <body>
   <header class="guest-header">
@@ -35,7 +35,10 @@
           <span class="upload-number">01</span>
           <div><p class="eyebrow">Tu cámara, nuestro recuerdo</p><h2 id="uploadTitle">Sube tus fotos</h2></div>
         </div>
-        <p class="upload-copy" id="uploadMessage">Comprobando tu invitación…</p>
+        <p class="upload-copy" id="uploadMessage">Comprobando disponibilidad…</p>
+        <label class="upload-copy" for="uploaderName">Tu nombre y apellido</label>
+        <input id="uploaderName" type="text" autocomplete="name" maxlength="100" required placeholder="¿Quién comparte estas fotos?" style="display:block;box-sizing:border-box;width:100%;padding:12px;margin:8px 0 12px;border:1px solid #b7bba6;background:#fffdf5;color:#47513c;font:inherit">
+        <p class="upload-copy">Tu nombre acompañará el envío en el panel privado de los novios.</p>
         <div class="upload-rules">
           <span>JPG, PNG o WebP</span><span>Máximo 6 MB</span><span>Hasta 10 por envío</span>
         </div>
